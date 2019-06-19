@@ -11,7 +11,7 @@ public class Graphic {
     private JPanel homeLine, playlist;
     private MusicOptions musics;
     private JPanel friends;
-    private JPanel playLine;
+    private PlayMusicGUI playLine;
     private JPanel center, main, informationLine;
 
     /**
@@ -25,11 +25,10 @@ public class Graphic {
         musics = new MusicOptions();
         playlist = new JPanel();
         friends = new JPanel();
-        playLine = new JPanel();
         center = new JPanel();
         main = new JPanel();
         informationLine = new JPanel();
-
+        playLine = new PlayMusicGUI();
         friends.setLayout(new BorderLayout());
         homeLine.setLayout(new GridLayout(2, 1));
         center.setLayout(new BorderLayout());
@@ -37,7 +36,6 @@ public class Graphic {
         //set background for panels
         playlist.setBackground(new Color(0xBD0000));
         friends.setBackground(new Color(0xFFE657));
-        playLine.setBackground(new Color(0));
         main.setBackground(new Color(0x32FF4A));
         informationLine.setBackground(new Color(0x101374));
 
@@ -50,7 +48,6 @@ public class Graphic {
         center.setPreferredSize(new Dimension(100, 100));
         main.setPreferredSize(new Dimension(100, 700));
         informationLine.setPreferredSize(new Dimension(100, 40));
-
         //add panels
         homeLine.add(musics);
         homeLine.add(playlist);
@@ -59,8 +56,8 @@ public class Graphic {
         frame.getContentPane().add(center, BorderLayout.CENTER);
         frame.getContentPane().add(homeLine,BorderLayout.WEST);
         frame.getContentPane().add(friends, BorderLayout.EAST);
-        frame.getContentPane().add(playLine, BorderLayout.SOUTH);
-
+//        frame.getContentPane().add(playLine, BorderLayout.SOUTH);
+        frame.add(playLine ,BorderLayout.SOUTH);
         frame.setMinimumSize(new Dimension(1200, 700));
 
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
