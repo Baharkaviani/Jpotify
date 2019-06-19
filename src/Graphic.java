@@ -9,15 +9,20 @@ public class Graphic {
     private JFrame frame;
     //JPanels
     private JPanel homeLine, playlist;
-    private JPanel musics;
+    private MusicOptions musics;
     private JPanel friends;
     private JPanel playLine;
     private JPanel center, main, informationLine;
 
+    /**
+     * the constructor
+     * shows Jpotify's frame
+     * dose not let user make frame smaller than a specific size
+     */
     Graphic(){
         frame = new JFrame();
         homeLine = new JPanel();
-        musics = new JPanel();
+        musics = new MusicOptions();
         playlist = new JPanel();
         friends = new JPanel();
         playLine = new JPanel();
@@ -30,22 +35,11 @@ public class Graphic {
         center.setLayout(new BorderLayout());
 
         //set background for panels
-        musics.setBackground(new Color(0x7BA3ED));
         playlist.setBackground(new Color(0xBD0000));
         friends.setBackground(new Color(0xFFE657));
         playLine.setBackground(new Color(0));
         main.setBackground(new Color(0x32FF4A));
         informationLine.setBackground(new Color(0x101374));
-
-        //set ToolTipText for each panel
-        homeLine.setToolTipText("homeLine");
-        musics.setToolTipText("musics");
-        playlist.setToolTipText("playlist");
-        friends.setToolTipText("friends");
-        playLine.setToolTipText("playLine");
-        center.setToolTipText("center");
-        main.setToolTipText("main");
-        informationLine.setToolTipText("informationLine");
 
         //set size for the frame and panels
         homeLine.setPreferredSize(new Dimension(190, 100));
