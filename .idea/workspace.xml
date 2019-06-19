@@ -2,14 +2,43 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="457f561a-5378-456b-979b-9897159d62a6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Library.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Project.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/Shuffle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/Volume1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/Volume2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/forward.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/pause.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/play.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/stop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/volume3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/volume4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Project/Graphic.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Project/Library.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Project/MP3FileData.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Project/MP3FileDataGUI.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Project/MouseListenerForButtons.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Project/MusicOptions.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Project/PlayMusicActioner.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Project/PlayMusicGUI.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Project/VolumePanel.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tmp/Jpotify" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Graphic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MP3FileData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MP3FileData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MP3FileData.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MP3FileDataGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MP3FileDataGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MusicOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MusicOptions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PlayMusicActioner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlayMusicActioner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MouseListenerForButtons.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MusicOptions.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PlayMusicActioner.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PlayMusicGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlayMusicGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VolumePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VolumePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VolumePanel.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,29 +58,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MusicOptions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="11" column="2" lean-forward="true" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/VolumePanel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MP3FileDataGUI.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -65,47 +71,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Library.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="407">
-              <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MP3FileData.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="85" selection-start-line="85" selection-end-line="85" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PlayMusicGUI.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="22">
               <caret line="1" column="13" lean-forward="true" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PlayMusicActioner.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -146,7 +115,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="85" />
     <option name="y" value="25" />
     <option name="width" value="1750" />
@@ -188,7 +157,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1560966687733" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1560967016165" />
     <property name="last_opened_file_path" value="E:/java/JlayerLIbrary/JLayer1.0.1" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -251,7 +220,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16174497" />
@@ -347,6 +316,15 @@
           <caret line="85" selection-start-line="85" selection-end-line="85" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MouseListenerForButtons.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
