@@ -4,6 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
+/**
+ * PlayMusicActioner play a song which adding to library and can stop and pause it.
+ * also can go to next and previous song;
+ */
 public class PlayMusicActioner implements ActionListener,Runnable {
 
     FileInputStream musicFile;
@@ -73,7 +77,6 @@ public class PlayMusicActioner implements ActionListener,Runnable {
             System.err.println(error);
         }
     }
-
     @Override
     public void run() {
         try {
