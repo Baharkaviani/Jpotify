@@ -4,8 +4,18 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 
+/**
+ * MP3FileDataGUI is for showing meta data like artWork and artist's name;
+ * @author : Yasaman Haghbin , Bahar Kaviani
+ * @since : 2019 - 6 -18
+ * @version : 1.0
+ */
 public class MP3FileDataGUI extends JPanel {
     JLabel artWork , title , artist , album;
+
+    /**
+     * constructor initialize lable and set them in Layout
+     */
     public MP3FileDataGUI(){
         this.setPreferredSize(new Dimension(300,50));
         title = new JLabel("title");

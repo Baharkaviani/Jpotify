@@ -17,28 +17,29 @@ public class PlayMusicGUI extends JPanel{
      * @param :void
      * get size to button and add them in panel and add to actionListener;
      */
-    public PlayMusicGUI(){
+    public PlayMusicGUI()throws Exception{
         playing = new JPanel();
         volumePanel = new VolumePanel();
         playing.setPreferredSize(new Dimension(900,50));
         metaData = new MP3FileDataGUI();
-        back = new JButton(new ImageIcon("E:\\java\\Jlayer\\src\\back.png"));
+        back = new JButton(new ImageIcon("C:\\Users\\vcc\\Desktop\\Jpotify\\image\\back.png"));
         back.setBackground(Color.BLACK);
-        next = new JButton(new ImageIcon("E:\\java\\Jlayer\\src\\forward.png"));
+        next = new JButton(new ImageIcon("C:\\Users\\vcc\\Desktop\\Jpotify\\image\\forward.png"));
         next.setBackground(Color.BLACK);
-        stop = new JButton(new ImageIcon("E:\\java\\Jlayer\\src\\stop.png"));
+        stop = new JButton(new ImageIcon("C:\\Users\\vcc\\Desktop\\Jpotify\\image\\stop.png"));
         stop.setBackground(Color.BLACK);
-        shuffle = new JButton(new ImageIcon("E:\\java\\Jlayer\\src\\Shuffle.png"));
+        shuffle = new JButton(new ImageIcon("C:\\Users\\vcc\\Desktop\\Jpotify\\image\\Shuffle.png"));
         shuffle.setBackground(Color.BLACK);
-        pauseAndResumeButton = new JButton(new ImageIcon("E:\\java\\Jlayer\\src\\pause.png"));
+        pauseAndResumeButton = new JButton(new ImageIcon("C:\\Users\\vcc\\Desktop\\Jpotify\\image\\pause.png"));
         pauseAndResumeButton.setBackground(Color.BLACK);
         playing.setLayout(new GridLayout());
         this.setLayout(new BorderLayout());
-        stop.addActionListener(new PlayMusicActioner(this));
-        shuffle.addActionListener(new PlayMusicActioner(this));
-        pauseAndResumeButton.addActionListener(new PlayMusicActioner(this));
-        next.addActionListener(new PlayMusicActioner(this));
-        back.addActionListener(new PlayMusicActioner(this));
+        PlayMusicActioner playMusic = new PlayMusicActioner(this);
+        stop.addActionListener(playMusic);
+        shuffle.addActionListener(playMusic);
+        pauseAndResumeButton.addActionListener(playMusic);
+        next.addActionListener(playMusic);
+        back.addActionListener(playMusic);
         playing.add(shuffle);
         playing.add(back);
         playing.add(pauseAndResumeButton);
@@ -49,15 +50,39 @@ public class PlayMusicGUI extends JPanel{
         this.add(volumePanel , BorderLayout.EAST);
     }
     public void setPauseIcon(){
-        image = new ImageIcon("E:\\java\\Jlayer\\src\\pause.png");
+        image = new ImageIcon("C:\\Users\\vcc\\Desktop\\Jpotify\\image\\pause.png");
         pauseAndResumeButton.setIcon(image);
     }
     public void setResumeIcon(){
-        image = new ImageIcon("E:\\java\\Jlayer\\src\\play.png");
+        image = new ImageIcon("C:\\Users\\vcc\\Desktop\\Jpotify\\image\\play.png");
         pauseAndResumeButton.setIcon(image);
     }
     public JPanel getMetaData() {
         return metaData;
+    }
+
+    public JButton getPauseAndResumeButton() {
+        return pauseAndResumeButton;
+    }
+
+    public JButton getBack() {
+        return back;
+    }
+
+    public JButton getNext() {
+        return next;
+    }
+
+    public JButton getStop() {
+        return stop;
+    }
+
+    public JButton getShuffle() {
+        return shuffle;
+    }
+
+    public JPanel getVolumePanel() {
+        return volumePanel;
     }
 
     private static Icon resizeIcon(ImageIcon icon, int resizedWidth, int resizedHeight) {
