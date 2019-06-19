@@ -8,7 +8,7 @@ import java.awt.*;
  * @author Bahar Kaviani & Yasaman Haghbin
  */
  class MusicOptions extends JPanel implements ListSelectionListener {
-    private static JButton library;
+    private JButton library, song;
 
     MusicOptions(){
         setLayout(new GridLayout(4, 1));
@@ -19,6 +19,7 @@ import java.awt.*;
         ImageIcon image = new ImageIcon(getClass().getResource("./images/1.png"));
 
         library = new JButton(image);
+        song = new JButton();
         add(library);
 
         setBackground(new Color(0x7BA3ED));
