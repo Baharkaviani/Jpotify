@@ -1,3 +1,10 @@
+/**
+ * Library class read paths which saves and return path to the other class.
+ * @author Bahar Kaviani , Yasaman Haghbin
+ * @since : 2019
+ * @version : 1.0
+ */
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -7,6 +14,7 @@ public class Library {
     private ArrayList<String > paths;
     private int index=0;
     private BufferedReader musicPath;
+
     public Library(){
         paths = new ArrayList<>();
     }
@@ -22,6 +30,7 @@ public class Library {
         }
         musicPath.close();
     }
+
     public int getIndex() {
         return index;
     }
