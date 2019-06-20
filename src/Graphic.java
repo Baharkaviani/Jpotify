@@ -3,12 +3,13 @@ import java.awt.*;
 
 /**
  * shows each part of Potify's window
- * @author Bahar Kaviani
+ * @author Bahar Kaviani & Yasaman Haghbin
  */
 public class Graphic {
     private JFrame frame;
     //JPanels
-    private JPanel homeLine, playlist;
+    private JPanel homeLine;
+    private Playlist playlist;
     private MusicOptions musics;
     private JPanel friends;
     private PlayMusicGUI playLine;
@@ -23,7 +24,7 @@ public class Graphic {
         frame = new JFrame();
         homeLine = new JPanel();
         musics = new MusicOptions();
-        playlist = new JPanel();
+        playlist = new Playlist();
         friends = new JPanel();
         center = new JPanel();
         main = new JPanel();

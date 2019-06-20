@@ -16,7 +16,7 @@ import java.awt.*;
         add(jLabel);
 
         //initialize
-        ImageIcon image = new ImageIcon(getClass().getResource("./images/1.png"));
+        ImageIcon image = new ImageIcon(getClass().getResource("./images/1 - Copy.png"));
 
         library = new JButton(image);
         song = new JButton();

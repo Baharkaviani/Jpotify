@@ -1,6 +1,6 @@
 /**
  * @author : Yasaman Haghbin , Bahar Kaviani
- * @since : 2019 - 6 -18
+ * @since : 2019 - 6 - 18
  * @version : 1.0
  * PlayMusicGUI contains JFrame to show play,pause,stop,next,back,button and has JSlider for rewind and forward;
  */
