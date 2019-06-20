@@ -13,7 +13,7 @@ public class VolumePanel extends JPanel implements ChangeListener {
         slider.setMinorTickSpacing(10);
         slider.setPaintTicks(false);
         slider.addChangeListener(this::stateChanged);
-        volumeIcone = new JLabel(new ImageIcon("E:\\java\\Jlayer\\icon\\volume4.png"));
+        volumeIcone = new JLabel(new ImageIcon(getClass().getResource(".\\images\\volume4.png")));
         this.add(volumeIcone);
         this.add(slider);
     }

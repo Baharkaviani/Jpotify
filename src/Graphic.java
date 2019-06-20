@@ -3,7 +3,13 @@ import java.awt.*;
 
 /**
  * shows each part of Potify's window
+<<<<<<< HEAD
  * @author Bahar Kaviani & Yasaman Haghbin
+=======
+ * @author Bahar Kaviani , Yasaman Haghbin
+ * @since : 2019 - 6 -18
+ * @version : 1.0
+>>>>>>> 654c883ca824c9bc747e8fd08b9e782cd832b932
  */
 public class Graphic {
     private JFrame frame;
@@ -20,7 +26,7 @@ public class Graphic {
      * shows Jpotify's frame
      * dose not let user make frame smaller than a specific size
      */
-    Graphic(){
+    Graphic()throws Exception{
         frame = new JFrame();
         homeLine = new JPanel();
         musics = new MusicOptions();
@@ -57,16 +63,14 @@ public class Graphic {
         frame.getContentPane().add(center, BorderLayout.CENTER);
         frame.getContentPane().add(homeLine,BorderLayout.WEST);
         frame.getContentPane().add(friends, BorderLayout.EAST);
-//        frame.getContentPane().add(playLine, BorderLayout.SOUTH);
         frame.add(playLine ,BorderLayout.SOUTH);
         frame.setMinimumSize(new Dimension(1200, 700));
-
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)throws Exception {
         Graphic JPotify = new Graphic();
     }
 }

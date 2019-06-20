@@ -28,7 +28,7 @@ public class MP3FileData{
         file = new FileInputStream(song);
         readData();
     }
-        private void readData(){
+    private void readData(){
         try{
             //calculate totalSize of file;
             int size = (int) song.length();
