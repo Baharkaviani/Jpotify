@@ -11,8 +11,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Library {
-    private ArrayList<String > paths;
-    private int index=0;
+    private ArrayList<String> paths;
+    private int index = 0;
     private BufferedReader musicPath;
 
     public Library(){
@@ -20,13 +20,13 @@ public class Library {
     }
     public void readPlayList() throws IOException {
         musicPath = new BufferedReader(new FileReader("C:\\Users\\vcc\\Desktop\\Jpotify\\library.txt"));
-        if(paths.size()!=0){
+        if(paths.size() != 0){
             paths.removeAll(paths);
         }
-        String r=musicPath.readLine();
-        while (r!=null) {
+        String r = musicPath.readLine();
+        while (r != null) {
             paths.add(r);
-            r=musicPath.readLine();
+            r = musicPath.readLine();
         }
         musicPath.close();
     }
@@ -38,7 +38,7 @@ public class Library {
         index=index-2;
     }
     public String getPath(){
-        String s=paths.get(index);
+        String s = paths.get(index);
         index++;
         return s;
     }

@@ -5,6 +5,8 @@
  * PlayMusicGUI contains JFrame to show play,pause,stop,next,back,button and has JSlider for rewind and forward;
  */
 
+import com.mpatric.mp3agic.Mp3File;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,7 +14,9 @@ public class PlayMusicGUI extends JPanel{
 
     private JButton pauseAndResumeButton , back , next , stop , shuffle;
     private ImageIcon image;
-    private JPanel playing , metaData ,volumePanel;
+    private JPanel playing ;
+    private MP3FileDataGUI metaData;
+    private VolumePanel volumePanel;
     /**
      * @param :void
      * get size to button and add them in panel and add to actionListener;
@@ -22,15 +26,15 @@ public class PlayMusicGUI extends JPanel{
         volumePanel = new VolumePanel();
         playing.setPreferredSize(new Dimension(900,50));
         metaData = new MP3FileDataGUI();
-        back = new JButton(new ImageIcon("C:\\Users\\vcc\\Desktop\\Jpotify\\image\\back.png"));
+        back = new JButton(new ImageIcon(getClass().getResource(".\\images\\back.png")));
         back.setBackground(Color.BLACK);
-        next = new JButton(new ImageIcon("C:\\Users\\vcc\\Desktop\\Jpotify\\image\\forward.png"));
+        next = new JButton(new ImageIcon(getClass().getResource(".\\images\\forward.png")));
         next.setBackground(Color.BLACK);
-        stop = new JButton(new ImageIcon("C:\\Users\\vcc\\Desktop\\Jpotify\\image\\stop.png"));
+        stop = new JButton(new ImageIcon(getClass().getResource(".\\images\\stop.png")));
         stop.setBackground(Color.BLACK);
-        shuffle = new JButton(new ImageIcon("C:\\Users\\vcc\\Desktop\\Jpotify\\image\\Shuffle.png"));
+        shuffle = new JButton(new ImageIcon(getClass().getResource(".\\images\\Shuffle.png")));
         shuffle.setBackground(Color.BLACK);
-        pauseAndResumeButton = new JButton(new ImageIcon("C:\\Users\\vcc\\Desktop\\Jpotify\\image\\pause.png"));
+        pauseAndResumeButton = new JButton(new ImageIcon(getClass().getResource(".\\images\\pause.png")));
         pauseAndResumeButton.setBackground(Color.BLACK);
         playing.setLayout(new GridLayout());
         this.setLayout(new BorderLayout());
@@ -50,14 +54,14 @@ public class PlayMusicGUI extends JPanel{
         this.add(volumePanel , BorderLayout.EAST);
     }
     public void setPauseIcon(){
-        image = new ImageIcon("C:\\Users\\vcc\\Desktop\\Jpotify\\image\\pause.png");
+        image = new ImageIcon(getClass().getResource(".\\images\\pause.png"));
         pauseAndResumeButton.setIcon(image);
     }
     public void setResumeIcon(){
-        image = new ImageIcon("C:\\Users\\vcc\\Desktop\\Jpotify\\image\\play.png");
+        image = new ImageIcon(getClass().getResource(".\\images\\play.png"));
         pauseAndResumeButton.setIcon(image);
     }
-    public JPanel getMetaData() {
+    public MP3FileDataGUI getMetaData() {
         return metaData;
     }
 
@@ -81,7 +85,7 @@ public class PlayMusicGUI extends JPanel{
         return shuffle;
     }
 
-    public JPanel getVolumePanel() {
+    public VolumePanel getVolumePanel() {
         return volumePanel;
     }
 

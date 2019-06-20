@@ -24,7 +24,7 @@ class MusicOptions extends JPanel implements ActionListener {
         add(jLabel);
 
         //initialize
-        ImageIcon image = new ImageIcon(("C:\\Users\\vcc\\Desktop\\Jpotify\\image\\1.png"));
+        ImageIcon image = new ImageIcon((getClass().getResource(".\\images\\1.png")));
         library = new JButton(image);
         library.addActionListener(this);
 

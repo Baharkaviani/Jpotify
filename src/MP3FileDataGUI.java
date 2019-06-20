@@ -11,32 +11,51 @@ import java.io.ByteArrayInputStream;
  * @version : 1.0
  */
 public class MP3FileDataGUI extends JPanel {
-    JLabel artWork , title , artist , album;
+    private JLabel artWork , title , artist , album;
 
     /**
      * constructor initialize lable and set them in Layout
      */
     public MP3FileDataGUI(){
         this.setPreferredSize(new Dimension(300,50));
-        title = new JLabel("title");
-        title.setFont(new Font("Serif" ,Font.PLAIN, 40));
+        title = new JLabel();
         artist = new JLabel();
         artWork = new JLabel();
         this.setLayout(new BorderLayout());
         this.add(artWork , BorderLayout.CENTER);
         this.add(title , BorderLayout.NORTH);
-        this.add(artist , BorderLayout.SOUTH);
+        this.add(artist , BorderLayout.EAST);
     }
     public void setTitle(String titleName){
-        title.setText(titleName);
+        title.setText("");
+        if(titleName.equals(""))
+            title.setText("music hasn't titleName");
+        else {
+            title.setText(titleName);
+            title.setFont(new Font("Serif" ,Font.PLAIN, 15));
+        }
 
     }
     public void setArtist(String singerName){
-        artist.setText(singerName);
+        artist.setText("");
+        if(singerName.equals(""))
+            artist.setText("music hasn't artistName");
+        else {
+            artist.setText(singerName);
+            artist.setFont(new Font("Serif" ,Font.PLAIN, 15));
+        }
 
     }
-    public void setArtwork(ByteArrayInputStream bis)throws Exception{
-        BufferedImage myPicture = ImageIO.read(bis);
-        artWork.setIcon(new ImageIcon(myPicture));
+    public void setArtwork(ByteArrayInputStream bis)throws Exception {
+        artWork.setIcon(null);
+        artWork.setText("");
+        if (bis == null) {
+            artWork.setText("Song hasn't image");
+        }
+        else {
+            BufferedImage myPicture = ImageIO.read(bis);
+            Image newimg = myPicture.getScaledInstance(200, 100,  java.awt.Image.SCALE_SMOOTH);
+            artWork.setIcon(new ImageIcon(newimg));
+        }
     }
 }

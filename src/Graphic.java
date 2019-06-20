@@ -50,6 +50,7 @@ public class Graphic {
         center.setPreferredSize(new Dimension(100, 100));
         main.setPreferredSize(new Dimension(100, 700));
         informationLine.setPreferredSize(new Dimension(100, 40));
+
         //add panels
         homeLine.add(musics);
         homeLine.add(playlist);
