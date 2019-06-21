@@ -1,8 +1,5 @@
-import com.mpatric.mp3agic.Mp3File;
-import javazoom.jl.player.Player;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
 
 /**
  * PlayMusicActioner manage the event of PlayMusicGUI panel;
@@ -12,48 +9,51 @@ import java.io.*;
  */
 public class PlayMusicActioner implements ActionListener {
 
-    private PlayMusic playMusic;
     private PlayMusicGUI GUI;
     private String playSituation = "playing";
     /**
-     * @param GUI is panel of button
+     * @param GUI is panel of buttons
      */
     public PlayMusicActioner(PlayMusicGUI GUI) throws Exception {
-        this.GUI = GUI;
-        playMusic = new PlayMusic(GUI);
+         this.GUI = GUI;
     }
+
     /**
      *if event is pause : call pause method of playMusic class and set icon;
-     * if event is resume : call resume method of playMusic class and set icon;
+     *if event is resume : call resume method of playMusic class and set icon;
+     * also manage next and previous event;
      */
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
             if (e.getSource() == GUI.getPauseAndResumeButton()) {
                 if (playSituation.equals("playing")) {
+                    //chang icon;
                     GUI.setResumeIcon();
-                    playMusic.pause();
+                    PlayMusic.pause();
                     playSituation="pause";
                 } else if (playSituation.equals("pause")) {
+                    //chang icon
                     GUI.setPauseIcon();
-                    playMusic.reseume();
+                    PlayMusic.reseume();
                     playSituation = "playing";
                 }
             }
             if(e.getSource() == GUI.getStop()){
+                //chang icon
                 GUI.setResumeIcon();
                 playSituation = "pause";
-                playMusic.stop();
+                PlayMusic.stop();
             }
             if (e.getSource() == GUI.getBack()) {
                 GUI.setPauseIcon();
                 playSituation = "playing";
-                playMusic.previous();
+                PlayMusic.previous();
             }
             if (e.getSource() == GUI.getNext()) {
                 GUI.setPauseIcon();
                 playSituation = "playing";
-                playMusic.next();
+                PlayMusic.next();
             }
         } catch (Exception error) {
             System.err.println(error);

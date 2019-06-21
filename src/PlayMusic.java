@@ -1,6 +1,6 @@
 /**
- * PlayMusic play a song which adding to library and can stop and pause it.
- * also can go to next and previous song;
+ * PlayMusic plays a song which adding to library and can stop and pause it.
+ * also can go to next and previous song.
  *  @author Bahar Kaviani , Yasaman Haghbin
  *  @since : 2019
  *  @version : 1.0
@@ -9,23 +9,23 @@
 import javazoom.jl.player.Player;
 import java.io.FileInputStream;
 
-public class PlayMusic implements Runnable{
-    private FileInputStream musicFile;
-    private Player player;
-    private int totalLenght, currentLenght;
-    private String playSituation, path;
-    private Library playList;
-    private MP3FileData data;
-    private PlayMusicGUI metaGUI;
-    public PlayMusic(PlayMusicGUI GUI) throws Exception{
-        playList = new Library();
-        this.metaGUI = GUI;
+public class PlayMusic {
+    private static FileInputStream musicFile;
+    private static Player player;
+    private static int totalLenght, currentLenght;
+    private static String playSituation, path;
+    private static Library playList;
+    private static MP3FileData data;
+
+    public PlayMusic(Library library) throws Exception {
+        playList = library;
         creatFile();
     }
+
     /**
-     *creatFile method get path from library and make a player with it then call startPlaying method
+     * creatFile's method gets path from library and makes a player with it then call startPlaying method
      */
-    private void creatFile() throws Exception {
+    public static void creatFile() throws Exception {
         playList.readPlayList();
         path = playList.getPath();
         data = new MP3FileData(path);
@@ -34,57 +34,58 @@ public class PlayMusic implements Runnable{
         totalLenght = musicFile.available();
         playSituation = "playing";
         startPlaying();
-        metaGUI.getMetaData().setTitle(data.getTitle());
-        metaGUI.getMetaData().setArtist(data.getArtist());
-        metaGUI.getMetaData().setArtwork(data.getImageByte());
+        PlayMusicGUI.getMetaData().setTitle(data.getTitle());
+        PlayMusicGUI.getMetaData().setArtist(data.getArtist());
+        PlayMusicGUI.getMetaData().setArtwork(data.getImageByte());
     }
 
     /**
-     * get a new path from library and call creat File;
+     * get a new path from library and call create File;
      */
-    public void next() {
+    public static void next() {
         try {
             musicFile.close();
             player.close();
             creatFile();
-        }catch (Exception err){
+        } catch (Exception err) {
             System.out.println(err);
         }
     }
 
     /**
-     * get a new path from library and call creat File;
+     * get a new path from library and call create File;
      */
-    public void previous(){
-        try{
+    public static void previous() {
+        try {
             //get previous path from library
             playList.minussIndex();
             musicFile.close();
             player.close();
             creatFile();
-        }catch (Exception err){
-            System.out.println(err);
-        }
-    }
-    /**
-    close player and save position of file and save it in currentLenght;
-     **/
-    public void pause() {
-        try{
-            //find current position of file
-            currentLenght = musicFile.available();
-            playSituation = "pause";
-            musicFile.close();
-            player.close();
-        }catch (Exception err){
+        } catch (Exception err) {
             System.out.println(err);
         }
     }
 
     /**
-     * creat a player and read the file from totalLenght-currentLenght;
+     * close player and save position of file and save it in currentLenght;
+     **/
+    public static void pause() {
+        try {
+            //find current position of file
+            currentLenght = musicFile.available();
+            playSituation = "pause";
+            musicFile.close();
+            player.close();
+        } catch (Exception err) {
+            System.out.println(err);
+        }
+    }
+
+    /**
+     * create a player and read the file from totalLenght-currentLenght;
      */
-    public void reseume(){
+    public static void reseume() {
         try {
             musicFile = new FileInputStream(path);
             musicFile.skip(totalLenght - currentLenght);
@@ -92,32 +93,30 @@ public class PlayMusic implements Runnable{
             //start a thread to run song
             startPlaying();
             playSituation = "playing";
-        }catch (Exception err){
+        } catch (Exception err) {
             System.out.println(err);
         }
     }
-    public void stop(){
-        try{
+
+    /**
+     * Stop method stop songs;
+     */
+    public static void stop() {
+        try {
             currentLenght = totalLenght;
             playSituation = "pause";
             musicFile.close();
             player.close();
-        }catch (Exception err){
+        } catch (Exception err) {
             System.out.println(err);
         }
     }
-    private void startPlaying() {
-        new Thread(this).start();
-    }
-    @Override
-    public void run() {
-        try {
-            player.play();
-            if(player.isComplete()){
-                creatFile();
-            }
-        } catch (Exception e) {
-            System.err.println(e);
-        }
+
+    /**
+     * this method make a thread from ThreadPlaying class and starts it;
+     */
+    public static void startPlaying(){
+        ThreadPlaying t = new ThreadPlaying(player);
+        new Thread(t).start();
     }
 }
