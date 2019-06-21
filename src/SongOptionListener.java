@@ -8,14 +8,13 @@ import java.util.ArrayList;
  * @version : 1.0
  */
 public class SongOptionListener implements ActionListener {
-    Library library;
-    ArrayList paths;
-
+    private Library library;
+    private ArrayList paths;
+    private static boolean clickSong = false;
     public SongOptionListener() throws Exception{
         try {
             library = new SongLibrary();
             paths = new ArrayList();
-            paths = library.getArrayListPaths();
         }catch (Exception e){
             System.out.println("can't open library file");
         }
@@ -26,11 +25,16 @@ public class SongOptionListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            Song[] song = new Song[paths.size()];
-            for (int i = 0; i < paths.size(); i++) {
-                song[i] = new Song((String) paths.get(i));
-                Graphic.addSongToPanel(song[i]);
-            }
+                if(clickSong) {
+                    Graphic.refreshMain();
+                }
+                paths = library.getArrayListPaths();
+                Song[] song = new Song[paths.size()];
+                for (int i = 0; i < paths.size(); i++) {
+                    song[i] = new Song((String) paths.get(i));
+                    Graphic.addSongToPanel(song[i]);
+                }
+            clickSong = true;
         }catch (Exception err){
             System.out.println("cant creat song in songOptonListener class");
         }

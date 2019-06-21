@@ -9,8 +9,8 @@ import java.awt.event.ActionListener;
  */
 public class SongActionListener implements ActionListener {
 
-    SongLibrary songLibrary;
-    PlayMusic playMusic;
+    private SongLibrary songLibrary;
+    private PlayMusic playMusic;
     /**
      * Constructor new a SongLibrary to gets it to playMusic after each event;
      */
@@ -24,6 +24,7 @@ public class SongActionListener implements ActionListener {
             String path = ((Song) e.getSource()).getPath();
             songLibrary.findPath(path);
             playMusic = new PlayMusic(songLibrary);
+
         }catch (Exception err){
             System.out.println("can't creat palyMusic at songActionListener class");
         }

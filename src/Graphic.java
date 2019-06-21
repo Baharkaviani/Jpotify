@@ -21,7 +21,7 @@ public class Graphic {
      * shows Jpotify's frame
      * dose not let user make frame smaller than a specific size
      */
-    Graphic()throws Exception{
+    public Graphic()throws Exception{
         //new objects
         frame = new JFrame();
         homeLine = new JPanel();
@@ -77,7 +77,9 @@ public class Graphic {
           main.add(song);
           frame.validate();
     }
-
+    public static void refreshMain(){
+        main.removeAll();
+    }
     public static PlayMusicGUI getPlayLine() {
         return playLine;
     }

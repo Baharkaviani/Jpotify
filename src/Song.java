@@ -21,11 +21,11 @@ public class Song extends JButton {
         this.path = path;
         mp3FileData = new MP3FileData(path);
         //get title;
-        setText(title);
         title = mp3FileData.getTitle();
         //get artWork;
         BufferedImage myPicture = ImageIO.read(mp3FileData.getImageByte());
         Image newimg = myPicture.getScaledInstance(200, 200,  java.awt.Image.SCALE_SMOOTH);
+        setText(title);
         setIcon(new ImageIcon(newimg));
         addActionListener(new SongActionListener());
     }

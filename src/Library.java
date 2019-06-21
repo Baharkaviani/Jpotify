@@ -63,4 +63,6 @@ public abstract class Library {
     public abstract void minussIndex();
 
     public abstract String getPath();
+
+    public abstract String getRandom();
 }

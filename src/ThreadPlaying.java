@@ -25,4 +25,7 @@ public class ThreadPlaying implements Runnable {
             System.err.println(e);
         }
     }
+    public void interut(ThreadPlaying t){
+
+    }
 }

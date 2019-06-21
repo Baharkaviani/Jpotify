@@ -21,7 +21,7 @@ public class PlayMusicActioner implements ActionListener {
     /**
      *if event is pause : call pause method of playMusic class and set icon;
      *if event is resume : call resume method of playMusic class and set icon;
-     * also manage next and previous event;
+     * also manage next and previous and shuffle event;
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -53,6 +53,10 @@ public class PlayMusicActioner implements ActionListener {
             if (e.getSource() == GUI.getNext()) {
                 GUI.setPauseIcon();
                 playSituation = "playing";
+                PlayMusic.next();
+            }
+            if(e.getSource() == GUI.getShuffle()){
+                PlayMusic.setShuffle(true);
                 PlayMusic.next();
             }
         } catch (Exception error) {

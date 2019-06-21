@@ -16,9 +16,10 @@ public class PlayMusic {
     private static String playSituation, path;
     private static Library playList;
     private static MP3FileData data;
-
+    private static boolean shuffle = false;
     public PlayMusic(Library library) throws Exception {
         playList = library;
+        playSituation = "false";
         creatFile();
     }
 
@@ -27,7 +28,10 @@ public class PlayMusic {
      */
     public static void creatFile() throws Exception {
         playList.readPlayList();
-        path = playList.getPath();
+        if(!shuffle)
+            path = playList.getPath();
+        else
+            path = playList.getRandom();
         data = new MP3FileData(path);
         musicFile = new FileInputStream(path);
         player = new Player(musicFile);
@@ -118,5 +122,10 @@ public class PlayMusic {
     public static void startPlaying(){
         ThreadPlaying t = new ThreadPlaying(player);
         new Thread(t).start();
+        playSituation = "playing";
+    }
+
+    public static void setShuffle(boolean shuffle) {
+        PlayMusic.shuffle = shuffle;
     }
 }
