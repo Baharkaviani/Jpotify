@@ -18,7 +18,7 @@ public class PlaylistPanel extends JPanel implements ActionListener {
     private PlaylistInformation sharedPlaylist;
 
     /**
-     *
+     * make a new panel to show playlist.
      */
     PlaylistPanel(){
         setLayout(new BorderLayout());
@@ -44,7 +44,6 @@ public class PlaylistPanel extends JPanel implements ActionListener {
         scrollPane = new JScrollPane(myList,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        myList.setFixedCellWidth(30);
         myList.setFixedCellHeight(30);
         favoriteSongs = new PlaylistInformation();
         sharedPlaylist = new PlaylistInformation();
@@ -60,7 +59,6 @@ public class PlaylistPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
     }
 }
 
@@ -72,14 +70,22 @@ public class PlaylistPanel extends JPanel implements ActionListener {
  */
 class AddMusicAction implements ActionListener {
     private DefaultListModel list;
-    private static JFrame addNewPlaylist;
+    private JFrame addNewPlaylist;
+    private boolean pressed;
 
     AddMusicAction(DefaultListModel list){
         this.list = list;
     }
 
+    /**
+     * make new JFrame with JTextField to let user make new playlist and write it's name.
+     * add new playlist to the panel by pressing makePlaylist JButton.
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(pressed)
+            addNewPlaylist.dispose();
         addNewPlaylist = new JFrame();
         addNewPlaylist.setAlwaysOnTop(true);
         addNewPlaylist.setSize(350, 200);
@@ -113,6 +119,7 @@ class AddMusicAction implements ActionListener {
                     L1.setText("Please first enter the name.");
             }
         });
+        pressed = true;
     }
 
     /**

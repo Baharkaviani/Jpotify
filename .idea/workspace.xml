@@ -2,31 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="457f561a-5378-456b-979b-9897159d62a6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/PlayMusic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PlaylistInformation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PlaylistPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/Volume1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/Graphic.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/Library.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/META-INF/Project.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/MP3FileData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/MP3FileDataGUI.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/MusicOptions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/PlayMusicActioner.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/PlayMusicGUI.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/VolumePanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Graphic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Library.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MP3FileData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MP3FileData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MP3FileDataGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MP3FileDataGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MusicOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MusicOptions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PlayMusicActioner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlayMusicActioner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PlayMusicGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlayMusicGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Playlist.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PlaylistPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlaylistPanel.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/PlaylistPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
+            <state relative-caret-position="342">
+              <caret line="60" column="48" selection-start-line="60" selection-start-column="48" selection-end-line="60" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2465#2466#0" expanded="true" />
@@ -142,8 +119,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561181806828" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../Kargah/Term2/ChessGraphic" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561185802638" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../Kargah/Term2/Lab-Police" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -202,6 +179,14 @@
       <option name="presentableId" value="Default" />
       <updated>1560837495107</updated>
     </task>
+    <task id="LOCAL-00001" summary="Playlist panel and set scroll for it">
+      <created>1561182158871</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1561182158871</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -217,7 +202,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.08391608" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21328671" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -263,6 +248,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Playlist panel and set scroll for it" />
+    <option name="LAST_COMMIT_MESSAGE" value="Playlist panel and set scroll for it" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="editorHistoryManager">
@@ -377,8 +364,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PlaylistPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
+        <state relative-caret-position="342">
+          <caret line="60" column="48" selection-start-line="60" selection-start-column="48" selection-end-line="60" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2465#2466#0" expanded="true" />
