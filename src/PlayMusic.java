@@ -28,7 +28,6 @@ public class PlayMusic {
      * creatFile's method gets path from library and makes a player with it then call startPlaying method
      */
     public static void creatFile() throws Exception {
-        playList.readPlayList();
         if(!shuffle) {
             path = playList.getPath();
         }
@@ -44,6 +43,7 @@ public class PlayMusic {
         player = new Player(musicFile);
         totalLenght = musicFile.available();
         playSituation = "playing";
+        playList.writeTime(path);
         startPlaying();
         PlayMusicGUI.getMetaData().setTitle(data.getTitle());
         PlayMusicGUI.getMetaData().setArtist(data.getArtist());

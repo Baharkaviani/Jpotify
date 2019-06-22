@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * MusicOption is for choosing song and add them in library;
  * also create songButton
@@ -54,8 +57,13 @@ class MusicOptions extends JPanel implements ActionListener {
             //save path in file
             if (i == JFileChooser.APPROVE_OPTION) {
                 File f = fileChooser.getSelectedFile();
-                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("D:\\Bahar\\Code\\Tamrin\\BaharLibrary.txt", true)));
+                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(".\\library.txt", true)));
                 out.println(f.getAbsolutePath());
+                Date date = new Date();
+                SimpleDateFormat time = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
+                PrintWriter out1 = new PrintWriter(new BufferedWriter(new FileWriter(".\\date.txt",true)));
+                out1.println(f.getAbsolutePath()+"%"+time.format(date));
+                out1.close();
                 out.close();
             }
         }catch (IOException err){
