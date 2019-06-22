@@ -25,16 +25,18 @@ public class PlayMusicGUI extends JPanel{
         playing = new JPanel();
         volumePanel = new VolumePanel();
         metaData = new MP3FileDataGUI();
+
+        //set image and color
         back = new JButton(new ImageIcon(getClass().getResource(".\\images\\back.png")));
-        back.setBackground(Color.BLACK);
+        back.setBackground(new Color(0x220351));
         next = new JButton(new ImageIcon(getClass().getResource(".\\images\\forward.png")));
-        next.setBackground(Color.BLACK);
+        next.setBackground(new Color(0x220351));
         stop = new JButton(new ImageIcon(getClass().getResource(".\\images\\stop.png")));
-        stop.setBackground(Color.BLACK);
+        stop.setBackground(new Color(0x220351));
         shuffle = new JButton(new ImageIcon(getClass().getResource(".\\images\\Shuffle.png")));
-        shuffle.setBackground(Color.BLACK);
+        shuffle.setBackground(new Color(0x220351));
         pauseAndResumeButton = new JButton(new ImageIcon(getClass().getResource(".\\images\\pause.png")));
-        pauseAndResumeButton.setBackground(Color.BLACK);
+        pauseAndResumeButton.setBackground(new Color(0x220351));
         playing.setPreferredSize(new Dimension(900,50));
 
         //create layout for panel

@@ -29,17 +29,27 @@ class MusicOptions extends JPanel implements ActionListener {
         add(jLabel);
 
         //initialize library
-        ImageIcon image = new ImageIcon((getClass().getResource(".\\images\\1.png")));
-        library = new JButton(image);
-        library.addActionListener(this);
+//        ImageIcon image = new ImageIcon((getClass().getResource(".\\images\\1.png")));
+//        library = new JButton(image);
+            library = new JButton("Library");
+            library.addActionListener(this);
 
         //initialize song
-        song = new JButton("song");
+        song = new JButton("Songs");
         song.addActionListener(new SongOptionListener());
+
         //add button to panel;
-        add(song);
         add(library);
-        setBackground(new Color(0x7BA3ED));
+        add(song);
+
+        //set background
+        this.setBackground(new Color(0x220351));
+        song.setBackground(new Color(0x220351));
+        song.setForeground(new Color(0xAF5AA8));
+        song.setFont(new Font("Bnazanin", Font.BOLD, 15));
+        library.setBackground(new Color(0x220351));
+        library.setForeground(new Color(0xAF5AA8));
+        library.setFont(new Font("Bnazanin", Font.BOLD, 15));
     }
 
     /**
