@@ -10,22 +10,22 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$USER_HOME$/Downloads/JLayer1.0.1" />
+          <root url="file://E:/java/JlayerLIbrary/JLayer1.0.1" />
         </CLASSES>
         <JAVADOC>
-          <root url="file://$USER_HOME$/Downloads/JLayer1.0.1/doc" />
+          <root url="file://E:/java/JlayerLIbrary/JLayer1.0.1/doc" />
         </JAVADOC>
         <SOURCES>
-          <root url="file://$USER_HOME$/Downloads/JLayer1.0.1/src" />
-          <root url="file://$USER_HOME$/Downloads/JLayer1.0.1/srctest" />
+          <root url="file://E:/java/JlayerLIbrary/JLayer1.0.1/src" />
+          <root url="file://E:/java/JlayerLIbrary/JLayer1.0.1/srctest" />
         </SOURCES>
-        <jarDirectory url="file://$USER_HOME$/Downloads/JLayer1.0.1" recursive="false" />
+        <jarDirectory url="file://E:/java/JlayerLIbrary/JLayer1.0.1" recursive="false" />
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/mp3agic-0.9.0.jar!/" />
+          <root url="jar://E:/java/JlayerLIbrary/mp3agic-0.9.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
