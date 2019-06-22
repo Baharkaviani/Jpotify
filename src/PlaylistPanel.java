@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JList;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.LineBorder;
 
 /**
  * the playlist panel
@@ -26,8 +29,6 @@ public class PlaylistPanel extends JPanel implements ActionListener {
         //put buttons and playlist on the panel
         JButton showPlaylist = new JButton("PLAYLIST");
         JButton addPlaylist = new JButton();
-        addPlaylist.setBackground(new Color(0x0C0AD7));
-        addPlaylist.setPreferredSize(new Dimension(10, 40));
         try {
             Image img = ImageIO.read(getClass().getResource(".\\images\\add - Copy.png"));
             Image newImage = img.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
@@ -44,17 +45,32 @@ public class PlaylistPanel extends JPanel implements ActionListener {
         scrollPane = new JScrollPane(myList,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        myList.setFixedCellHeight(30);
         favoriteSongs = new PlaylistInformation();
         sharedPlaylist = new PlaylistInformation();
+
+        //set color
+        showPlaylist.setBackground(new Color(0x220351));
+        showPlaylist.setForeground(new Color(0x2EA8FF));
+        addPlaylist.setBackground(new Color(0x220351));
+        myList.setSelectionBackground(new Color(0));
+        myList.setSelectionForeground(new Color(0x2EA8FF));
+        myList.setBackground(new Color(0x220351));
+        myList.setForeground(new Color(0xAF5AA8));
+
+        //set size
+        myList.setFixedCellHeight(30);
+        myList.setFont(new Font("Bnazanin", Font.BOLD, 15));
+        showPlaylist.setPreferredSize(new Dimension(10, 30));
+        showPlaylist.setFont(new Font("Bnazanin", Font.BOLD, 15));
+        addPlaylist.setPreferredSize(new Dimension(10, 40));
 
         //button for adding playlist
         addPlaylist.addActionListener(new AddMusicAction(playlist));
 
         //add default playlist
-        add(showPlaylist, BorderLayout.NORTH);
-        add(addPlaylist, BorderLayout.SOUTH);
-        add(scrollPane, BorderLayout.CENTER);
+        this.add(showPlaylist, BorderLayout.NORTH);
+        this.add(addPlaylist, BorderLayout.SOUTH);
+        this.add(scrollPane, BorderLayout.CENTER);
     }
 
     @Override
