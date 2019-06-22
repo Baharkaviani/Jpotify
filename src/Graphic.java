@@ -1,3 +1,5 @@
+import com.sun.xml.internal.bind.v2.runtime.reflect.Accessor;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,21 +10,21 @@ import java.awt.*;
  * @version : 1.0
  */
 public class Graphic {
-    private JFrame frame;
+    private static JFrame frame;
     //JPanels
-    private JPanel homeLine;
-    private PlaylistPanel playlist;
-    private MusicOptions musics;
-    private JPanel friends;
-    private PlayMusicGUI playLine;
-    private JPanel center, main, informationLine;
+    private static JPanel homeLine;
+    private static PlaylistPanel playlist;
+    private static MusicOptions musics;
+    private static PlayMusicGUI playLine;
+    private static JPanel center, main, informationLine, friends;
 
     /**
      * the constructor
      * shows Jpotify's frame
      * dose not let user make frame smaller than a specific size
      */
-    Graphic()throws Exception{
+    public Graphic()throws Exception{
+        //new objects
         frame = new JFrame();
         homeLine = new JPanel();
         musics = new MusicOptions();
@@ -32,6 +34,7 @@ public class Graphic {
         main = new JPanel();
         informationLine = new JPanel();
         playLine = new PlayMusicGUI();
+        //add object to layout
         friends.setLayout(new BorderLayout());
         homeLine.setLayout(new GridLayout(2, 1));
         center.setLayout(new BorderLayout());
@@ -40,6 +43,7 @@ public class Graphic {
         friends.setBackground(new Color(0xFFE657));
         main.setBackground(new Color(0x32FF4A));
         informationLine.setBackground(new Color(0x101374));
+        main.setLayout(new GridLayout());
 
         //set size for the frame and panels
         homeLine.setPreferredSize(new Dimension(190, 100));
@@ -60,10 +64,26 @@ public class Graphic {
         frame.getContentPane().add(homeLine,BorderLayout.WEST);
         frame.getContentPane().add(friends, BorderLayout.EAST);
         frame.add(playLine ,BorderLayout.SOUTH);
+        //set size to frame
         frame.setMinimumSize(new Dimension(1200, 700));
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+    }
+
+    /**
+     * @param song is the music which add to library;
+     * this method add artWork and title of song to main panel;
+     */
+    public static void addSongToPanel(Song song){
+          main.add(song);
+          frame.validate();
+    }
+    public static void refreshMain(){
+        main.removeAll();
+    }
+    public static PlayMusicGUI getPlayLine() {
+        return playLine;
     }
 
     public static void main(String[] args)throws Exception {

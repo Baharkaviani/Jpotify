@@ -4,30 +4,37 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-
 /**
- * the panel for chooosing them and add them in library
+ * MusicOption is for choosing song and add them in library;
+ * also create songButton
  * @author Bahar Kaviani & Yasaman Haghbin
  * @since : 2019 - 6 -18
  * @version : 1.0
  */
-
 class MusicOptions extends JPanel implements ActionListener {
 
-    private static JButton library;
+    private JButton library;
+    private JButton song;
 
     /**
-     * Constructor creat Button and add it to a listener to choose file
+     * Constructor create Button library and add it to a listener to choose file
+     * also create song library and add it to a Song listener
      */
-    MusicOptions(){
+        public MusicOptions() throws Exception{
         setLayout(new GridLayout(4, 1));
         JLabel jLabel = new JLabel("");
         add(jLabel);
 
-        //initialize
+        //initialize library
         ImageIcon image = new ImageIcon((getClass().getResource(".\\images\\1.png")));
         library = new JButton(image);
         library.addActionListener(this);
+
+        //initialize song
+        song = new JButton("song");
+        song.addActionListener(new SongOptionListener());
+        //add button to panel;
+        add(song);
         add(library);
         setBackground(new Color(0x7BA3ED));
     }

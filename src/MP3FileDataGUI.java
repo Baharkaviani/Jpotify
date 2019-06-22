@@ -11,6 +11,7 @@ import java.io.ByteArrayInputStream;
  * @version : 1.0
  */
 public class MP3FileDataGUI extends JPanel {
+
     private JLabel artWork , title , artist , album;
 
     /**
@@ -26,6 +27,11 @@ public class MP3FileDataGUI extends JPanel {
         this.add(title , BorderLayout.NORTH);
         this.add(artist , BorderLayout.EAST);
     }
+
+    /**
+     * SetTitle sets title name to title lable ;
+     * @param titleName is title of song and if song hasn't title write "music hasn't titleName";
+     */
     public void setTitle(String titleName){
         title.setText("");
         if(titleName.equals(""))
@@ -36,6 +42,11 @@ public class MP3FileDataGUI extends JPanel {
         }
 
     }
+
+    /**
+     * SetArtist sets artist name to artist lable ;
+     * @param singerName is artist'name of song and if song hasn't artist's name write "music hasn't artistName";
+     */
     public void setArtist(String singerName){
         artist.setText("");
         if(singerName.equals(""))
@@ -46,6 +57,12 @@ public class MP3FileDataGUI extends JPanel {
         }
 
     }
+
+    /**
+     * SetArtwork sets image's song to artWork lable ;
+     * @param bis is  byteArray of image
+     * @throws Exception if fileImage cant't be open.
+     */
     public void setArtwork(ByteArrayInputStream bis)throws Exception {
         artWork.setIcon(null);
         artWork.setText("");
