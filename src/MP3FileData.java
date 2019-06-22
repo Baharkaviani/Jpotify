@@ -44,12 +44,10 @@ public class MP3FileData{
                 title = id3.substring(3, 32);
                 artist = id3.substring(33, 62);
                 album = id3.substring(63, 91);
-            } else {
-                System.out.println(" does not contain information.");
             }
             file.close();
         } catch (Exception e) {
-            System.err.println(e);
+            System.out.println(e);
         }
     }
 

@@ -5,6 +5,8 @@
  * PlayMusicGUI contains JFrame to show play,pause,stop,next,back,button and has JSlider for rewind and forward;
  */
 
+import com.mpatric.mp3agic.Mp3File;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,7 +14,9 @@ public class PlayMusicGUI extends JPanel{
 
     private JButton pauseAndResumeButton , back , next , stop , shuffle;
     private ImageIcon image;
-    private JPanel playing , metaData ,volumePanel;
+    private JPanel playing ;
+    private MP3FileDataGUI metaData;
+    private VolumePanel volumePanel;
     /**
      * @param :void
      * get size to button and add them in panel and add to actionListener;
@@ -57,7 +61,7 @@ public class PlayMusicGUI extends JPanel{
         image = new ImageIcon(getClass().getResource(".\\images\\play.png"));
         pauseAndResumeButton.setIcon(image);
     }
-    public JPanel getMetaData() {
+    public MP3FileDataGUI getMetaData() {
         return metaData;
     }
 
@@ -81,7 +85,7 @@ public class PlayMusicGUI extends JPanel{
         return shuffle;
     }
 
-    public JPanel getVolumePanel() {
+    public VolumePanel getVolumePanel() {
         return volumePanel;
     }
 

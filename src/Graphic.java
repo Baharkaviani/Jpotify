@@ -3,19 +3,15 @@ import java.awt.*;
 
 /**
  * shows each part of Potify's window
-<<<<<<< HEAD
  * @author Bahar Kaviani & Yasaman Haghbin
-=======
- * @author Bahar Kaviani , Yasaman Haghbin
  * @since : 2019 - 6 -18
  * @version : 1.0
->>>>>>> 654c883ca824c9bc747e8fd08b9e782cd832b932
  */
 public class Graphic {
     private JFrame frame;
     //JPanels
     private JPanel homeLine;
-    private Playlist playlist;
+    private PlaylistPanel playlist;
     private MusicOptions musics;
     private JPanel friends;
     private PlayMusicGUI playLine;
@@ -30,7 +26,7 @@ public class Graphic {
         frame = new JFrame();
         homeLine = new JPanel();
         musics = new MusicOptions();
-        playlist = new Playlist();
+        playlist = new PlaylistPanel();
         friends = new JPanel();
         center = new JPanel();
         main = new JPanel();
@@ -41,7 +37,6 @@ public class Graphic {
         center.setLayout(new BorderLayout());
 
         //set background for panels
-        playlist.setBackground(new Color(0xBD0000));
         friends.setBackground(new Color(0xFFE657));
         main.setBackground(new Color(0x32FF4A));
         informationLine.setBackground(new Color(0x101374));
@@ -55,6 +50,7 @@ public class Graphic {
         center.setPreferredSize(new Dimension(100, 100));
         main.setPreferredSize(new Dimension(100, 700));
         informationLine.setPreferredSize(new Dimension(100, 40));
+
         //add panels
         homeLine.add(musics);
         homeLine.add(playlist);

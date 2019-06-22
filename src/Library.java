@@ -6,28 +6,27 @@
  */
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class Library {
-    private ArrayList<String > paths;
-    private int index=0;
+    private ArrayList<String> paths;
+    private int index = 0;
     private BufferedReader musicPath;
 
     public Library(){
         paths = new ArrayList<>();
     }
     public void readPlayList() throws IOException {
-        musicPath = new BufferedReader(new FileReader("D:\\Bahar\\Code\\Tamrin\\library.txt"));
-        if(paths.size()!=0){
+        musicPath = new BufferedReader(new FileReader("D:\\Bahar\\Code\\Tamrin\\BaharLibrary.txt"));
+        if(paths.size() != 0){
             paths.removeAll(paths);
         }
-        String r=musicPath.readLine();
-        while (r!=null) {
+        String r = musicPath.readLine();
+        while (r != null) {
             paths.add(r);
-            r=musicPath.readLine();
+            r = musicPath.readLine();
         }
         musicPath.close();
     }
@@ -39,9 +38,8 @@ public class Library {
         index=index-2;
     }
     public String getPath(){
-        String s=paths.get(index);
+        String s = paths.get(index);
         index++;
-        System.out.println(s);
         return s;
     }
 }

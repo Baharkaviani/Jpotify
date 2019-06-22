@@ -23,10 +23,12 @@ class MusicOptions extends JPanel implements ActionListener {
         setLayout(new GridLayout(4, 1));
         JLabel jLabel = new JLabel("");
         add(jLabel);
-        ImageIcon image = new ImageIcon(getClass().getResource("./images/1.png"));
+
+        //initialize
+        ImageIcon image = new ImageIcon((getClass().getResource(".\\images\\1.png")));
         library = new JButton(image);
-        add(library);
         library.addActionListener(this);
+        add(library);
         setBackground(new Color(0x7BA3ED));
     }
 
@@ -45,7 +47,7 @@ class MusicOptions extends JPanel implements ActionListener {
             //save path in file
             if (i == JFileChooser.APPROVE_OPTION) {
                 File f = fileChooser.getSelectedFile();
-                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("D:\\Bahar\\Code\\Tamrin\\library.txt", true)));
+                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("D:\\Bahar\\Code\\Tamrin\\BaharLibrary.txt", true)));
                 out.println(f.getAbsolutePath());
                 out.close();
             }
