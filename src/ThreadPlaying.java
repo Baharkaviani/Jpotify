@@ -19,7 +19,7 @@ public class ThreadPlaying implements Runnable {
         try {
             player.play();
             if(player.isComplete()){
-               PlayMusic.creatFile();
+                PlayMusic.next();
             }
         } catch (Exception e) {
             System.err.println(e);

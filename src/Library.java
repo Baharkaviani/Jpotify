@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public abstract class Library {
@@ -44,7 +45,12 @@ public abstract class Library {
         }
         musicPath.close();
     }
-
+    public void getShuffleArrayList()throws Exception{
+        if(paths!=null)
+            paths.removeAll(paths);
+        readPlayList();
+        Collections.shuffle(paths);
+    }
     /**
      *
      * @return paths of songs which are add to library
@@ -64,5 +70,6 @@ public abstract class Library {
 
     public abstract String getPath();
 
-    public abstract String getRandom();
+    public abstract void plusIndex();
+
 }

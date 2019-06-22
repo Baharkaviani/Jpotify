@@ -7,7 +7,7 @@
  */
 
 import javazoom.jl.player.Player;
-import java.io.FileInputStream;
+import java.io.*;
 
 public class PlayMusic {
     private static FileInputStream musicFile;
@@ -17,6 +17,7 @@ public class PlayMusic {
     private static Library playList;
     private static MP3FileData data;
     private static boolean shuffle = false;
+    private static int turn =0;
     public PlayMusic(Library library) throws Exception {
         playList = library;
         playSituation = "false";
@@ -28,10 +29,16 @@ public class PlayMusic {
      */
     public static void creatFile() throws Exception {
         playList.readPlayList();
-        if(!shuffle)
+        if(!shuffle) {
             path = playList.getPath();
-        else
-            path = playList.getRandom();
+        }
+        else {
+            if(turn==0) {
+                playList.getShuffleArrayList();
+            }
+            path = playList.getPath();
+            turn++;
+        }
         data = new MP3FileData(path);
         musicFile = new FileInputStream(path);
         player = new Player(musicFile);
@@ -42,7 +49,6 @@ public class PlayMusic {
         PlayMusicGUI.getMetaData().setArtist(data.getArtist());
         PlayMusicGUI.getMetaData().setArtwork(data.getImageByte());
     }
-
     /**
      * get a new path from library and call create File;
      */
@@ -50,6 +56,7 @@ public class PlayMusic {
         try {
             musicFile.close();
             player.close();
+            playList.plusIndex();
             creatFile();
         } catch (Exception err) {
             System.out.println(err);
