@@ -26,8 +26,14 @@ public class PlayMusic {
 
     /**
      * creatFile's method gets path from library and makes a player with it then call startPlaying method
+     * also read meta data of the song;
      */
     public static void creatFile() throws Exception {
+        if(ThreadPlaying.getIsPlaying()) {
+            musicFile.close();
+            player.close();
+            currentLenght =0;
+        }
         if(!shuffle) {
             path = playList.getPath();
         }
@@ -45,6 +51,8 @@ public class PlayMusic {
         playSituation = "playing";
         playList.writeTime(path);
         startPlaying();
+        PlayMusicGUI.setPauseIcon();
+        //read metaDat
         PlayMusicGUI.getMetaData().setTitle(data.getTitle());
         PlayMusicGUI.getMetaData().setArtist(data.getArtist());
         PlayMusicGUI.getMetaData().setArtwork(data.getImageByte());
@@ -56,6 +64,7 @@ public class PlayMusic {
         try {
             musicFile.close();
             player.close();
+            ThreadPlaying.setIsPlaying(false);
             playList.plusIndex();
             creatFile();
         } catch (Exception err) {
@@ -72,6 +81,7 @@ public class PlayMusic {
             playList.minussIndex();
             musicFile.close();
             player.close();
+            ThreadPlaying.setIsPlaying(false);
             creatFile();
         } catch (Exception err) {
             System.out.println(err);
@@ -88,6 +98,7 @@ public class PlayMusic {
             playSituation = "pause";
             musicFile.close();
             player.close();
+            ThreadPlaying.setIsPlaying(false);
         } catch (Exception err) {
             System.out.println(err);
         }
@@ -118,18 +129,18 @@ public class PlayMusic {
             playSituation = "pause";
             musicFile.close();
             player.close();
+            ThreadPlaying.setIsPlaying(false);
         } catch (Exception err) {
             System.out.println(err);
         }
     }
-
     /**
      * this method make a thread from ThreadPlaying class and starts it;
      */
     public static void startPlaying(){
-        ThreadPlaying t = new ThreadPlaying(player);
-        new Thread(t).start();
-        playSituation = "playing";
+            ThreadPlaying t = new ThreadPlaying(player);
+            new Thread(t).start();
+            playSituation = "playing";
     }
 
     public static void setShuffle(boolean shuffle) {

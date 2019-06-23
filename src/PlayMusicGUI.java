@@ -11,8 +11,8 @@ import java.awt.*;
 
 public class PlayMusicGUI extends JPanel{
     private PlayMusicActioner playMusic;
-    private JButton pauseAndResumeButton , back , next , stop , shuffle;
-    private ImageIcon image;
+    private static JButton pauseAndResumeButton , back , next , stop , shuffle;
+    private static ImageIcon image;
     private JPanel playing ;
     private static MP3FileDataGUI metaData;
     private VolumePanel volumePanel;
@@ -28,15 +28,15 @@ public class PlayMusicGUI extends JPanel{
 
         //set image and color
         back = new JButton(new ImageIcon(getClass().getResource(".\\images\\back.png")));
-        back.setBackground(new Color(0x220351));
+        back.setBackground(new Color(0x320851));
         next = new JButton(new ImageIcon(getClass().getResource(".\\images\\forward.png")));
-        next.setBackground(new Color(0x220351));
+        next.setBackground(new Color(0x320851));
         stop = new JButton(new ImageIcon(getClass().getResource(".\\images\\stop.png")));
-        stop.setBackground(new Color(0x220351));
+        stop.setBackground(new Color(0x320851));
         shuffle = new JButton(new ImageIcon(getClass().getResource(".\\images\\Shuffle.png")));
-        shuffle.setBackground(new Color(0x220351));
+        shuffle.setBackground(new Color(0x320851));
         pauseAndResumeButton = new JButton(new ImageIcon(getClass().getResource(".\\images\\pause.png")));
-        pauseAndResumeButton.setBackground(new Color(0x220351));
+        pauseAndResumeButton.setBackground(new Color(0x320851));
         playing.setPreferredSize(new Dimension(900,50));
 
         //create layout for panel
@@ -63,12 +63,9 @@ public class PlayMusicGUI extends JPanel{
         this.add(volumePanel , BorderLayout.EAST);
     }
 
-    public PlayMusicActioner getPlayMusic() {
-        return playMusic;
-    }
 
-    public void setPauseIcon(){
-        image = new ImageIcon(getClass().getResource(".\\images\\pause.png"));
+    public static void setPauseIcon(){
+        image = new ImageIcon(("C:\\Users\\vcc\\Desktop\\Jpotify\\src\\images\\pause.png"));
         pauseAndResumeButton.setIcon(image);
     }
     public void setResumeIcon(){
@@ -99,13 +96,4 @@ public class PlayMusicGUI extends JPanel{
         return shuffle;
     }
 
-    public VolumePanel getVolumePanel() {
-        return volumePanel;
-    }
-
-    private static Icon resizeIcon(ImageIcon icon, int resizedWidth, int resizedHeight) {
-        Image img = icon.getImage();
-        Image resizedImage = img.getScaledInstance(resizedWidth, resizedHeight,  java.awt.Image.SCALE_SMOOTH);
-        return new ImageIcon(resizedImage);
-    }
 }

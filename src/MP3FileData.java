@@ -62,8 +62,10 @@ public class MP3FileData{
             if (imageData != null) {
                 bis = new ByteArrayInputStream(imageData);
             }
+            return bis;
         }
-        return bis;
+        else
+            return null;
     }
     public String getTitle() { return title; }
 

@@ -37,9 +37,4 @@ public class SongLibrary extends Library{
         String s = paths.get(index);
         return s;
     }
-    /**
-     * getRandom() makes a random index and checks index doesn't be duplicated;
-     * @return a random path;
-     */
-
 }

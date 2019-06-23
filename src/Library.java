@@ -28,34 +28,34 @@ public abstract class Library {
      * @throws IOException if library file can't be opened;
      */
     public void readPlayList() throws Exception {
-        if(paths.size() != 0){
+        if(paths.size()!=0){
             paths.removeAll(paths);
         }
         String[] address ;
         HashMap<String , String > pathTime = new HashMap<>();
         HashMap<String , String > reverseMap = new HashMap<>();
         BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\date.txt")));
-        SimpleDateFormat dateFotmat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
-        ArrayList<Long> sec = new ArrayList<>();
-
+        ArrayList<String> sec = new ArrayList<>();
+        //read all the path with their time from date.txt
         String line =reader.readLine();
         while (line!=null){
             address=line.split("%");
             pathTime.put(address[0] , address[1]);
             reverseMap.put(address[1], address[0]);
             line = reader.readLine();
-        }
-        for(String j : pathTime.values()){
-            Date date = dateFotmat.parse(j);
-            sec.add(date.getTime());
-        }
 
+        }
+        //parse date to second and add it to arrayList
+        for(String j : pathTime.values()){
+            sec.add(j);
+        }
+        //sort arrayList sec by time
         Comparator c = Collections.reverseOrder();
         Collections.sort(sec,c);
-        for(Long j : sec){
-            Date date = new Date(j);
-            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
-            paths.add(reverseMap.get(sdf.format(date)));
+        //add path in paths arrayList in order of time
+        for(String j : sec){
+//            System.out.println(reverseMap.get(j));
+            paths.add(reverseMap.get(j));
         }
         reader.close();
     }
@@ -81,11 +81,16 @@ public abstract class Library {
         }
         return paths;
     }
+
+    /**
+     * writeTime write each path's song to date file with its time
+     * @param path is path of a song
+     * @throws IOException if can't open the date file
+     */
     public void writeTime(String path)throws IOException {
         Date date = new Date();
-        SimpleDateFormat time = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(".\\date.txt",true)));
-        out.println(path+"%"+time.format(date));
+        out.println(path+"%"+date.getTime());
         out.close();
     }
     public abstract int getIndex() ;
