@@ -30,7 +30,7 @@ public class MP3FileDataGUI extends JPanel {
 
         //set size
         artWorkPanel.setPreferredSize(new Dimension(100, 100));
-        information.setPreferredSize(new Dimension(100, 100));
+        information.setPreferredSize(new Dimension(200, 100));
 
         //add JLabels
         this.add(artWorkPanel);

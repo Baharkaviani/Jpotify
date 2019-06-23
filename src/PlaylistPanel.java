@@ -3,10 +3,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 import javax.swing.JList;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.LineBorder;
 
 /**
  * the playlist panel
@@ -17,8 +15,8 @@ import javax.swing.border.LineBorder;
 public class PlaylistPanel extends JPanel implements ActionListener {
     private JScrollPane scrollPane;
     private DefaultListModel playlist;
-    private PlaylistInformation favoriteSongs;
-    private PlaylistInformation sharedPlaylist;
+    private JList myList;
+    private HashMap<String, PlaylistInformation> playlistMap;
 
     /**
      * make a new panel to show playlist.
@@ -41,12 +39,10 @@ public class PlaylistPanel extends JPanel implements ActionListener {
         playlist = new DefaultListModel();
         playlist.addElement("favoriteSongs");
         playlist.addElement("sharedPlaylist");
-        JList myList = new JList(playlist);
+        myList = new JList(playlist);
         scrollPane = new JScrollPane(myList,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        favoriteSongs = new PlaylistInformation();
-        sharedPlaylist = new PlaylistInformation();
 
         //set color
         showPlaylist.setBackground(new Color(0x220351));
@@ -65,7 +61,8 @@ public class PlaylistPanel extends JPanel implements ActionListener {
         addPlaylist.setPreferredSize(new Dimension(10, 40));
 
         //button for adding playlist
-        addPlaylist.addActionListener(new AddMusicAction(playlist));
+        addPlaylist.addActionListener(new AddPlaylistAction(playlist));
+        myList.addListSelectionListener(new MyListListener(playlist, myList));
 
         //add default playlist
         this.add(showPlaylist, BorderLayout.NORTH);
@@ -75,81 +72,5 @@ public class PlaylistPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-    }
-}
-
-/**
- * addMusicAction can let you add your new playlist to the program
- * @author Bahar Kaviani & Yasaman Haghbin
- * @since 22/6/2019
- * @version 1.0
- */
-class AddMusicAction implements ActionListener {
-    private DefaultListModel list;
-    private JFrame addNewPlaylist;
-    private boolean pressed;
-
-    AddMusicAction(DefaultListModel list){
-        this.list = list;
-    }
-
-    /**
-     * make new JFrame with JTextField to let user make new playlist and write it's name.
-     * add new playlist to the panel by pressing makePlaylist JButton.
-     * @param e
-     */
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(pressed)
-            addNewPlaylist.dispose();
-        addNewPlaylist = new JFrame();
-        addNewPlaylist.setAlwaysOnTop(true);
-        addNewPlaylist.setSize(350, 200);
-        JPanel p = new JPanel();
-        JLabel L1 = new JLabel("Please enter the name of your playlist.");
-        JTextField playlistName = new JTextField();
-        JButton makePlaylist = new JButton("Make new playlist");
-
-        //add labels, buttons and textFields to the panel
-        addNewPlaylist.add(p);
-        p.setLayout(new GridLayout(3, 1));
-        p.add(L1);
-        p.add(playlistName);
-        p.add(makePlaylist);
-        addNewPlaylist.setVisible(true);
-
-        //add actionListener to the submitButton button
-        makePlaylist.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(!playlistName.getText().equals("")) {
-                    if(IsNewName(list, playlistName.getText())) {
-                        list.addElement(playlistName.getText());
-                        addNewPlaylist.dispose();
-                    }
-                    else {
-                        L1.setText("You have this name. Please choose another name.");
-                    }
-                }
-                else
-                    L1.setText("Please first enter the name.");
-            }
-        });
-        pressed = true;
-    }
-
-    /**
-     * check if the new name can be added to the playlist names
-     * @param list name of playlist
-     * @param name the new name which user wants to add
-     * @return true if we can add "name" to the list
-     */
-    boolean IsNewName(DefaultListModel list, String name){
-        for (int i = 0; i < list.getSize(); i++) {
-            if(list.get(i).equals(name)){
-                return false;
-            }
-        }
-        return true;
     }
 }
