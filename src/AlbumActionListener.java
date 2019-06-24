@@ -3,7 +3,7 @@ import java.awt.event.ActionListener;
 
 /**
  * AlbumActionListener manage the press of each album in panel;
- * @author Yasaman Haghbin , Bahar Kaviani;
+ * @author Yasaman Haghbin & Bahar Kaviani;
  * @since 2019;
  */
 public class AlbumActionListener implements ActionListener {

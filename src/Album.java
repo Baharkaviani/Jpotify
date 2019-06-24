@@ -6,12 +6,11 @@ import java.util.ArrayList;
 
 /**
  * Album class is a button which defines a album of songs;
- * @author Yasaman Haghbin , Bahar Kaviani;
+ * @author Yasaman Haghbin & Bahar Kaviani;
  * @since 2019;
  */
 
 public class Album extends JButton {
-
     ArrayList<Song> songs = new ArrayList<>();
     MP3FileData mp3FileData;
     private String title;
@@ -25,12 +24,14 @@ public class Album extends JButton {
      * also add it to Listener;
      */
     public void makeAlbum() throws Exception{
-
         setBackground(new Color(0x320851));
-//        get path of first song to MP3FileData to read data;
+
+        //get path of first song to MP3FileData to read data;
         mp3FileData = new MP3FileData(songs.get(0).getPath());
+
         //get title;
         title = mp3FileData.getTitle();
+
         //get artWork;
         if (mp3FileData.getImageByte() != null) {
             BufferedImage myPicture = ImageIO.read(mp3FileData.getImageByte());
@@ -38,8 +39,8 @@ public class Album extends JButton {
             setIcon(new ImageIcon(newimg));
         }
         else {
-//            if hasn't artWork set a default image;
-            ImageIcon imageIcon = new ImageIcon(new ImageIcon("C:\\Users\\vcc\\Desktop\\Jpotify\\src\\images\\music.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+            //if hasn't artWork set a default image;
+            ImageIcon imageIcon = new ImageIcon(new ImageIcon(".\\images\\music.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
             setIcon(imageIcon);
         }
 

@@ -16,6 +16,7 @@ public class Graphic {
     private static PlayMusicGUI playLine;
     private static JPanel center, main, backMain, informationLine, friends;
     private static GridBagConstraints gbc = new GridBagConstraints();
+
     /**
      * the constructor
      * shows Jpotify's frame

@@ -5,11 +5,10 @@ import java.util.Map;
 
 /**
  * AlbumOptionListener create song whit each path of music and pass the same album'song to library class;
- *@author Yasaman Haghbin, Bahar Kaviani;
+ *@author Yasaman Haghbin & Bahar Kaviani;
  * @since 2019;
  */
 public class AlbumOptionListener implements ActionListener {
-
     private AlbumLibrary library;
     private Album[] album;
 
@@ -30,7 +29,7 @@ public class AlbumOptionListener implements ActionListener {
 
             Graphic.refreshMain();
 
-            int index=0;
+            int index = 0;
             Map<String , ArrayList<String>> map = library.getReverseMap();
             album = new Album[library.getReverseMap().size()];
 
@@ -47,7 +46,7 @@ public class AlbumOptionListener implements ActionListener {
                 index++;
             }
             //pass album to Graphic class for showing it;
-            for(int j=0 ;j<album.length ; j++) {
+            for(int j = 0; j < album.length; j++) {
                 Graphic.addAlbumToPanel(album[j]);
             }
         }catch (Exception err){

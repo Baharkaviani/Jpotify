@@ -1,15 +1,13 @@
-/**
- * PlayMusicGUI contains JFrame to show play,pause,stop,next,back,button and has JSlider for rewind and forward;
- * @author : Yasaman Haghbin , Bahar Kaviani
- * @since : 2019 - 6 - 18
- * @version : 1.0
- */
-
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * PlayMusicGUI contains JFrame to show play,pause,stop,next,back,button and has JSlider for rewind and forward;
+ * @author : Yasaman Haghbin , Bahar Kaviani
+ * @since : 18/6/2019
+ * @version : 1.0
+ */
 public class PlayMusicGUI extends JPanel{
     private PlayMusicActioner playMusic;
     private static JButton pauseAndResumeButton , back , next , stop , shuffle;
@@ -88,10 +86,16 @@ public class PlayMusicGUI extends JPanel{
 
     public static void setPauseIcon(){
         image = new ImageIcon(("D:\\Bahar\\Code\\Tamrin\\Term2-Kalbasi\\Final Project\\src\\images\\pause.png"));
+        Image img = image.getImage() ;
+        Image newimg = img.getScaledInstance( 60, 60,  java.awt.Image.SCALE_SMOOTH ) ;
+        image = new ImageIcon( newimg );
         pauseAndResumeButton.setIcon(image);
     }
     public void setResumeIcon(){
-        image = new ImageIcon(getClass().getResource(".\\images\\play.png"));
+        image = new ImageIcon(("D:\\Bahar\\Code\\Tamrin\\Term2-Kalbasi\\Final Project\\src\\images\\play.png"));
+        Image img = image.getImage() ;
+        Image newimg = img.getScaledInstance( 60, 60,  java.awt.Image.SCALE_SMOOTH ) ;
+        image = new ImageIcon( newimg );
         pauseAndResumeButton.setIcon(image);
     }
     public static MP3FileDataGUI getMetaData() {

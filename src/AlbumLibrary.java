@@ -2,13 +2,13 @@ import java.util.*;
 
 /**
  * AlbumLibrary class extends Library.This class match songs which have same album name.
- * @author Yasaman Haghbin, Bahar Kaviani;
+ * @author Yasaman Haghbin & Bahar Kaviani;
  * @since 2019;
  */
 
 public class AlbumLibrary extends Library{
-    int index =0;
-    HashMap<String , String > pathAndAlbumMap;
+    int index = 0;
+    HashMap<String, String> pathAndAlbumMap;
     MP3FileData data ;
     Map<String, ArrayList<String>> reverseMap = new HashMap<>();
 
@@ -77,20 +77,21 @@ public class AlbumLibrary extends Library{
     public void minussIndex(){
         index--;
         if(index<0){
-            index=paths.size()-1;
+            index = paths.size()-1;
         }
     }
+
     @Override
     public void plusIndex(){
         index++;
-        if(index==paths.size()){
-            index=0;
+        if(index == paths.size()){
+            index = 0;
         }
     }
+
     @Override
     public String getPath(){
         String s = paths.get(index);
         return s;
     }
-
 }
