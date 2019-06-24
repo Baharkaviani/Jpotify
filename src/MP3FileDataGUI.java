@@ -28,9 +28,15 @@ public class MP3FileDataGUI extends JPanel {
         this.setLayout(new GridLayout(1, 2));
         information.setLayout(new GridLayout(2, 1));
 
+        //set color
+        artWorkPanel.setBackground(new Color(0x320851));
+        information.setBackground(new Color(0x320851));
+        title.setForeground(new Color(0x2EA8FF));
+        artist.setForeground(new Color(0x2EA8FF));
+
         //set size
         artWorkPanel.setPreferredSize(new Dimension(100, 100));
-        information.setPreferredSize(new Dimension(100, 100));
+        information.setPreferredSize(new Dimension(150, 100));
 
         //add JLabels
         this.add(artWorkPanel);

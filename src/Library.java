@@ -1,3 +1,6 @@
+import java.io.*;
+import java.util.*;
+
 /**
  * Library class read paths which saves, and return paths to the other class.
  * This class is abstract and SongLibrary class and AlbumClass extends it.
@@ -5,12 +8,6 @@
  * @since : 2019
  * @version : 1.0
  */
-
-import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.*;
-
-
 public abstract class Library {
     protected ArrayList<String> paths;
     protected BufferedReader musicPath;
@@ -22,12 +19,14 @@ public abstract class Library {
         paths = new ArrayList();
     }
 
+    abstract void findPath(String path);
+
     /**
      * readPlayList method read song's paths and sort the paths by time;
      * @throws IOException if library file can't be opened;
      */
     public void readPlayList() throws Exception {
-        if(paths.size()!=0){
+        if(paths.size() != 0){
             paths.removeAll(paths);
         }
         String[] address ;
@@ -35,6 +34,7 @@ public abstract class Library {
         HashMap<String , String > reverseMap = new HashMap<>();
         BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\date.txt")));
         ArrayList<String> sec = new ArrayList<>();
+
         //read all the path with their time from date.txt
         String line =reader.readLine();
         while (line!=null){
@@ -44,6 +44,7 @@ public abstract class Library {
             line = reader.readLine();
 
         }
+
         //parse date to second and add it to arrayList
         for(String j : pathTime.values()){
             sec.add(j);

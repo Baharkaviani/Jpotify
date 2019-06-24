@@ -18,6 +18,7 @@ public class PlayMusic {
     private static MP3FileData data;
     private static boolean shuffle = false;
     private static int turn =0;
+
     public PlayMusic(Library library) throws Exception {
         playList = library;
         playSituation = "false";

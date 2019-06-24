@@ -14,9 +14,8 @@ public class Graphic {
     private static PlaylistPanel playlist;
     private static MusicOptions musics;
     private static PlayMusicGUI playLine;
-    private static JPanel center, main, informationLine, friends;
+    private static JPanel center, main, backMain, informationLine, friends;
     private static GridBagConstraints gbc = new GridBagConstraints();
-    private JScrollPane scrollPane;
     /**
      * the constructor
      * shows Jpotify's frame
@@ -31,6 +30,7 @@ public class Graphic {
         friends = new JPanel();
         center = new JPanel();
         main = new JPanel();
+        backMain = new JPanel();
         informationLine = new JPanel();
         playLine = new PlayMusicGUI();
 
@@ -38,17 +38,22 @@ public class Graphic {
         frame.setLayout(new BorderLayout(4, 4));
         homeLine.setLayout(new BorderLayout(4, 10));
         center.setLayout(new BorderLayout(4, 4));
+        backMain.setLayout(new BorderLayout());
         main.setLayout(new GridBagLayout());
-        gbc.gridx=0;
-        gbc.gridy=0;
-        scrollPane = new JScrollPane(main,
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        JScrollPane scrollPane = new JScrollPane(main,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        backMain.add(scrollPane, BorderLayout.CENTER);
+
         //set background for panels
         frame.setBackground(new Color(0x320851));
         homeLine.setBackground(new Color(0x320851));
         friends.setBackground(new Color(0x320851));
         main.setBackground(new Color(0x320851));
+        backMain.setBackground(new Color(0x320851));
         center.setBackground(new Color(0xFFFFFF));
         informationLine.setBackground(new Color(0x320851));
 
@@ -59,14 +64,13 @@ public class Graphic {
         friends.setPreferredSize(new Dimension(230, 100));
         playLine.setPreferredSize(new Dimension(100, 100));
         center.setPreferredSize(new Dimension(100, 100));
-        main.setPreferredSize(new Dimension(100, 700));
         informationLine.setPreferredSize(new Dimension(100, 40));
 
         //add panels
         homeLine.add(musics, BorderLayout.NORTH);
         homeLine.add(playlist, BorderLayout.CENTER);
         center.add(informationLine, BorderLayout.NORTH);
-        center.add(main, BorderLayout.CENTER);
+        center.add(backMain, BorderLayout.CENTER);
         frame.getContentPane().add(center, BorderLayout.CENTER);
         frame.getContentPane().add(homeLine,BorderLayout.WEST);
         frame.getContentPane().add(friends, BorderLayout.EAST);
@@ -92,9 +96,10 @@ public class Graphic {
         }
           frame.validate();
     }
+
     public static void refreshMain() {
-        gbc.gridy=0;
-        gbc.gridx=0;
+        gbc.gridy = 0;
+        gbc.gridx = 0;
         Component[] components = main.getComponents();
 
         for (Component component : components) {
@@ -104,6 +109,7 @@ public class Graphic {
         main.revalidate();
         main.repaint();
     }
+
     public static void addAlbumToPanel(Album album){
         main.add(album,gbc);
         gbc.gridx++;
@@ -113,6 +119,7 @@ public class Graphic {
         }
         frame.validate();
     }
+
     public static void main(String[] args)throws Exception {
         Graphic JPotify = new Graphic();
     }
