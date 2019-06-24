@@ -16,7 +16,7 @@ public class Graphic {
     private static PlayMusicGUI playLine;
     private static JPanel center, main, informationLine, friends;
     private static GridBagConstraints gbc = new GridBagConstraints();
-    private JScrollPane scrollPane;
+//    private JScrollPane scrollPane;
     /**
      * the constructor
      * shows Jpotify's frame
@@ -39,11 +39,11 @@ public class Graphic {
         homeLine.setLayout(new BorderLayout(4, 10));
         center.setLayout(new BorderLayout(4, 4));
         main.setLayout(new GridBagLayout());
-        gbc.gridx=0;
-        gbc.gridy=0;
-        scrollPane = new JScrollPane(main,
-                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        JScrollPane scrollPane = new JScrollPane(main);
+
         //set background for panels
         frame.setBackground(new Color(0));
         homeLine.setBackground(new Color(0));
@@ -59,7 +59,7 @@ public class Graphic {
         friends.setPreferredSize(new Dimension(230, 100));
         playLine.setPreferredSize(new Dimension(100, 100));
         center.setPreferredSize(new Dimension(100, 100));
-        main.setPreferredSize(new Dimension(100, 700));
+        main.setPreferredSize(new Dimension(100, 100));
         informationLine.setPreferredSize(new Dimension(100, 40));
 
         //add panels
@@ -92,9 +92,10 @@ public class Graphic {
         }
           frame.validate();
     }
+
     public static void refreshMain() {
-        gbc.gridy=0;
-        gbc.gridx=0;
+        gbc.gridy = 0;
+        gbc.gridx = 0;
         Component[] components = main.getComponents();
 
         for (Component component : components) {
@@ -104,6 +105,7 @@ public class Graphic {
         main.revalidate();
         main.repaint();
     }
+
     public static void addAlbumToPanel(Album album){
         main.add(album,gbc);
         gbc.gridx++;
@@ -113,6 +115,7 @@ public class Graphic {
         }
         frame.validate();
     }
+
     public static void main(String[] args)throws Exception {
         Graphic JPotify = new Graphic();
     }
