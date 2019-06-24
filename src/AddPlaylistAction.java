@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * addMusicAction can let you add your new playlist to the program
@@ -12,11 +14,13 @@ import java.io.File;
  */
 class AddPlaylistAction implements ActionListener {
     private DefaultListModel playlist;
+    private HashMap<String, File> playlistMap;
     private JFrame addNewPlaylist;
     private boolean pressed;
 
-    AddPlaylistAction(DefaultListModel list){
+    AddPlaylistAction(DefaultListModel list, HashMap playlistMap){
         this.playlist = list;
+        this.playlistMap = playlistMap;
     }
 
     /**
@@ -51,9 +55,24 @@ class AddPlaylistAction implements ActionListener {
                 if(!playlistName.getText().equals("")) {
                     if(IsNewName(playlist, playlistName.getText())) {
                         //make a file for the new playlist
-                        new File(playlistName.getText() + ".txt");
+                        File playlistFile = null;
+                        try {
+                            playlistFile = new File(".\\" + playlistName.getText() + ".txt");
+                            boolean fvar = playlistFile.createNewFile();
+                            if (fvar){
+                                System.out.println("File has been created successfully");
+                            }
+                            else{
+                                System.out.println("File already present at the specified location");
+                            }
+                        } catch (IOException e1) {
+                            System.out.println("AddPlaylistAction error:");
+                            System.out.println(e1);
+                        }
                         //add the playlist name to the list
                         playlist.addElement(playlistName.getText());
+                        //add playlist to the hashMap
+                        playlistMap.put(playlistName.getText(), playlistFile);
                         //close the frame
                         addNewPlaylist.dispose();
                     }

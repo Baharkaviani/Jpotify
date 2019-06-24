@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.HashMap;
 import javax.swing.JList;
 
@@ -16,7 +17,7 @@ public class PlaylistPanel extends JPanel implements ActionListener {
     private JScrollPane scrollPane;
     private DefaultListModel playlist;
     private JList myList;
-    private HashMap<String, PlaylistInformation> playlistMap;
+    private HashMap<String, File> playlistMap;
 
     /**
      * make a new panel to show playlist.
@@ -44,6 +45,13 @@ public class PlaylistPanel extends JPanel implements ActionListener {
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
+        //add two default playlist to the HashMap
+        playlistMap = new HashMap<>();
+        File favoriteSongs = new File("favoriteSongs.txt");
+        File sharedPlaylist = new File("sharedPlaylist.txt");
+        playlistMap.put("favoriteSongs", favoriteSongs);
+        playlistMap.put("sharedPlaylist", sharedPlaylist);
+
         //set color
         showPlaylist.setBackground(new Color(0x220351));
         showPlaylist.setForeground(new Color(0x2EA8FF));
@@ -61,8 +69,8 @@ public class PlaylistPanel extends JPanel implements ActionListener {
         addPlaylist.setPreferredSize(new Dimension(10, 40));
 
         //button for adding playlist
-        addPlaylist.addActionListener(new AddPlaylistAction(playlist));
-        myList.addListSelectionListener(new MyListListener(playlist, myList));
+        addPlaylist.addActionListener(new AddPlaylistAction(playlist, playlistMap));
+        myList.addListSelectionListener(new MyListListener(playlist, myList, playlistMap));
 
         //add default playlist
         this.add(showPlaylist, BorderLayout.NORTH);
