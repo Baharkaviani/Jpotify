@@ -50,7 +50,7 @@ public class Graphic {
 
         //set background for panels
         frame.setBackground(new Color(0x320851));
-        homeLine.setBackground(new Color(0x320851));
+        homeLine.setBackground(new Color(0x000000));
         friends.setBackground(new Color(0x320851));
         main.setBackground(new Color(0x320851));
         backMain.setBackground(new Color(0x320851));

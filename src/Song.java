@@ -1,11 +1,15 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.*;
 
 /**
  * Song class create button which has path and title and set artWork and title of each song to it's button;
- *@author Bahar Kaviani , Yasaman Haghbin
+ * @author Bahar Kaviani , Yasaman Haghbin
  * @since : 2019 - 6 -18
  * @version : 1.0
  */
@@ -14,7 +18,7 @@ public class Song extends JPanel {
     private JPanel buttonPanel;
     private JLabel information;
     private PlayButton playButton;
-    private JButton likeButton;
+    private FavoriteButton likeButton;
     private String path , title;
     private MP3FileData mp3FileData;
 
@@ -24,13 +28,14 @@ public class Song extends JPanel {
     public Song(String path) throws Exception {
         //initialize the panel
         super();
-        setBackground(new Color(0x320851));
+        this.setBackground(new Color(0x320851));
+        this.setBorder(new LineBorder(new Color(0), 5));
 
         //initialize subPanels and buttons
         picturePanel = new JPanel();
         buttonPanel = new JPanel();
         playButton = new PlayButton(path);
-        likeButton = new JButton("like");
+        likeButton = new FavoriteButton(path);
         information = new JLabel();
 
         //set layout and add components
@@ -41,6 +46,9 @@ public class Song extends JPanel {
         buttonPanel.setLayout(new GridLayout(1, 2));
         buttonPanel.add(likeButton);
         buttonPanel.add(playButton);
+        likeButton.setBorder(null);
+        playButton.setBorder(null);
+        buttonPanel.setBackground(new Color(0x320851));
 
         //set size
         this.setPreferredSize(new Dimension(200, 280));
@@ -58,7 +66,7 @@ public class Song extends JPanel {
             JLabel picLabel = new JLabel(new ImageIcon(myPicture.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));
             picturePanel.add(picLabel);
         } else {
-            ImageIcon imageIcon = new ImageIcon(new ImageIcon(".\\images\\music.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+            ImageIcon imageIcon = new ImageIcon(new ImageIcon(getClass().getResource(".\\images\\music.jpg")).getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
             JLabel picLabel = new JLabel(imageIcon);
             picturePanel.add(picLabel);
         }
@@ -87,15 +95,159 @@ public class Song extends JPanel {
     }
 }
 
+/**
+ * When the user click on this button the song will play
+ * @author Bahar Kaviani & Yasaman Haghbin
+ * @since 24/6/2019
+ * @version 1.0
+ */
 class PlayButton extends JButton{
     private String path;
 
     PlayButton(String path){
         super();
         this.path = path;
+        this.setPreferredSize(new Dimension(40, 40));
+
+        try {
+            Image img = ImageIO.read(getClass().getResource(".\\images\\playButton.png"));
+            Image newImage = img.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
+            this.setIcon(new ImageIcon(newImage));
+            this.setBackground(new Color(0x320851));
+        }catch (IOException e){
+            System.out.println("Song error:");
+            System.err.println(e);
+        }
     }
 
     public String getPath() {
         return path;
+    }
+}
+
+/**
+ * When the user click on this button the song will be added to the favoriteSongs
+ * @author Bahar Kaviani & Yasaman Haghbin
+ * @since 24/6/2019
+ * @version 1.0
+ */
+class FavoriteButton extends JButton{
+    private String path;
+    private boolean pressed = false;
+
+    FavoriteButton(String path){
+        super();
+        this.path = path;
+        this.setPreferredSize(new Dimension(30, 30));
+
+        try {
+            Image img = ImageIO.read(getClass().getResource(".\\images\\heart.png"));
+            Image newImage = img.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
+            this.setIcon(new ImageIcon(newImage));
+            this.setBackground(new Color(0x320851));
+        }catch (IOException e){
+            System.out.println("Song error:");
+            System.err.println(e);
+        }
+
+        this.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //if you like the song
+                if(!pressed) {
+                    try {
+                        Image img = ImageIO.read(getClass().getResource(".\\images\\like.png"));
+                        Image newImage = img.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
+                        ((FavoriteButton)(e.getSource())).setIcon(null);
+                        ((FavoriteButton)(e.getSource())).setIcon(new ImageIcon(newImage));
+                        ((FavoriteButton)(e.getSource())).setBackground(new Color(0x320851));
+                        AddSongToFavoriteSongs();
+                        pressed = !pressed;
+                    } catch (IOException e1) {
+                        System.out.println("Song error:");
+                        System.err.println(e1);
+                    }
+                }
+                //if you don't like the song
+                else {
+                    try {
+                        Image img = ImageIO.read(getClass().getResource(".\\images\\heart.png"));
+                        Image newImage = img.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
+                        ((FavoriteButton)(e.getSource())).setIcon(null);
+                        ((FavoriteButton)(e.getSource())).setIcon(new ImageIcon(newImage));
+                        ((FavoriteButton)(e.getSource())).setBackground(new Color(0x320851));
+                        RemoveSongFromFavoriteSongs();
+                        pressed = !pressed;
+                    }catch (IOException e1){
+                        System.out.println("Song error:");
+                        System.err.println(e1);
+                    }
+                }
+            }
+        });
+    }
+
+    /**
+     * write the name of the song to "favoriteSongs.txt" file
+     */
+    private void AddSongToFavoriteSongs(){
+        if(!path.equals("")) {
+            try {
+                PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(".\\favoriteSongs.txt", true)));
+                writer.println(path);
+                writer.close();
+            } catch (IOException e1) {
+                System.out.println("MyListListener error: can not write path to the file =((");
+                System.out.println();
+            }
+        }
+    }
+
+    /**
+     * delete the name of the song from "favoriteSongs.txt" file
+     */
+    private void RemoveSongFromFavoriteSongs(){
+        //delete the name from "playlistNames.txt" file
+        File inputFile = new File(".\\favoriteSongs.txt");
+        File tempFile = new File("temp.txt");
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(inputFile)));
+            PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(tempFile)));
+
+            String lineToRemove = path;
+            String currentLine;
+
+            while ((currentLine = reader.readLine()) != null) {
+                // trim newline when comparing with lineToRemove
+                String trimmedLine = currentLine.trim();
+                if (trimmedLine.equals(lineToRemove)) continue;
+                writer.println(currentLine);
+            }
+            writer.close();
+            reader.close();
+
+            //update the "favoriteSongs.txt" file
+            File inputFile2 = new File("temp.txt");
+            File outputFile2 = new File(".\\favoriteSongs.txt");
+            try {
+                BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(inputFile2)));
+                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(outputFile2)));
+
+                String currentString;
+
+                while ((currentString = in.readLine()) != null) {
+                    out.println(currentString);
+                }
+                out.close();
+                in.close();
+            }catch (IOException e1){
+                System.out.println("MyListListener error:");
+                System.err.println();
+            }
+            tempFile.delete();
+        }catch (IOException e1){
+            System.out.println("MyListListener error:");
+            System.err.println();
+        }
     }
 }

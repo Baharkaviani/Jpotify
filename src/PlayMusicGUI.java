@@ -6,6 +6,7 @@
  */
 
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 
@@ -27,16 +28,37 @@ public class PlayMusicGUI extends JPanel{
         metaData = new MP3FileDataGUI();
 
         //set image and color
-        back = new JButton(new ImageIcon(getClass().getResource(".\\images\\back.png")));
+        playing.setBackground(new Color(0x320851));
+        Image img = ImageIO.read(getClass().getResource(".\\images\\previous.png"));
+        Image newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
+        back = new JButton(new ImageIcon(newImage));
         back.setBackground(new Color(0x320851));
-        next = new JButton(new ImageIcon(getClass().getResource(".\\images\\forward.png")));
+        back.setBorder(null);
+
+        img = ImageIO.read(getClass().getResource(".\\images\\next.png"));
+        newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
+        next = new JButton(new ImageIcon(newImage));
         next.setBackground(new Color(0x320851));
-        stop = new JButton(new ImageIcon(getClass().getResource(".\\images\\stop.png")));
+        next.setBorder(null);
+
+        img = ImageIO.read(getClass().getResource(".\\images\\stop.png"));
+        newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
+        stop = new JButton(new ImageIcon(newImage));
         stop.setBackground(new Color(0x320851));
-        shuffle = new JButton(new ImageIcon(getClass().getResource(".\\images\\Shuffle.png")));
+        stop.setBorder(null);
+
+        img = ImageIO.read(getClass().getResource(".\\images\\shuffle.png"));
+        newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
+        shuffle = new JButton(new ImageIcon(newImage));
         shuffle.setBackground(new Color(0x320851));
-        pauseAndResumeButton = new JButton(new ImageIcon(getClass().getResource(".\\images\\pause.png")));
+        shuffle.setBorder(null);
+
+        img = ImageIO.read(getClass().getResource(".\\images\\pause.png"));
+        newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
+        pauseAndResumeButton = new JButton(new ImageIcon(newImage));
         pauseAndResumeButton.setBackground(new Color(0x320851));
+        pauseAndResumeButton.setBorder(null);
+
         playing.setPreferredSize(new Dimension(900,50));
 
         //create layout for panel
@@ -65,7 +87,7 @@ public class PlayMusicGUI extends JPanel{
 
 
     public static void setPauseIcon(){
-        image = new ImageIcon(("DC:\\Users\\vcc\\Desktop\\Jpotify\\src\\images\\pause.png"));
+        image = new ImageIcon(("D:\\Bahar\\Code\\Tamrin\\Term2-Kalbasi\\Final Project\\src\\images\\pause.png"));
         pauseAndResumeButton.setIcon(image);
     }
     public void setResumeIcon(){
