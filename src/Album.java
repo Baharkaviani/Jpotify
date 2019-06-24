@@ -27,7 +27,7 @@ public class Album extends JButton {
     public void makeAlbum() throws Exception{
 
         setBackground(new Color(0x320851));
-        //get path of first song to MP3FileData to read data;
+//        get path of first song to MP3FileData to read data;
         mp3FileData = new MP3FileData(songs.get(0).getPath());
         //get title;
         title = mp3FileData.getTitle();
@@ -38,7 +38,7 @@ public class Album extends JButton {
             setIcon(new ImageIcon(newimg));
         }
         else {
-            //if hasn't artWork set a default image;
+//            if hasn't artWork set a default image;
             ImageIcon imageIcon = new ImageIcon(new ImageIcon("C:\\Users\\vcc\\Desktop\\Jpotify\\src\\images\\music.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
             setIcon(imageIcon);
         }

@@ -15,7 +15,8 @@ public abstract class Library {
      * Constructor
      * read path from file;
      */
-    public Library() throws Exception{
+    public Library(){
+
         paths = new ArrayList();
     }
 

@@ -65,7 +65,7 @@ public class PlayMusicGUI extends JPanel{
 
 
     public static void setPauseIcon(){
-        image = new ImageIcon(("D:\\Bahar\\Code\\Tamrin\\Term2-Kalbasi\\Final Project\\src\\images\\pause.png"));
+        image = new ImageIcon(("DC:\\Users\\vcc\\Desktop\\Jpotify\\src\\images\\pause.png"));
         pauseAndResumeButton.setIcon(image);
     }
     public void setResumeIcon(){

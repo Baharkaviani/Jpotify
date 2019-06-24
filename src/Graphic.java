@@ -49,8 +49,8 @@ public class Graphic {
         backMain.add(scrollPane, BorderLayout.CENTER);
 
         //set background for panels
-        frame.setBackground(new Color(0));
-        homeLine.setBackground(new Color(0));
+        frame.setBackground(new Color(0x320851));
+        homeLine.setBackground(new Color(0x320851));
         friends.setBackground(new Color(0x320851));
         main.setBackground(new Color(0x320851));
         backMain.setBackground(new Color(0x320851));

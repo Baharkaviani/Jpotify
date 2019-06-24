@@ -16,7 +16,6 @@ public class AlbumOptionListener implements ActionListener {
     public AlbumOptionListener(){
         try {
             library = new AlbumLibrary();
-            album = new Album[library.getReverseMap().size()];
         }catch (Exception e){
             System.out.println("can't open library file");
         }
@@ -33,6 +32,7 @@ public class AlbumOptionListener implements ActionListener {
 
             int index=0;
             Map<String , ArrayList<String>> map = library.getReverseMap();
+            album = new Album[library.getReverseMap().size()];
 
             for (String i : map.keySet()) {
                 album[index] = new Album();
@@ -51,7 +51,8 @@ public class AlbumOptionListener implements ActionListener {
                 Graphic.addAlbumToPanel(album[j]);
             }
         }catch (Exception err){
-            System.out.println("can't create song in songOptionListener class");
+            System.out.println(err);
+            System.out.println("Error in AlbumOptionListener class");
         }
     }
 }

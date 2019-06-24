@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-
 /**
  * @author Bahar Kaviani & Yasaman Haghbin
  * @since 24/6/2019
@@ -17,6 +16,9 @@ public class PlaylistLibrary extends Library{
         this.playlistFile = playlistFile;
     }
     public void  readData(){
+        if(paths.size()!=0){
+            paths.removeAll(paths);
+        }
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(playlistFile)));
             String line = reader.readLine();
@@ -29,7 +31,9 @@ public class PlaylistLibrary extends Library{
             System.out.println(e);
         }
     }
-    public ArrayList<String > getSongs(){
+    public ArrayList<String > getSongs()
+    {
+        readData();
         return paths;
     }
 

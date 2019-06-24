@@ -13,12 +13,14 @@ import java.util.*;
  * @version : 1.0
  */
 public class SongOptionListener implements ActionListener {
-    private Library library;
+    private SongLibrary songLibrary;
     private ArrayList paths;
+    private SongActionListener songActionListener;
     public SongOptionListener(){
         try {
-            library = new SongLibrary();
+            songLibrary = new SongLibrary();
             paths = new ArrayList();
+            songActionListener = new SongActionListener();
         }catch (Exception e){
             System.out.println("can't open library file");
         }
@@ -31,12 +33,12 @@ public class SongOptionListener implements ActionListener {
         try {
                 Graphic.refreshMain();
 
-                paths = library.getArrayListPaths();
+                paths = songLibrary.getArrayListPaths();
                 Song[] song = new Song[paths.size()];
 
                 for (int i = 0; i < paths.size(); i++) {
                     song[i] = new Song((String) paths.get(i));
-
+                    (song[i].getPlayButton()).addActionListener(songActionListener);
                     Graphic.addSongToPanel(song[i]);
                 }
 
