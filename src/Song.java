@@ -16,18 +16,31 @@ public class Song extends JButton {
     /**
      * Constructor get data of song and set it to button and add each button to SongActionListener;
      */
-    public Song(String path) throws Exception{
+    public Song(String path) throws Exception {
         super();
+        setBackground(new Color(0x320851));
         this.path = path;
         mp3FileData = new MP3FileData(path);
         //get title;
         title = mp3FileData.getTitle();
         //get artWork;
-        BufferedImage myPicture = ImageIO.read(mp3FileData.getImageByte());
-        Image newimg = myPicture.getScaledInstance(200, 200,  java.awt.Image.SCALE_SMOOTH);
-        setText(title);
-        setIcon(new ImageIcon(newimg));
-        addActionListener(new SongActionListener());
+        if (mp3FileData.getImageByte() != null) {
+            BufferedImage myPicture = ImageIO.read(mp3FileData.getImageByte());
+            Image newimg = myPicture.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
+            setIcon(new ImageIcon(newimg));
+        } else {
+            ImageIcon imageIcon = new ImageIcon(new ImageIcon("C:\\Users\\vcc\\Desktop\\Jpotify\\src\\images\\music.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+            setIcon(imageIcon);
+        }
+        if (title != ""){
+            setFont(new Font("Serif", Font.BOLD, 15));
+            this.setForeground(new Color(0xF65082));
+           setText(title);
+        }
+        else{
+            setText("song hasn't title");
+        }
+        this.addActionListener(new SongActionListener());
     }
 
     public String getPath() {

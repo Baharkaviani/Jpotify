@@ -15,8 +15,7 @@ import java.util.*;
 public class SongOptionListener implements ActionListener {
     private Library library;
     private ArrayList paths;
-    private static boolean clickSong = false;
-    public SongOptionListener() throws Exception{
+    public SongOptionListener(){
         try {
             library = new SongLibrary();
             paths = new ArrayList();
@@ -30,16 +29,16 @@ public class SongOptionListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-                if(clickSong) {
-                    Graphic.refreshMain();
-                }
+                Graphic.refreshMain();
+
                 paths = library.getArrayListPaths();
                 Song[] song = new Song[paths.size()];
+
                 for (int i = 0; i < paths.size(); i++) {
                     song[i] = new Song((String) paths.get(i));
                     Graphic.addSongToPanel(song[i]);
                 }
-            clickSong = true;
+
         }catch (Exception err){
             System.out.println("can't create song in songOptionListener class");
         }

@@ -18,6 +18,7 @@ class MusicOptions extends JPanel implements ActionListener {
 
     private JButton library;
     private JButton song;
+    private JButton album;
 
     /**
      * Constructor create Button library and add it to a listener to choose file
@@ -38,22 +39,28 @@ class MusicOptions extends JPanel implements ActionListener {
         song = new JButton("Songs");
         song.addActionListener(new SongOptionListener());
 
+        //initialize album
+         album = new JButton("Album");
+         album.addActionListener(new AlbumOptionListener());
         //add button to panel;
         add(library);
         add(song);
-
+        add(album);
         //set background
-        this.setBackground(new Color(0x220351));
-        song.setBackground(new Color(0x220351));
+        this.setBackground(new Color(0x320851));
+        song.setBackground(new Color(0x320851));
         song.setForeground(new Color(0xAF5AA8));
-        song.setFont(new Font("Bnazanin", Font.BOLD, 15));
-        library.setBackground(new Color(0x220351));
+        song.setFont(new Font("Serif", Font.BOLD, 15));
+        library.setBackground(new Color(0x320851));
         library.setForeground(new Color(0xAF5AA8));
-        library.setFont(new Font("Bnazanin", Font.BOLD, 15));
+        library.setFont(new Font("Serif", Font.BOLD, 15));
+        album.setBackground(new Color(0x320851));
+        album.setFont(new Font("Serif", Font.BOLD, 15));
+        album.setForeground(new Color(0xAF5AA8));
     }
 
     /**
-     * this method make a fileChooser to choose mp3 file and save it's path to library file;
+     * this method make a fileChooser to choose mp3 file and save it's path to library file with its time;
      * @param e :Event for click library button
      */
     @Override
@@ -64,15 +71,14 @@ class MusicOptions extends JPanel implements ActionListener {
             int i = fileChooser.showOpenDialog(this);
             fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
             fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("mp3 Files", "mp3"));
-            //save path in file
+            //save path in file with current date
             if (i == JFileChooser.APPROVE_OPTION) {
                 File f = fileChooser.getSelectedFile();
                 PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(".\\library.txt", true)));
                 out.println(f.getAbsolutePath());
                 Date date = new Date();
-                SimpleDateFormat time = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
                 PrintWriter out1 = new PrintWriter(new BufferedWriter(new FileWriter(".\\date.txt",true)));
-                out1.println(f.getAbsolutePath()+"%"+time.format(date));
+                out1.println(f.getAbsolutePath()+"%"+date.getTime());
                 out1.close();
                 out.close();
             }

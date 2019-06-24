@@ -53,12 +53,12 @@ public class PlaylistPanel extends JPanel implements ActionListener {
         playlistMap.put("sharedPlaylist", sharedPlaylist);
 
         //set color
-        showPlaylist.setBackground(new Color(0x220351));
+        showPlaylist.setBackground(new Color(0x320851));
         showPlaylist.setForeground(new Color(0x2EA8FF));
-        addPlaylist.setBackground(new Color(0x220351));
+        addPlaylist.setBackground(new Color(0x320851));
         myList.setSelectionBackground(new Color(0));
         myList.setSelectionForeground(new Color(0x2EA8FF));
-        myList.setBackground(new Color(0x220351));
+        myList.setBackground(new Color(0x320851));
         myList.setForeground(new Color(0xAF5AA8));
 
         //set size

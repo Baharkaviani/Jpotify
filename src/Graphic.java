@@ -15,7 +15,8 @@ public class Graphic {
     private static MusicOptions musics;
     private static PlayMusicGUI playLine;
     private static JPanel center, main, informationLine, friends;
-
+    private static GridBagConstraints gbc = new GridBagConstraints();
+    private JScrollPane scrollPane;
     /**
      * the constructor
      * shows Jpotify's frame
@@ -37,15 +38,19 @@ public class Graphic {
         frame.setLayout(new BorderLayout(4, 4));
         homeLine.setLayout(new BorderLayout(4, 10));
         center.setLayout(new BorderLayout(4, 4));
-        main.setLayout(new GridLayout());
-
+        main.setLayout(new GridBagLayout());
+        gbc.gridx=0;
+        gbc.gridy=0;
+        scrollPane = new JScrollPane(main,
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         //set background for panels
         frame.setBackground(new Color(0));
         homeLine.setBackground(new Color(0));
-        friends.setBackground(new Color(0x220351));
-        main.setBackground(new Color(0x220351));
+        friends.setBackground(new Color(0x320851));
+        main.setBackground(new Color(0x320851));
         center.setBackground(new Color(0xFFFFFF));
-        informationLine.setBackground(new Color(0x220351));
+        informationLine.setBackground(new Color(0x320851));
 
         //set size for panels
         homeLine.setPreferredSize(new Dimension(190, 100));
@@ -79,16 +84,35 @@ public class Graphic {
      * this method add artWork and title of song to main panel;
      */
     public static void addSongToPanel(Song song){
-          main.add(song);
+          main.add(song,gbc);
+          gbc.gridx++;
+        if (gbc.gridx == 4) {
+            gbc.gridx = 0;
+            gbc.gridy++;
+        }
           frame.validate();
     }
-    public static void refreshMain(){
-        main.removeAll();
-    }
-    public static PlayMusicGUI getPlayLine() {
-        return playLine;
-    }
+    public static void refreshMain() {
+        gbc.gridy=0;
+        gbc.gridx=0;
+        Component[] components = main.getComponents();
 
+        for (Component component : components) {
+            main.remove(component);
+        }
+
+        main.revalidate();
+        main.repaint();
+    }
+    public static void addAlbumToPanel(Album album){
+        main.add(album,gbc);
+        gbc.gridx++;
+        if (gbc.gridx == 4) {
+            gbc.gridx = 0;
+            gbc.gridy++;
+        }
+        frame.validate();
+    }
     public static void main(String[] args)throws Exception {
         Graphic JPotify = new Graphic();
     }
