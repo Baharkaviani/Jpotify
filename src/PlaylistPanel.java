@@ -14,6 +14,7 @@ import javax.swing.JList;
  * @version 1.0
  */
 public class PlaylistPanel extends JPanel implements ActionListener {
+    private File playlistNames;
     private JScrollPane scrollPane;
     private DefaultListModel playlist;
     private JList myList;
@@ -24,6 +25,7 @@ public class PlaylistPanel extends JPanel implements ActionListener {
      */
     PlaylistPanel(){
         setLayout(new BorderLayout());
+        playlistNames = new File("playlistNames.txt");
 
         //put buttons and playlist on the panel
         JButton showPlaylist = new JButton("PLAYLIST");
@@ -51,6 +53,23 @@ public class PlaylistPanel extends JPanel implements ActionListener {
         File sharedPlaylist = new File("sharedPlaylist.txt");
         playlistMap.put("favoriteSongs", favoriteSongs);
         playlistMap.put("sharedPlaylist", sharedPlaylist);
+
+        //add the playlist names which was created in past to the JList and HashMap
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(playlistNames));
+            String currentString;
+            while ((currentString = in.readLine()) != null) {
+                //added to JList
+                playlist.addElement(currentString);
+                //added to HasMap
+                File file = new File(currentString + ".txt");
+                playlistMap.put(currentString, file);
+            }
+            in.close();
+        }catch (IOException e1){
+            System.out.println("MyListListener error:");
+            System.err.println();
+        }
 
         //set color
         showPlaylist.setBackground(new Color(0x320851));
