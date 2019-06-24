@@ -2,8 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 
 /**
@@ -69,10 +68,23 @@ class AddPlaylistAction implements ActionListener {
                             System.out.println("AddPlaylistAction error:");
                             System.out.println(e1);
                         }
+
                         //add the playlist name to the list
                         playlist.addElement(playlistName.getText());
+
                         //add playlist to the hashMap
                         playlistMap.put(playlistName.getText(), playlistFile);
+
+                        //write the added playlist name to the "playlistNames.txt"
+                        try {
+                            PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(".\\playlistNames.txt", true)));
+                            writer.println(playlistName.getText());
+                            writer.close();
+                        }catch (IOException e1){
+                            System.out.println("AddPlaylistAction error:");
+                            System.out.println();
+                        }
+
                         //close the frame
                         addNewPlaylist.dispose();
                     }

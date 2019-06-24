@@ -112,10 +112,55 @@ class DeletePlaylistElement implements ActionListener{
             //delete the file of the selected playlist
             File file = playlistMap.get(str);
             file.delete();
+
             //remove the name from the list
             playlist.removeElementAt(selectedIndex);
+
             //add playlist to the hashMap
             playlistMap.remove(str);
+
+            //delete the name from "playlistNames.txt" file
+            File inputFile = new File("playlistNames.txt");
+            File tempFile = new File("temp.txt");
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+                BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+                String lineToRemove = str;
+                String currentLine;
+
+                while ((currentLine = reader.readLine()) != null) {
+                    // trim newline when comparing with lineToRemove
+                    String trimmedLine = currentLine.trim();
+                    if (trimmedLine.equals(lineToRemove)) continue;
+                    writer.write(currentLine + System.getProperty("line.separator"));
+                }
+                writer.close();
+                reader.close();
+
+                //update the "playlistNames.txt" file
+                File inputFile2 = new File("temp.txt");
+                File outputFile2 = new File("playlistNames.txt");
+                try {
+                    BufferedReader in = new BufferedReader(new FileReader(inputFile2));
+                    BufferedWriter out = new BufferedWriter(new FileWriter(outputFile2));
+
+                    String currentString;
+
+                    while ((currentString = in.readLine()) != null) {
+                        out.write(currentString + System.getProperty("line.separator"));
+                    }
+                    out.close();
+                    in.close();
+                }catch (IOException e1){
+                    System.out.println("MyListListener error:");
+                    System.err.println();
+                }
+                tempFile.delete();
+            }catch (IOException e1){
+                System.out.println("MyListListener error:");
+                System.err.println();
+            }
             //close the frame
             frame.dispose();
         }

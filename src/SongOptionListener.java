@@ -36,7 +36,7 @@ public class SongOptionListener implements ActionListener {
 
                 for (int i = 0; i < paths.size(); i++) {
                     song[i] = new Song((String) paths.get(i));
-                    
+
                     Graphic.addSongToPanel(song[i]);
                 }
 
