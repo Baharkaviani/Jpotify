@@ -16,6 +16,7 @@ public class SongActionListener implements ActionListener {
      */
     public SongActionListener()throws Exception{
         songLibrary = new SongLibrary();
+        songLibrary.readPlayList();
     }
 
     @Override

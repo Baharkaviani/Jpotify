@@ -4,6 +4,8 @@ public class SongLibrary extends Library{
     public SongLibrary()throws Exception{
         super();
     }
+
+    @Override
     public void findPath(String path){
         int i=0;
         for(String s :paths){
@@ -14,10 +16,12 @@ public class SongLibrary extends Library{
             i++;
         }
     }
+
     @Override
     public int getIndex() {
         return index;
     }
+
     @Override
     public void minussIndex(){
         index--;

@@ -43,8 +43,8 @@ public class Song extends JPanel {
         buttonPanel.add(playButton);
 
         //set size
-        this.setPreferredSize(new Dimension(200, 400));
-        information.setPreferredSize(new Dimension(200, 100));
+        this.setPreferredSize(new Dimension(200, 280));
+        information.setPreferredSize(new Dimension(200, 20));
 
         this.path = path;
         mp3FileData = new MP3FileData(path);
@@ -72,7 +72,11 @@ public class Song extends JPanel {
             information.setFont(new Font("Serif", Font.BOLD, 15));
             information.setForeground(new Color(0xAF5AA8));
         }
-        playButton.addActionListener(new SongActionListener());
+//        playButton.addActionListener(new SongActionListener());
+    }
+
+    public PlayButton getPlayButton() {
+        return playButton;
     }
 
     public String getPath() {
