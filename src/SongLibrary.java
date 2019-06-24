@@ -1,7 +1,6 @@
-
 public class SongLibrary extends Library{
     private int index=0;
-    public SongLibrary()throws Exception{
+    public SongLibrary(){
         super();
     }
     public void findPath(String path){

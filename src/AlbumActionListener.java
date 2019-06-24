@@ -12,6 +12,7 @@ public class AlbumActionListener implements ActionListener {
 
     public AlbumActionListener() throws Exception{
         albumLibrary = new AlbumLibrary();
+        albumLibrary.readPlayList();
     }
 
     /**

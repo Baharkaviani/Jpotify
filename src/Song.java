@@ -29,7 +29,7 @@ public class Song extends JButton {
             Image newimg = myPicture.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
             setIcon(new ImageIcon(newimg));
         } else {
-            ImageIcon imageIcon = new ImageIcon(new ImageIcon("C:\\Users\\vcc\\Desktop\\Jpotify\\src\\images\\music.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+            ImageIcon imageIcon = new ImageIcon(new ImageIcon(getClass().getResource(".\\images\\music.jpg")).getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
             setIcon(imageIcon);
         }
         if (title != ""){
