@@ -189,14 +189,20 @@ class ShowSongs implements ActionListener{
         try {
             PlaylistLibrary playlistLibrary = new PlaylistLibrary(".\\" + (playlistMap.get(str).getName()));
             ArrayList<Song> songs = new ArrayList<>();
-            for (int i = 0; i < playlistLibrary.getSongs().size(); i++) {
-                songs.add(new Song(playlistLibrary.getSongs().get(i)));
+            ArrayList<String> paths = playlistLibrary.getSongs();
+            Song song ;
+            PlayListOptionListener playListOptionListener = new PlayListOptionListener(playlistLibrary);
+            for (int i = 0; i < paths.size(); i++) {
+                song = new Song(paths.get(i));
+                song.getPlayButton().addActionListener(playListOptionListener);
+                songs.add(song);
             }
             for(Song  s : songs){
                 Graphic.addSongToPanel(s);
             }
         }catch (Exception e1){
             System.out.println("MyListListener error: ShowSongs class can not read the songs.");
+            System.out.println(e1);
         }
     }
 }

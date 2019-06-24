@@ -72,7 +72,6 @@ public class Song extends JPanel {
             information.setFont(new Font("Serif", Font.BOLD, 15));
             information.setForeground(new Color(0xAF5AA8));
         }
-//        playButton.addActionListener(new SongActionListener());
     }
 
     public PlayButton getPlayButton() {
