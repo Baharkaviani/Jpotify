@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -28,7 +27,6 @@ class MusicOptions extends JPanel implements ActionListener {
         public MusicOptions() throws Exception{
         setLayout(new GridLayout(4, 1));
 
-        //
         JLabel jLabel = new JLabel("JPotify");
         Image img = ImageIO.read(getClass().getResource(".\\images\\Spotify1.jpg"));
         Image newImage = img.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
@@ -40,14 +38,17 @@ class MusicOptions extends JPanel implements ActionListener {
         jLabel.setPreferredSize(new Dimension(70, 70));
         library = new JButton("Library");
         library.addActionListener(this);
+        library.setBorder(null);
 
         //initialize song
         song = new JButton("Songs");
         song.addActionListener(new SongOptionListener());
+        song.setBorder(null);
 
         //initialize album
          album = new JButton("Album");
          album.addActionListener(new AlbumOptionListener());
+         album.setBorder(null);
 
         //add button to panel;
         add(jLabel);

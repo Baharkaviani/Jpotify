@@ -35,8 +35,12 @@ public class Song extends JPanel {
         picturePanel = new JPanel();
         buttonPanel = new JPanel();
         playButton = new PlayButton(path);
-        likeButton = new FavoriteButton(path);
         information = new JLabel();
+        //check the color of our heart :))
+        if(songWasLiked(path))
+            likeButton = new FavoriteButton(path, true);
+        else
+            likeButton = new FavoriteButton(path, false);
 
         //set layout and add components
         this.setLayout(new BorderLayout());
@@ -93,6 +97,35 @@ public class Song extends JPanel {
     public String getTitle() {
         return title;
     }
+
+    /**
+     * check if the song was liked or not
+     * @param path the path of the song
+     * @return true if the path as written in "favoriteSongs.txt" file
+     */
+    public boolean songWasLiked(String path){
+        //check if the song's path is in the file
+        try {
+            File inputFile = new File(".\\favoriteSongs.txt");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(inputFile)));
+            String lineToCheck = path;
+            String currentLine;
+
+            while ((currentLine = reader.readLine()) != null) {
+                // trim newline when comparing with lineToRemove
+                String trimmedLine = currentLine.trim();
+                if (trimmedLine.equals(lineToCheck))
+                    return true;
+                else
+                    continue;
+            }
+            reader.close();
+        }catch (IOException e){
+            System.out.println("Song error: can not read from \"favoriteSongs.txt\" file");
+            System.out.println(e);
+        }
+        return false;
+    }
 }
 
 /**
@@ -133,21 +166,35 @@ class PlayButton extends JButton{
  */
 class FavoriteButton extends JButton{
     private String path;
-    private boolean pressed = false;
+    private boolean pressed;
 
-    FavoriteButton(String path){
+    FavoriteButton(String path, boolean pressed){
         super();
         this.path = path;
+        this.pressed = pressed;
         this.setPreferredSize(new Dimension(30, 30));
 
-        try {
-            Image img = ImageIO.read(getClass().getResource(".\\images\\heart.png"));
-            Image newImage = img.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
-            this.setIcon(new ImageIcon(newImage));
-            this.setBackground(new Color(0x320851));
-        }catch (IOException e){
-            System.out.println("Song error:");
-            System.err.println(e);
+        if(pressed){
+            try {
+                Image img = ImageIO.read(getClass().getResource(".\\images\\like.png"));
+                Image newImage = img.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
+                this.setIcon(new ImageIcon(newImage));
+                this.setBackground(new Color(0x320851));
+            } catch (IOException e) {
+                System.out.println("Song error:");
+                System.err.println(e);
+            }
+        }
+        else {
+            try {
+                Image img = ImageIO.read(getClass().getResource(".\\images\\heart.png"));
+                Image newImage = img.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
+                this.setIcon(new ImageIcon(newImage));
+                this.setBackground(new Color(0x320851));
+            } catch (IOException e) {
+                System.out.println("Song error:");
+                System.err.println(e);
+            }
         }
 
         this.addActionListener(new ActionListener() {
@@ -162,7 +209,6 @@ class FavoriteButton extends JButton{
                         ((FavoriteButton)(e.getSource())).setIcon(new ImageIcon(newImage));
                         ((FavoriteButton)(e.getSource())).setBackground(new Color(0x320851));
                         AddSongToFavoriteSongs();
-                        pressed = !pressed;
                     } catch (IOException e1) {
                         System.out.println("Song error:");
                         System.err.println(e1);
@@ -177,7 +223,6 @@ class FavoriteButton extends JButton{
                         ((FavoriteButton)(e.getSource())).setIcon(new ImageIcon(newImage));
                         ((FavoriteButton)(e.getSource())).setBackground(new Color(0x320851));
                         RemoveSongFromFavoriteSongs();
-                        pressed = !pressed;
                     }catch (IOException e1){
                         System.out.println("Song error:");
                         System.err.println(e1);
@@ -189,6 +234,7 @@ class FavoriteButton extends JButton{
 
     /**
      * write the name of the song to "favoriteSongs.txt" file
+     * set the "pressed" button true
      */
     private void AddSongToFavoriteSongs(){
         if(!path.equals("")) {
@@ -201,10 +247,12 @@ class FavoriteButton extends JButton{
                 System.out.println();
             }
         }
+        pressed = true;
     }
 
     /**
      * delete the name of the song from "favoriteSongs.txt" file
+     * set the "pressed" button false
      */
     private void RemoveSongFromFavoriteSongs(){
         //delete the name from "playlistNames.txt" file
@@ -249,5 +297,6 @@ class FavoriteButton extends JButton{
             System.out.println("MyListListener error:");
             System.err.println();
         }
+        pressed = false;
     }
 }
