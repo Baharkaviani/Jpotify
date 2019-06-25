@@ -17,7 +17,7 @@ public class VolumePanel extends JPanel implements ChangeListener {
         slider.setMinorTickSpacing(10);
         slider.setPaintTicks(false);
         slider.addChangeListener(this::stateChanged);
-        this.setBackground(new Color(0x320851));
+        this.setBackground(new Color(0x39719E));
         try {
             Image img = ImageIO.read(getClass().getResource("..\\images\\volume.png"));
             Image newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);

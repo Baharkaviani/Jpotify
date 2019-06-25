@@ -50,7 +50,7 @@ public class SharedButton extends JButton {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //if you like the song
-                if(!pressed) {
+                if(!((SharedButton)(e.getSource())).isPressed()) {
                     try {
                         Image img = ImageIO.read(getClass().getResource("..\\images\\share.png"));
                         Image newImage = img.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
@@ -147,5 +147,9 @@ public class SharedButton extends JButton {
             System.err.println();
         }
         pressed = false;
+    }
+
+    public boolean isPressed() {
+        return pressed;
     }
 }
