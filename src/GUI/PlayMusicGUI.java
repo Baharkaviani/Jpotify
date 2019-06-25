@@ -2,7 +2,7 @@ package GUI;
 
 import Listener.*;
 import com.*;
-import GUI.*;import javax.imageio.ImageIO;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 
@@ -16,7 +16,7 @@ public class PlayMusicGUI extends JPanel{
     private PlayMusicActioner playMusic;
     private static JButton pauseAndResumeButton , back , next , stop , shuffle;
     private static ImageIcon image;
-    private JPanel playing ,seekBar;
+    private JPanel playing ,seekBar, playButtons;
     private static MP3FileDataGUI metaData;
     private VolumePanel volumePanel;
     private static SeekBar slider;
@@ -29,48 +29,61 @@ public class PlayMusicGUI extends JPanel{
     public PlayMusicGUI()throws Exception{
         //create object
         playing = new JPanel();
+        playButtons = new JPanel();
         volumePanel = new VolumePanel();
         metaData = new MP3FileDataGUI();
         seekBar = new JPanel();
         slider = new SeekBar();
+        totalTime = new JLabel();
+        remainTime = new JLabel();
 
-        //set image and color
-        playing.setBackground(new Color(0x39719E));
+        //set color
+        playing.setBackground(new Color(0x4D0C7F));
+        playButtons.setBackground(new Color(0x4D0C7F));
+        slider.setBackground(new Color(0x4D0C7F));
+        totalTime.setBackground(new Color(0x4D0C7F));
+        remainTime.setBackground(new Color(0x4D0C7F));
+
+        //set image
         Image img = ImageIO.read(getClass().getResource("..\\images\\previous.png"));
         Image newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
         back = new JButton(new ImageIcon(newImage));
-        back.setBackground(new Color(0x39719E));
+        back.setBackground(new Color(0x4D0C7F));
         back.setBorder(null);
 
         img = ImageIO.read(getClass().getResource("..\\images\\next.png"));
         newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
         next = new JButton(new ImageIcon(newImage));
-        next.setBackground(new Color(0x39719E));
+        next.setBackground(new Color(0x4D0C7F));
         next.setBorder(null);
 
         img = ImageIO.read(getClass().getResource("..\\images\\stop.png"));
         newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
         stop = new JButton(new ImageIcon(newImage));
-        stop.setBackground(new Color(0x39719E));
+        stop.setBackground(new Color(0x4D0C7F));
         stop.setBorder(null);
 
         img = ImageIO.read(getClass().getResource("..\\images\\shuffle.png"));
         newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
         shuffle = new JButton(new ImageIcon(newImage));
-        shuffle.setBackground(new Color(0x39719E));
+        shuffle.setBackground(new Color(0x4D0C7F));
         shuffle.setBorder(null);
 
         img = ImageIO.read(getClass().getResource("..\\images\\pause.png"));
         newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
         pauseAndResumeButton = new JButton(new ImageIcon(newImage));
-        pauseAndResumeButton.setBackground(new Color(0x39719E));
+        pauseAndResumeButton.setBackground(new Color(0x4D0C7F));
         pauseAndResumeButton.setBorder(null);
 
+        //set size
         playing.setPreferredSize(new Dimension(900,50));
+        totalTime.setPreferredSize(new Dimension(30, 10));
+        remainTime.setPreferredSize(new Dimension(30, 10));
 
         //create layout for panel
-        this.setLayout(new BorderLayout());
-        playing.setLayout(new GridLayout());
+        this.setLayout(new BorderLayout(5, 5));
+        playing.setLayout(new BorderLayout());
+        playButtons.setLayout(new GridLayout());
 
         //add button to actionListener;
         playMusic = new PlayMusicActioner(this);
@@ -81,23 +94,23 @@ public class PlayMusicGUI extends JPanel{
         back.addActionListener(playMusic);
 
         //add button to Playing panel;
-        playing.add(shuffle);
-        playing.add(back);
-        playing.add(pauseAndResumeButton);
-        playing.add(next);
-        playing.add(stop);
-        //
-        totalTime = new JLabel();
-        remainTime = new JLabel();
+        playButtons.add(shuffle);
+        playButtons.add(back);
+        playButtons.add(pauseAndResumeButton);
+        playButtons.add(next);
+        playButtons.add(stop);
+
         seekBar.setLayout(new BorderLayout());
         seekBar.add(totalTime ,BorderLayout.EAST);
         seekBar.add(remainTime , BorderLayout.WEST);
         seekBar.add(slider,BorderLayout.CENTER);
+
         //add panel to layout;
         this.add(playing , BorderLayout.CENTER);
         this.add(metaData , BorderLayout.WEST);
         this.add(volumePanel , BorderLayout.EAST);
-        this.add(seekBar , BorderLayout.NORTH);
+        playing.add(seekBar , BorderLayout.CENTER);
+        playing.add(playButtons, BorderLayout.SOUTH);
     }
 
     public static void setSeekBar(int i , int j) throws Exception{

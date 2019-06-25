@@ -3,13 +3,10 @@ package GUI;
 import com.*;
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 
 /**
- * shows each part of Potify's window
+ * shows each part of JPotify's window
  * @author Bahar Kaviani & Yasaman Haghbin
  * @since : 2019 - 6 -18
  * @version : 1.0
@@ -57,10 +54,8 @@ public class Graphic {
         backMain.add(scrollPane, BorderLayout.CENTER);
 
         //Show a dialog asking the user to type in a String:
-        String inputValue = JOptionPane.showInputDialog("Please input your ip address");
-        JOptionPane pane = new JOptionPane(inputValue);
+        String inputValue = showIPAsking();
         getAndWriteIP(inputValue);
-        frame.add(pane);
 
         //set background for panels
         frame.setBackground(new Color(0x320851));
@@ -134,6 +129,36 @@ public class Graphic {
         frame.validate();
     }
 
+    /**
+     * Show a dialog asking the user to type in a String
+     * for the first time user wants to use the application
+     * @return the IP
+     */
+    public String showIPAsking(){
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\IP.txt")));
+            if(reader.readLine() == null){
+                String inputIP = JOptionPane.showInputDialog("Please input your ip address");
+                JOptionPane pane = new JOptionPane(inputIP);
+                frame.add(pane);
+                reader.close();
+                return inputIP;
+            }
+            else {
+                reader.close();
+                return "";
+            }
+        }catch (IOException e){
+            System.out.println("PlaylistLibrary error: can not open IP.txt");
+            System.out.println(e);
+        }
+        return "";
+    }
+
+    /**
+     * write the user's IP to the IP.txt file
+     * @param IP the user's IP
+     */
     public void getAndWriteIP(String IP){
         if(!IP.equals("")) {
             try {
