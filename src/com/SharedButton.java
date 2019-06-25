@@ -54,10 +54,10 @@ public class SharedButton extends JButton {
                     try {
                         Image img = ImageIO.read(getClass().getResource("..\\images\\share.png"));
                         Image newImage = img.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
-                        ((FavoriteButton)(e.getSource())).setIcon(null);
-                        ((FavoriteButton)(e.getSource())).setIcon(new ImageIcon(newImage));
-                        ((FavoriteButton)(e.getSource())).setBackground(new Color(0x320851));
-                        AddSongToFavoriteSongs();
+                        ((SharedButton)(e.getSource())).setIcon(null);
+                        ((SharedButton)(e.getSource())).setIcon(new ImageIcon(newImage));
+                        ((SharedButton)(e.getSource())).setBackground(new Color(0x320851));
+                        AddSongToSharedSongs();
                     } catch (IOException e1) {
                         System.out.println("SharedButton error:");
                         System.err.println(e1);
@@ -68,10 +68,10 @@ public class SharedButton extends JButton {
                     try {
                         Image img = ImageIO.read(getClass().getResource("..\\images\\notShare.png"));
                         Image newImage = img.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
-                        ((FavoriteButton)(e.getSource())).setIcon(null);
-                        ((FavoriteButton)(e.getSource())).setIcon(new ImageIcon(newImage));
-                        ((FavoriteButton)(e.getSource())).setBackground(new Color(0x320851));
-                        RemoveSongFromFavoriteSongs();
+                        ((SharedButton)(e.getSource())).setIcon(null);
+                        ((SharedButton)(e.getSource())).setIcon(new ImageIcon(newImage));
+                        ((SharedButton)(e.getSource())).setBackground(new Color(0x320851));
+                        RemoveSongFromSharedSongs();
                     }catch (IOException e1){
                         System.out.println("SharedButton error:");
                         System.err.println(e1);
@@ -85,7 +85,7 @@ public class SharedButton extends JButton {
      * write the name of the song to "sharedPlaylist.txt" file
      * set the "pressed" button true
      */
-    private void AddSongToFavoriteSongs(){
+    private void AddSongToSharedSongs(){
         if(!path.equals("")) {
             try {
                 PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(".\\sharedPlaylist.txt", true)));
@@ -103,7 +103,7 @@ public class SharedButton extends JButton {
      * delete the name of the song from "sharedPlaylist.txt" file
      * set the "pressed" button false
      */
-    private void RemoveSongFromFavoriteSongs(){
+    private void RemoveSongFromSharedSongs(){
         //delete the name from "playlistNames.txt" file
         File inputFile = new File(".\\sharedPlaylist.txt");
         File tempFile = new File("temp.txt");
