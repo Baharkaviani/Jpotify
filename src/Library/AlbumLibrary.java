@@ -5,19 +5,20 @@ import java.util.*;
 
 /**
  * AlbumLibrary class extends Library.This class match songs which have same album name.
- * @author Yasaman Haghbin & Bahar Kaviani;
+ * @author Yasaman Haghbin, Bahar Kaviani;
  * @since 2019;
  */
 
 public class AlbumLibrary extends Library{
     int index = 0;
-    HashMap<String, String> pathAndAlbumMap;
+    LinkedHashMap<String, String> pathAndAlbumMap;
     MP3FileData data ;
-    Map<String, ArrayList<String>> reverseMap = new HashMap<>();
+    //key is albumName,value is paths
+    LinkedHashMap<String, ArrayList<String>> reverseMap = new LinkedHashMap<>();
 
     public AlbumLibrary()throws Exception{
         super();
-        pathAndAlbumMap = new HashMap<>();
+        pathAndAlbumMap = new LinkedHashMap<>();
         findSameAlbumSong();
     }
     /**
@@ -25,10 +26,15 @@ public class AlbumLibrary extends Library{
      */
     private void fillHashMap(){
         try {
+            if(pathAndAlbumMap.size()!=0){
+                pathAndAlbumMap.clear();
+            }
             for (String i : paths) {
                 data = new MP3FileData(i);
                 pathAndAlbumMap.put(i,data.getAlbum());
             }
+
+
         }catch (Exception e){
             System.out.println("Error in AlbumLibrary class");
             System.out.println(e);
@@ -41,7 +47,9 @@ public class AlbumLibrary extends Library{
     private void findSameAlbumSong() throws Exception{
         readPlayList();
         fillHashMap();
-
+        if(reverseMap.size()!=0){
+            reverseMap.clear();
+        }
         for (Map.Entry<String, String> entry : pathAndAlbumMap.entrySet()) {
             if (!reverseMap.containsKey(entry.getValue())) {
                 reverseMap.put(entry.getValue(), new ArrayList<>());
@@ -52,7 +60,7 @@ public class AlbumLibrary extends Library{
         }
     }
 
-    public Map<String, ArrayList<String>> getReverseMap() throws Exception{
+    public LinkedHashMap<String, ArrayList<String>> getReverseMap() throws Exception{
         findSameAlbumSong();
         return reverseMap;
     }

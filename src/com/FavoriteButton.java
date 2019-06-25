@@ -17,13 +17,13 @@ class FavoriteButton extends JButton {
     private String path;
     private boolean pressed;
 
-    FavoriteButton(String path, boolean pressed){
+    FavoriteButton(String path, boolean pressed) {
         super();
         this.path = path;
         this.pressed = pressed;
         this.setPreferredSize(new Dimension(30, 30));
 
-        if(pressed){
+        if (pressed) {
             try {
                 Image img = ImageIO.read(getClass().getResource("..\\images\\like.png"));
                 Image newImage = img.getScaledInstance(30, 30, Image.SCALE_DEFAULT);

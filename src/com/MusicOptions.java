@@ -87,10 +87,10 @@ public class MusicOptions extends JPanel implements ActionListener {
             //save path in file with current date
             if (i == JFileChooser.APPROVE_OPTION) {
                 File f = fileChooser.getSelectedFile();
-                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(".\\library.txt", true)));
+                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("..\\library.txt", true)));
                 out.println(f.getAbsolutePath());
                 Date date = new Date();
-                PrintWriter out1 = new PrintWriter(new BufferedWriter(new FileWriter(".\\date.txt",true)));
+                PrintWriter out1 = new PrintWriter(new BufferedWriter(new FileWriter("..\\date.txt",true)));
                 out1.println(f.getAbsolutePath()+"%"+date.getTime());
                 out1.close();
                 out.close();

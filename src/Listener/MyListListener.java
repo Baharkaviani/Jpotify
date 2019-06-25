@@ -41,7 +41,7 @@ public class MyListListener implements ListSelectionListener {
         if(pressed) {
             infoPlaylist.dispose();
         }
-        if (e.getValueIsAdjusting() == false) {
+        if (!e.getValueIsAdjusting()) {
             if (myList.getSelectedIndex() == -1) {
                 //No selection.
             } else {

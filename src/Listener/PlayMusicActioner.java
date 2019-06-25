@@ -4,6 +4,9 @@ import GUI.*;
 import com.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import GUI.*;
+import com.PlayMusic;
+import com.ThreadPlaying;
 
 /**
  * PlayMusicActioner manage the event of PlayMusicGUI panel;

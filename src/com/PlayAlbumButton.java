@@ -6,12 +6,14 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
 /**
  * When the user click on this button the song will play
  * @author Bahar Kaviani & Yasaman Haghbin
  * @since 24/6/2019
  * @version 1.0
  */
+
 public class PlayAlbumButton extends JButton {
     private ArrayList songs;
 
@@ -38,4 +40,3 @@ public class PlayAlbumButton extends JButton {
         return ((Song)songs.get(0)).getPath();
     }
 }
-

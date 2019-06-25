@@ -21,11 +21,13 @@ public class Album extends JPanel {
     private JLabel information;
     private PlayAlbumButton playButton;
     ArrayList<Song> songs = new ArrayList<>();
+    AlbumActionListener albumActionListener;
     MP3FileData mp3FileData;
     private String title;
 
-    public Album(){
+    public Album()throws Exception{
         super();
+        albumActionListener = new AlbumActionListener();
     }
 
     /**
