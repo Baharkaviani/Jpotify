@@ -1,3 +1,6 @@
+package GUI;
+
+import Listener.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -27,31 +30,31 @@ public class PlayMusicGUI extends JPanel{
 
         //set image and color
         playing.setBackground(new Color(0x320851));
-        Image img = ImageIO.read(getClass().getResource(".\\images\\previous.png"));
+        Image img = ImageIO.read(getClass().getResource("..\\images\\previous.png"));
         Image newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
         back = new JButton(new ImageIcon(newImage));
         back.setBackground(new Color(0x320851));
         back.setBorder(null);
 
-        img = ImageIO.read(getClass().getResource(".\\images\\next.png"));
+        img = ImageIO.read(getClass().getResource("..\\images\\next.png"));
         newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
         next = new JButton(new ImageIcon(newImage));
         next.setBackground(new Color(0x320851));
         next.setBorder(null);
 
-        img = ImageIO.read(getClass().getResource(".\\images\\stop.png"));
+        img = ImageIO.read(getClass().getResource("..\\images\\stop.png"));
         newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
         stop = new JButton(new ImageIcon(newImage));
         stop.setBackground(new Color(0x320851));
         stop.setBorder(null);
 
-        img = ImageIO.read(getClass().getResource(".\\images\\shuffle.png"));
+        img = ImageIO.read(getClass().getResource("..\\images\\shuffle.png"));
         newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
         shuffle = new JButton(new ImageIcon(newImage));
         shuffle.setBackground(new Color(0x320851));
         shuffle.setBorder(null);
 
-        img = ImageIO.read(getClass().getResource(".\\images\\pause.png"));
+        img = ImageIO.read(getClass().getResource("..\\images\\pause.png"));
         newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
         pauseAndResumeButton = new JButton(new ImageIcon(newImage));
         pauseAndResumeButton.setBackground(new Color(0x320851));

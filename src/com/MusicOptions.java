@@ -1,3 +1,6 @@
+package com;
+
+import Listener.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -14,7 +17,7 @@ import java.util.Date;
  * @since : 2019 - 6 -18
  * @version : 1.0
  */
-class MusicOptions extends JPanel implements ActionListener {
+public class MusicOptions extends JPanel implements ActionListener {
 
     private JButton library;
     private JButton song;
@@ -28,7 +31,7 @@ class MusicOptions extends JPanel implements ActionListener {
         setLayout(new GridLayout(4, 1));
 
         JLabel jLabel = new JLabel("JPotify");
-        Image img = ImageIO.read(getClass().getResource(".\\images\\Spotify1.jpg"));
+        Image img = ImageIO.read(getClass().getResource("..\\images\\Spotify1.jpg"));
         Image newImage = img.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
         jLabel.setIcon(new ImageIcon(newImage));
         jLabel.setForeground(new Color(0x2EA8FF));

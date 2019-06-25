@@ -1,3 +1,6 @@
+package GUI;
+
+import Listener.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -31,7 +34,7 @@ public class PlaylistPanel extends JPanel implements ActionListener {
         JButton showPlaylist = new JButton("PLAYLIST");
         JButton addPlaylist = new JButton();
         try {
-            Image img = ImageIO.read(getClass().getResource(".\\images\\add - Copy.png"));
+            Image img = ImageIO.read(getClass().getResource("..\\images\\add - Copy.png"));
             Image newImage = img.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
             addPlaylist.setIcon(new ImageIcon(newImage));
         }catch (Exception e){

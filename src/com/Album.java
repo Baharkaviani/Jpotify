@@ -1,3 +1,6 @@
+package com;
+
+import Listener.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -51,7 +54,7 @@ public class Album extends JPanel {
 
         //set picture for the playButton
         try {
-            Image img = ImageIO.read(getClass().getResource(".\\images\\playButton.png"));
+            Image img = ImageIO.read(getClass().getResource("..\\images\\playButton.png"));
             Image newImage = img.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
             playButton.setIcon(new ImageIcon(newImage));
             playButton.setBackground(new Color(0x320851));
@@ -78,7 +81,7 @@ public class Album extends JPanel {
         }
         else {
             //if hasn't artWork set a default image;
-            ImageIcon imageIcon = new ImageIcon(new ImageIcon(getClass().getResource(".\\images\\music.jpg")).getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+            ImageIcon imageIcon = new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\music.jpg")).getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
             JLabel picLabel = new JLabel(imageIcon);
             picturePanel.add(picLabel);
         }
@@ -103,38 +106,5 @@ public class Album extends JPanel {
      */
     public void setSongs(Song song){
         songs.add(song);
-    }
-}
-
-/**
- * When the user click on this button the song will play
- * @author Bahar Kaviani & Yasaman Haghbin
- * @since 24/6/2019
- * @version 1.0
- */
-class PlayAlbumButton extends JButton{
-    private ArrayList songs;
-
-    PlayAlbumButton(ArrayList songs){
-        super();
-        this.songs = songs;
-        this.setPreferredSize(new Dimension(40, 40));
-
-        try {
-            Image img = ImageIO.read(getClass().getResource(".\\images\\playButton.png"));
-            Image newImage = img.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
-            this.setIcon(new ImageIcon(newImage));
-            this.setBackground(new Color(0x320851));
-        }catch (IOException e){
-            System.out.println("Song error:");
-            System.err.println(e);
-        }
-    }
-
-    /**
-     * @return first song's album path;
-     */
-    public String getFirstPath(){
-        return ((Song)songs.get(0)).getPath();
     }
 }

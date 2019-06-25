@@ -1,18 +1,19 @@
-/**
- * MP3FileData class read title's music , artist's name ,album and image of album from mp3File with mp3agic;
- * @author : Yasaman Haghbin , Bahar Kaviani
- * @since : 2019 - 6 -18
- * @version : 1.0
- */
+package com;
 
 import com.mpatric.mp3agic.*;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 
+/**
+ * MP3FileData class read title's music , artist's name ,album and image of album from mp3File with mp3agic;
+ * @author : Yasaman Haghbin , Bahar Kaviani
+ * @since : 2019 - 6 -18
+ * @version : 1.0
+ */
 public class MP3FileData{
 
-    private String title="",artist="",album="",path;
+    private String title = "", artist = "", album = "", path;
     private File song;
     private ByteArrayInputStream bis;
     private Mp3File mp3file;

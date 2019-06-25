@@ -1,3 +1,5 @@
+package GUI;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -17,7 +19,7 @@ public class VolumePanel extends JPanel implements ChangeListener {
         slider.addChangeListener(this::stateChanged);
         this.setBackground(new Color(0x320851));
         try {
-            Image img = ImageIO.read(getClass().getResource(".\\images\\volume.png"));
+            Image img = ImageIO.read(getClass().getResource("..\\images\\volume.png"));
             Image newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
             volumeIcone = new JLabel(new ImageIcon(newImage));
         }catch (IOException e1){
