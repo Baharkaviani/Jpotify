@@ -21,6 +21,8 @@ class MyListListener implements ListSelectionListener {
     private JList myList;
     private HashMap<String, File> playlistMap;
     private JFrame infoPlaylist;
+    private JScrollPane scrollPane;
+    private JList allSongsJList;
     private boolean pressed;
 
     MyListListener(DefaultListModel list, JList myList, HashMap playlistMap){
@@ -48,6 +50,10 @@ class MyListListener implements ListSelectionListener {
             JPanel p = new JPanel();
             JLabel L1 = new JLabel("Which one do you want?");
             //......
+//            String[] songPaths = new String[.size()];
+//            songPaths = .toArray(songPaths);
+//            allSongsJList = new JList(songPaths);
+//            scrollPane = new JScrollPane(allSongsJList);
             JTextField textField = new JTextField();
             //......
             JButton deletePlaylist = new JButton("Delete the playlist");
@@ -68,8 +74,8 @@ class MyListListener implements ListSelectionListener {
 
             //add actionListener to the submitButton button
             deletePlaylist.addActionListener(new DeletePlaylistElement(selected, playlist, playlistMap, selectedIndex, infoPlaylist));
-            addSong.addActionListener(new AddSong(selected, playlist, playlistMap, selectedIndex, infoPlaylist, textField));
-            showSongs.addActionListener(new ShowSongs(selected, playlist, playlistMap, selectedIndex, infoPlaylist));
+            addSong.addActionListener(new AddSong(selected, playlistMap, infoPlaylist, textField));
+            showSongs.addActionListener(new ShowSongs(selected, playlistMap, infoPlaylist));
             pressed = true;
         }
     }
@@ -174,18 +180,14 @@ class DeletePlaylistElement implements ActionListener{
  * @version 1.0
  */
 class AddSong implements ActionListener{
-    private int selectedIndex;
     private String str;
-    private DefaultListModel playlist;
     private HashMap<String, File> playlistMap;
     private JFrame frame;
     private String path;
     private JTextField textField;
 
-    AddSong(String str, DefaultListModel list, HashMap playlistMap, int index, JFrame frame, JTextField textField){
-        selectedIndex = index;
+    AddSong(String str, HashMap playlistMap, JFrame frame, JTextField textField){
         this.str = str;
-        this.playlist = list;
         this.playlistMap = playlistMap;
         this.frame = frame;
         this.textField = textField;
@@ -204,6 +206,7 @@ class AddSong implements ActionListener{
                 System.out.println();
             }
         }
+        frame.dispose();
     }
 }
 
@@ -214,16 +217,12 @@ class AddSong implements ActionListener{
  * @version 1.0
  */
 class ShowSongs implements ActionListener{
-    private int selectedIndex;
     private String str;
-    private DefaultListModel playlist;
     private HashMap<String, File> playlistMap;
     private JFrame frame;
 
-    ShowSongs(String str, DefaultListModel list, HashMap playlistMap, int index, JFrame frame){
-        selectedIndex = index;
+    ShowSongs(String str, HashMap playlistMap, JFrame frame){
         this.str = str;
-        this.playlist = list;
         this.playlistMap = playlistMap;
         this.frame = frame;
     }
@@ -249,5 +248,6 @@ class ShowSongs implements ActionListener{
             System.out.println("MyListListener error: ShowSongs class can not read the songs.");
             System.out.println(e1);
         }
+        frame.dispose();
     }
 }

@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,7 +22,7 @@ public class AlbumActionListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-                String path = ((Album) e.getSource()).getFirstPath();
+                String path = ((PlayAlbumButton) e.getSource()).getFirstPath();
                 albumLibrary.findPath(path);
                 playMusic = new PlayMusic(albumLibrary);
         }
