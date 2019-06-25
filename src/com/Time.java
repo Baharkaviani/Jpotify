@@ -1,3 +1,7 @@
+package com;
+
+import GUI.PlayMusicGUI;
+
 public class Time implements Runnable{
     private int duration;
     public Time(int duration){

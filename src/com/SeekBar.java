@@ -1,4 +1,4 @@
-import jdk.nashorn.internal.runtime.ECMAException;
+package com;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;

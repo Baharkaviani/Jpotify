@@ -1,6 +1,10 @@
+package GUI;
 import javax.swing.*;
 import java.awt.*;
-
+import com.*;
+import Library.*;
+import com.*;
+import Listener.*;
 /**
  * shows each part of Potify's window
  * @author Bahar Kaviani & Yasaman Haghbin

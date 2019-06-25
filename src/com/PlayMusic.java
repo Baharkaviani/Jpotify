@@ -5,9 +5,11 @@
  *  @since : 2019
  *  @version : 1.0
  */
-
+package com;
 import javazoom.jl.player.Player;
 import java.io.*;
+import Library.*;
+import GUI.*;
 
 public class PlayMusic {
     private static FileInputStream musicFile;

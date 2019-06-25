@@ -1,3 +1,4 @@
+package com;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -6,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.Date;
+import Listener.*;
 
 /**
  * MusicOption is for choosing song and add them in library;
@@ -14,7 +16,7 @@ import java.util.Date;
  * @since : 2019 - 6 -18
  * @version : 1.0
  */
-class MusicOptions extends JPanel implements ActionListener {
+public class MusicOptions extends JPanel implements ActionListener {
 
     private JButton library;
     private JButton song;

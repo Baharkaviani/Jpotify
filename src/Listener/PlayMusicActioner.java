@@ -1,5 +1,9 @@
+package Listener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import GUI.*;
+import com.PlayMusic;
+import com.ThreadPlaying;
 
 /**
  * PlayMusicActioner manage the event of PlayMusicGUI panel;
@@ -27,7 +31,7 @@ public class PlayMusicActioner implements ActionListener {
         try {
             if (e.getSource() == GUI.getPauseAndResumeButton()) {
                     //chang icon;
-                if(ThreadPlaying.isPlaying){
+                if(ThreadPlaying.getIsPlaying()){
                     GUI.setResumeIcon();
                     PlayMusic.pause();
                 }

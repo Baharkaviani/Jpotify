@@ -1,3 +1,4 @@
+package com;
 import javazoom.jl.player.Player;
 /**
  * ThreadPlaying implements Runnable and play music;
@@ -6,8 +7,8 @@ import javazoom.jl.player.Player;
  * @version : 1.0
  */
 public class ThreadPlaying implements Runnable{
-    Player player;
-    static boolean isPlaying=false;
+    private Player player;
+    private static boolean isPlaying=false;
     public ThreadPlaying(Player pleyer) {
 
         this.player = pleyer;

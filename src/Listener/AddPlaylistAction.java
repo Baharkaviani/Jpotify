@@ -1,3 +1,4 @@
+package Listener;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -5,19 +6,20 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.HashMap;
 
+
 /**
  * addMusicAction can let you add your new playlist to the program
  * @author Bahar Kaviani & Yasaman Haghbin
  * @since 22/6/2019
  * @version 1.0
  */
-class AddPlaylistAction implements ActionListener {
+public class AddPlaylistAction implements ActionListener {
     private DefaultListModel playlist;
     private HashMap<String, File> playlistMap;
     private JFrame addNewPlaylist;
     private boolean pressed;
 
-    AddPlaylistAction(DefaultListModel list, HashMap playlistMap){
+    public AddPlaylistAction(DefaultListModel list, HashMap playlistMap){
         this.playlist = list;
         this.playlistMap = playlistMap;
     }

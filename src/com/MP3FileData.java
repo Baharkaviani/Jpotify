@@ -4,12 +4,11 @@
  * @since : 2019 - 6 -18
  * @version : 1.0
  */
-
+package com;
 import com.mpatric.mp3agic.*;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-
 public class MP3FileData{
 
     private String title="",artist="",album="",path;

@@ -1,3 +1,4 @@
+package Library;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
@@ -11,7 +12,7 @@ public class PlaylistLibrary extends Library{
     private String playlistFile;
     private int index;
 
-    PlaylistLibrary(String playlistFile) throws Exception{
+    public PlaylistLibrary(String playlistFile) throws Exception{
         super();
         this.playlistFile = playlistFile;
     }
