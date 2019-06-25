@@ -3,6 +3,10 @@ package GUI;
 import com.*;
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * shows each part of Potify's window
@@ -51,6 +55,12 @@ public class Graphic {
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         backMain.add(scrollPane, BorderLayout.CENTER);
+
+        //Show a dialog asking the user to type in a String:
+        String inputValue = JOptionPane.showInputDialog("Please input your ip address");
+        JOptionPane pane = new JOptionPane(inputValue);
+        getAndWriteIP(inputValue);
+        frame.add(pane);
 
         //set background for panels
         frame.setBackground(new Color(0x320851));
@@ -122,6 +132,19 @@ public class Graphic {
             gbc.gridy++;
         }
         frame.validate();
+    }
+
+    public void getAndWriteIP(String IP){
+        if(!IP.equals("")) {
+            try {
+                PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(".\\IP.txt", true)));
+                writer.println(IP);
+                writer.close();
+            } catch (IOException e1) {
+                System.out.println("Graphic error: can not write IP to the file =((");
+                System.out.println();
+            }
+        }
     }
 
     public static void main(String[] args)throws Exception {
