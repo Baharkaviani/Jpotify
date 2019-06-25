@@ -77,8 +77,8 @@ public class PlayMusicGUI extends JPanel{
 
         //set size
         playing.setPreferredSize(new Dimension(900,50));
-        totalTime.setPreferredSize(new Dimension(30, 10));
-        remainTime.setPreferredSize(new Dimension(30, 10));
+        totalTime.setPreferredSize(new Dimension(40, 10));
+        remainTime.setPreferredSize(new Dimension(40, 10));
 
         //create layout for panel
         this.setLayout(new BorderLayout(5, 5));

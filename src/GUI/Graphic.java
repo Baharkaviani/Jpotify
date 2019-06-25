@@ -18,7 +18,9 @@ public class Graphic {
     private static PlaylistPanel playlist;
     private static MusicOptions musics;
     private static PlayMusicGUI playLine;
-    private static JPanel center, main, backMain, informationLine, friends;
+    private static JPanel center, main, backMain;
+    private static Friends friends;
+    private static InformationPanel informationLine;
     private static GridBagConstraints gbc = new GridBagConstraints();
 
     /**
@@ -32,11 +34,11 @@ public class Graphic {
         homeLine = new JPanel();
         musics = new MusicOptions();
         playlist = new PlaylistPanel();
-        friends = new JPanel();
+        friends = new Friends();
         center = new JPanel();
         main = new JPanel();
         backMain = new JPanel();
-        informationLine = new JPanel();
+        informationLine = new InformationPanel();
         playLine = new PlayMusicGUI();
 
         //setLayout
@@ -73,7 +75,7 @@ public class Graphic {
         friends.setPreferredSize(new Dimension(230, 100));
         playLine.setPreferredSize(new Dimension(100, 100));
         center.setPreferredSize(new Dimension(100, 100));
-        informationLine.setPreferredSize(new Dimension(100, 40));
+        informationLine.setPreferredSize(new Dimension(100, 45));
 
         //add panels
         homeLine.add(musics, BorderLayout.NORTH);
