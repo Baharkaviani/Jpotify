@@ -54,9 +54,12 @@ public class PlayMusic {
         startPlaying();
         PlayMusicGUI.setPauseIcon();
         //read metaDat
+
         PlayMusicGUI.getMetaData().setTitle(data.getTitle());
         PlayMusicGUI.getMetaData().setArtist(data.getArtist());
         PlayMusicGUI.getMetaData().setArtwork(data.getImageByte());
+        PlayMusicGUI.setSeekBar(data.getLenght() , data.getSecond());
+        PlayMusicGUI.setTotalLable(data.getSecond());
     }
     /**
      * get a new path from library and call create File;
@@ -134,6 +137,16 @@ public class PlayMusic {
         } catch (Exception err) {
             System.out.println(err);
         }
+    }
+    public static void seek(int i) throws Exception{
+        musicFile.close();
+        player.close();
+        musicFile = new FileInputStream(path);
+        musicFile.skip(i);
+        player = new Player(musicFile);
+        //start a thread to run song
+        startPlaying();
+        playSituation = "playing";
     }
     /**
      * this method make a thread from ThreadPlaying class and starts it;

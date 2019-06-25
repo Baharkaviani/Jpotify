@@ -13,11 +13,13 @@ import java.util.ArrayList;
 public class Album extends JButton {
 
     ArrayList<Song> songs = new ArrayList<>();
+    AlbumActionListener albumActionListener;
     MP3FileData mp3FileData;
     private String title;
 
-    public Album(){
+    public Album()throws Exception{
         super();
+        albumActionListener = new AlbumActionListener();
     }
 
     /**
@@ -51,7 +53,7 @@ public class Album extends JButton {
         else{
             setText("song hasn't title");
         }
-        this.addActionListener(new AlbumActionListener());
+        this.addActionListener(albumActionListener);
     }
 
     /**

@@ -69,7 +69,8 @@ public class MP3FileData{
     }
     public String getTitle() { return title; }
 
-    public long  getSecond(){ return mp3file.getLengthInSeconds(); }
+    public int  getSecond(){ return (int)mp3file.getLengthInSeconds(); }
+    public int getLenght(){ return (int)mp3file.getLength();}
 
     public String getArtist() {
         return artist;

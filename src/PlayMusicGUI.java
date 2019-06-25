@@ -13,9 +13,12 @@ public class PlayMusicGUI extends JPanel{
     private PlayMusicActioner playMusic;
     private static JButton pauseAndResumeButton , back , next , stop , shuffle;
     private static ImageIcon image;
-    private JPanel playing ;
+    private JPanel playing ,seekBar;
     private static MP3FileDataGUI metaData;
     private VolumePanel volumePanel;
+    private static SeekBar slider;
+    private static JLabel totalTime;
+    private static JLabel remainTime;
     /**
      * @param :void
      * get size to button and add them in panel and add to actionListener;
@@ -25,6 +28,8 @@ public class PlayMusicGUI extends JPanel{
         playing = new JPanel();
         volumePanel = new VolumePanel();
         metaData = new MP3FileDataGUI();
+        seekBar = new JPanel();
+        slider = new SeekBar();
 
         //set image and color
         back = new JButton(new ImageIcon(getClass().getResource(".\\images\\back.png")));
@@ -57,15 +62,37 @@ public class PlayMusicGUI extends JPanel{
         playing.add(pauseAndResumeButton);
         playing.add(next);
         playing.add(stop);
+        //
+        totalTime = new JLabel();
+        remainTime = new JLabel();
+        seekBar.setLayout(new BorderLayout());
+        seekBar.add(totalTime ,BorderLayout.EAST);
+        seekBar.add(remainTime , BorderLayout.WEST);
+        seekBar.add(slider,BorderLayout.CENTER);
         //add panel to layout;
         this.add(playing , BorderLayout.CENTER);
         this.add(metaData , BorderLayout.WEST);
         this.add(volumePanel , BorderLayout.EAST);
+        this.add(seekBar , BorderLayout.NORTH);
     }
 
-
+    public static void setSeekBar(int i , int j) throws Exception{
+        slider.setDuration(i ,j);
+    }
+    public static void setTotalLable(int i){
+        int sec,min;
+        min = i/60;
+        sec = i%60;
+        totalTime.setText(min+":"+sec);
+    }
+    public static void setRemainLable(int i){
+        int sec,min;
+        min = i/60;
+        sec = i%60;
+        remainTime.setText(min+":"+sec);
+    }
     public static void setPauseIcon(){
-        image = new ImageIcon(("DC:\\Users\\vcc\\Desktop\\Jpotify\\src\\images\\pause.png"));
+        image = new ImageIcon(("C:\\Users\\vcc\\Desktop\\Jpotify\\src\\images\\pause.png"));
         pauseAndResumeButton.setIcon(image);
     }
     public void setResumeIcon(){

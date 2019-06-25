@@ -1,6 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -31,8 +32,9 @@ public class AlbumOptionListener implements ActionListener {
             Graphic.refreshMain();
 
             int index=0;
-            Map<String , ArrayList<String>> map = library.getReverseMap();
-            album = new Album[library.getReverseMap().size()];
+            LinkedHashMap<String , ArrayList<String>> map = library.getReverseMap();
+            int size = map.size();
+            album = new Album[size];
 
             for (String i : map.keySet()) {
                 album[index] = new Album();
