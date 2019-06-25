@@ -11,12 +11,12 @@ import java.util.*;
 public abstract class Library {
     protected ArrayList<String> paths;
     protected BufferedReader musicPath;
+
     /**
      * Constructor
      * read path from file;
      */
     public Library(){
-
         paths = new ArrayList();
     }
 
@@ -31,16 +31,16 @@ public abstract class Library {
             paths.removeAll(paths);
         }
         String[] address ;
-        HashMap<String , String > pathTime = new HashMap<>();
-        HashMap<String , String > reverseMap = new HashMap<>();
+        HashMap<String, String > pathTime = new HashMap<>();
+        HashMap<String, String > reverseMap = new HashMap<>();
         BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\date.txt")));
         ArrayList<String> sec = new ArrayList<>();
 
         //read all the path with their time from date.txt
-        String line =reader.readLine();
-        while (line!=null){
-            address=line.split("%");
-            pathTime.put(address[0] , address[1]);
+        String line = reader.readLine();
+        while (line != null){
+            address = line.split("%");
+            pathTime.put(address[0], address[1]);
             reverseMap.put(address[1], address[0]);
             line = reader.readLine();
 
@@ -70,6 +70,7 @@ public abstract class Library {
         readPlayList();
         Collections.shuffle(paths);
     }
+
     /**
      * @return paths of songs which are add to library
      * before return them read file first to return which song add to library among the playing song;
@@ -94,6 +95,7 @@ public abstract class Library {
         out.println(path+"%"+date.getTime());
         out.close();
     }
+
     public abstract int getIndex() ;
 
     public abstract void minussIndex();
@@ -101,5 +103,4 @@ public abstract class Library {
     public abstract String getPath();
 
     public abstract void plusIndex();
-
 }

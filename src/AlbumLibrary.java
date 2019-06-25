@@ -86,20 +86,21 @@ public class AlbumLibrary extends Library{
     public void minussIndex(){
         index--;
         if(index<0){
-            index=paths.size()-1;
+            index = paths.size()-1;
         }
     }
+
     @Override
     public void plusIndex(){
         index++;
-        if(index==paths.size()){
-            index=0;
+        if(index == paths.size()){
+            index = 0;
         }
     }
+
     @Override
     public String getPath(){
         String s = paths.get(index);
         return s;
     }
-
 }

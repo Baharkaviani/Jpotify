@@ -1,9 +1,10 @@
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
  * AlbumActionListener manage the press of each album in panel;
- * @author Yasaman Haghbin , Bahar Kaviani;
+ * @author Yasaman Haghbin & Bahar Kaviani;
  * @since 2019;
  */
 public class AlbumActionListener implements ActionListener {
@@ -20,7 +21,7 @@ public class AlbumActionListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-                String path = ((Album) e.getSource()).getFirstPath();
+                String path = ((PlayAlbumButton) e.getSource()).getFirstPath();
                 albumLibrary.findPath(path);
                 playMusic = new PlayMusic(albumLibrary);
         }

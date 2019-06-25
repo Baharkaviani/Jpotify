@@ -1,10 +1,10 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -26,36 +26,46 @@ class MusicOptions extends JPanel implements ActionListener {
      */
         public MusicOptions() throws Exception{
         setLayout(new GridLayout(4, 1));
-        JLabel jLabel = new JLabel("");
-        add(jLabel);
+
+        JLabel jLabel = new JLabel("JPotify");
+        Image img = ImageIO.read(getClass().getResource(".\\images\\Spotify1.jpg"));
+        Image newImage = img.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+        jLabel.setIcon(new ImageIcon(newImage));
+        jLabel.setForeground(new Color(0x2EA8FF));
+        jLabel.setFont(new Font("serif", Font.BOLD, 30));
 
         //initialize library
-//        ImageIcon image = new ImageIcon((getClass().getResource(".\\images\\1.png")));
-//        library = new JButton(image);
-            library = new JButton("Library");
-            library.addActionListener(this);
+        jLabel.setPreferredSize(new Dimension(70, 70));
+        library = new JButton("Library");
+        library.addActionListener(this);
+        library.setBorder(null);
 
         //initialize song
         song = new JButton("Songs");
         song.addActionListener(new SongOptionListener());
+        song.setBorder(null);
 
         //initialize album
          album = new JButton("Album");
          album.addActionListener(new AlbumOptionListener());
+         album.setBorder(null);
+
         //add button to panel;
+        add(jLabel);
         add(library);
         add(song);
         add(album);
+
         //set background
         this.setBackground(new Color(0x320851));
         song.setBackground(new Color(0x320851));
         song.setForeground(new Color(0xAF5AA8));
-        song.setFont(new Font("Serif", Font.BOLD, 15));
+        song.setFont(new Font("Serif", Font.BOLD, 20));
         library.setBackground(new Color(0x320851));
         library.setForeground(new Color(0xAF5AA8));
-        library.setFont(new Font("Serif", Font.BOLD, 15));
+        library.setFont(new Font("Serif", Font.BOLD, 20));
         album.setBackground(new Color(0x320851));
-        album.setFont(new Font("Serif", Font.BOLD, 15));
+        album.setFont(new Font("Serif", Font.BOLD, 20));
         album.setForeground(new Color(0xAF5AA8));
     }
 

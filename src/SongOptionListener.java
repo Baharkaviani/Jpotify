@@ -1,9 +1,5 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -44,6 +40,7 @@ public class SongOptionListener implements ActionListener {
 
         }catch (Exception err){
             System.out.println("can't create song in songOptionListener class");
+            System.out.println(err);
         }
     }
 }

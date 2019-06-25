@@ -16,6 +16,7 @@ public class Graphic {
     private static PlayMusicGUI playLine;
     private static JPanel center, main, backMain, informationLine, friends;
     private static GridBagConstraints gbc = new GridBagConstraints();
+
     /**
      * the constructor
      * shows Jpotify's frame
@@ -50,7 +51,7 @@ public class Graphic {
 
         //set background for panels
         frame.setBackground(new Color(0x320851));
-        homeLine.setBackground(new Color(0x320851));
+        homeLine.setBackground(new Color(0x000000));
         friends.setBackground(new Color(0x320851));
         main.setBackground(new Color(0x320851));
         backMain.setBackground(new Color(0x320851));

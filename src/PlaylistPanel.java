@@ -99,5 +99,6 @@ public class PlaylistPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
     }
 }
