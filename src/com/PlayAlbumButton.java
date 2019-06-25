@@ -23,7 +23,7 @@ public class PlayAlbumButton extends JButton {
         this.setPreferredSize(new Dimension(40, 40));
 
         try {
-            Image img = ImageIO.read(getClass().getResource(".\\images\\playButton.png"));
+            Image img = ImageIO.read(getClass().getResource("..\\images\\playButton.png"));
             Image newImage = img.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
             this.setIcon(new ImageIcon(newImage));
             this.setBackground(new Color(0x320851));

@@ -36,31 +36,31 @@ public class PlayMusicGUI extends JPanel{
 
         //set image and color
         playing.setBackground(new Color(0x39719E));
-        Image img = ImageIO.read(getClass().getResource(".\\images\\previous.png"));
+        Image img = ImageIO.read(getClass().getResource("..\\images\\previous.png"));
         Image newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
         back = new JButton(new ImageIcon(newImage));
         back.setBackground(new Color(0x39719E));
         back.setBorder(null);
 
-        img = ImageIO.read(getClass().getResource(".\\images\\next.png"));
+        img = ImageIO.read(getClass().getResource("..\\images\\next.png"));
         newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
         next = new JButton(new ImageIcon(newImage));
         next.setBackground(new Color(0x39719E));
         next.setBorder(null);
 
-        img = ImageIO.read(getClass().getResource(".\\images\\stop.png"));
+        img = ImageIO.read(getClass().getResource("..\\images\\stop.png"));
         newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
         stop = new JButton(new ImageIcon(newImage));
         stop.setBackground(new Color(0x39719E));
         stop.setBorder(null);
 
-        img = ImageIO.read(getClass().getResource(".\\images\\shuffle.png"));
+        img = ImageIO.read(getClass().getResource("..\\images\\shuffle.png"));
         newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
         shuffle = new JButton(new ImageIcon(newImage));
         shuffle.setBackground(new Color(0x39719E));
         shuffle.setBorder(null);
 
-        img = ImageIO.read(getClass().getResource(".\\images\\pause.png"));
+        img = ImageIO.read(getClass().getResource("..\\images\\pause.png"));
         newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
         pauseAndResumeButton = new JButton(new ImageIcon(newImage));
         pauseAndResumeButton.setBackground(new Color(0x39719E));
@@ -123,7 +123,7 @@ public class PlayMusicGUI extends JPanel{
         pauseAndResumeButton.setIcon(image);
     }
     public void setResumeIcon(){
-        image = new ImageIcon(("C:\\Users\\vcc\\Desktop\\Jpotify\\src\\images\\play.png"));
+        image = new ImageIcon(getClass().getResource("..\\images\\play.png"));
         Image img = image.getImage() ;
         Image newimg = img.getScaledInstance( 60, 60,  java.awt.Image.SCALE_SMOOTH ) ;
         image = new ImageIcon( newimg );

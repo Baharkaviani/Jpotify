@@ -30,7 +30,7 @@ public class MusicOptions extends JPanel implements ActionListener {
         setLayout(new GridLayout(4, 1));
 
         JLabel jLabel = new JLabel("JPotify");
-        Image img = ImageIO.read(getClass().getResource(".\\images\\Spotify1.jpg"));
+        Image img = ImageIO.read(getClass().getResource("..\\images\\Spotify1.jpg"));
         Image newImage = img.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
         jLabel.setIcon(new ImageIcon(newImage));
         jLabel.setForeground(new Color(0x2EA8FF));
@@ -86,10 +86,10 @@ public class MusicOptions extends JPanel implements ActionListener {
             //save path in file with current date
             if (i == JFileChooser.APPROVE_OPTION) {
                 File f = fileChooser.getSelectedFile();
-                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(".\\library.txt", true)));
+                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("..\\library.txt", true)));
                 out.println(f.getAbsolutePath());
                 Date date = new Date();
-                PrintWriter out1 = new PrintWriter(new BufferedWriter(new FileWriter(".\\date.txt",true)));
+                PrintWriter out1 = new PrintWriter(new BufferedWriter(new FileWriter("..\\date.txt",true)));
                 out1.println(f.getAbsolutePath()+"%"+date.getTime());
                 out1.close();
                 out.close();
