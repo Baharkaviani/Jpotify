@@ -30,26 +30,26 @@ public class MP3FileData{
         readData();
     }
     private void readData(){
-        try{
-            //calculate totalSize of file;
-            int size = (int) song.length();
-            //go to last 128 bte to read mata data;
-            file.skip(size - 128);
-            //add mata data to byteArray;
-            byte[] last128 = new byte[128];
-            file.read(last128);
-            String id3 = new String(last128);
-            //separate data with eachOther;
-            String tag = id3.substring(0,3);
-            if (tag.equals("TAG")) {
-                title = id3.substring(3, 32);
-                artist = id3.substring(33, 62);
-                album = id3.substring(63, 91);
+            try {
+                //calculate totalSize of file;
+                int size = (int) song.length();
+                //go to last 128 bte to read mata data;
+                file.skip(size - 128);
+                //add mata data to byteArray;
+                byte[] last128 = new byte[128];
+                file.read(last128);
+                String id3 = new String(last128);
+                //separate data with eachOther;
+                String tag = id3.substring(0, 3);
+                if (tag.equals("TAG")) {
+                    title = id3.substring(3, 32);
+                    artist = id3.substring(33, 62);
+                    album = id3.substring(63, 91);
+                }
+                file.close();
+            } catch (Exception e) {
+                System.out.println(e);
             }
-            file.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
     }
 
     /**

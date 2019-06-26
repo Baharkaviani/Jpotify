@@ -21,12 +21,12 @@ public class SongActionListener implements ActionListener {
      */
     public SongActionListener()throws Exception{
         songLibrary = new SongLibrary();
-        songLibrary.readPlayList();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
+            songLibrary.readPlayList();
             String path = ((PlayButton) e.getSource()).getPath();
             songLibrary.findPath(path);
             playMusic = new PlayMusic(songLibrary);

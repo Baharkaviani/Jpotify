@@ -34,7 +34,7 @@ public class MusicOptions extends JPanel implements ActionListener {
         Image newImage = img.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
         jLabel.setIcon(new ImageIcon(newImage));
         jLabel.setForeground(new Color(0x2EA8FF));
-        jLabel.setFont(new Font("serif", Font.BOLD, 30));
+        jLabel.setFont(new Font("serif", Font.BOLD, 40));
 
         //initialize library
         jLabel.setPreferredSize(new Dimension(70, 70));
@@ -62,12 +62,12 @@ public class MusicOptions extends JPanel implements ActionListener {
         this.setBackground(new Color(0x320851));
         song.setBackground(new Color(0x320851));
         song.setForeground(new Color(0xAF5AA8));
-        song.setFont(new Font("Serif", Font.BOLD, 20));
+        song.setFont(new Font("Serif", Font.BOLD, 30));
         library.setBackground(new Color(0x320851));
         library.setForeground(new Color(0xAF5AA8));
-        library.setFont(new Font("Serif", Font.BOLD, 20));
+        library.setFont(new Font("Serif", Font.BOLD, 30));
         album.setBackground(new Color(0x320851));
-        album.setFont(new Font("Serif", Font.BOLD, 20));
+        album.setFont(new Font("Serif", Font.BOLD, 30));
         album.setForeground(new Color(0xAF5AA8));
     }
 
@@ -86,11 +86,13 @@ public class MusicOptions extends JPanel implements ActionListener {
             //save path in file with current date
             if (i == JFileChooser.APPROVE_OPTION) {
                 File f = fileChooser.getSelectedFile();
-                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("..\\library.txt", true)));
+                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(".\\library.txt", true)));
                 out.println(f.getAbsolutePath());
                 Date date = new Date();
-                PrintWriter out1 = new PrintWriter(new BufferedWriter(new FileWriter("..\\date.txt",true)));
-                out1.println(f.getAbsolutePath()+"%"+date.getTime());
+                PrintWriter out1 = new PrintWriter(new BufferedWriter(new FileWriter(".\\date.txt",true)));
+                long r=(date.getTime()/(1000000000));
+                long re=(date.getTime()-r*1000000000)/1000;
+                out1.println(f.getAbsolutePath()+"%"+re);
                 out1.close();
                 out.close();
             }

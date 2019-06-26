@@ -57,7 +57,7 @@ public class MP3FileDataGUI extends JPanel {
             title.setText("music hasn't titleName");
         else {
             title.setText(titleName);
-            title.setFont(new Font("Serif" ,Font.BOLD, 15));
+            title.setFont(new Font("Serif" ,Font.BOLD, 20));
         }
 
     }
@@ -72,7 +72,7 @@ public class MP3FileDataGUI extends JPanel {
             artist.setText("music hasn't artistName");
         else {
             artist.setText(singerName);
-            artist.setFont(new Font("Serif" ,Font.BOLD, 15));
+            artist.setFont(new Font("Serif" ,Font.BOLD, 20));
         }
 
     }
@@ -86,7 +86,8 @@ public class MP3FileDataGUI extends JPanel {
         artWork.setIcon(null);
         artWork.setText("");
         if (bis == null) {
-            artWork.setText("Song hasn't image");
+            ImageIcon imageIcon = new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\music.jpg")).getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT));
+            artWork.setIcon(imageIcon);
         }
         else {
             BufferedImage myPicture = ImageIO.read(bis);

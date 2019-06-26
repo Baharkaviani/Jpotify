@@ -86,9 +86,9 @@ public class PlaylistPanel extends JPanel implements ActionListener {
 
         //set size
         myList.setFixedCellHeight(30);
-        myList.setFont(new Font("Bnazanin", Font.BOLD, 15));
+        myList.setFont(new Font("Serif", Font.BOLD, 20));
         showPlaylist.setPreferredSize(new Dimension(10, 30));
-        showPlaylist.setFont(new Font("Bnazanin", Font.BOLD, 15));
+        showPlaylist.setFont(new Font("Serif", Font.BOLD, 20));
         addPlaylist.setPreferredSize(new Dimension(10, 40));
 
         //button for adding playlist

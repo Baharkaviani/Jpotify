@@ -125,5 +125,8 @@ public class Graphic {
 
     public static void main(String[] args)throws Exception {
         Graphic JPotify = new Graphic();
+        SendMusicToServer t = new SendMusicToServer();
+        t.run();
+
     }
 }

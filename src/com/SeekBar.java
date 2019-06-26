@@ -1,24 +1,29 @@
 package com;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class SeekBar extends JSlider implements MouseListener {
+public class SeekBar implements MouseListener {
     private  int duration;
+    private int sec;
+    private static JSlider slider;
     public SeekBar(){
         super();
-        setValue(0);
-        this.addMouseListener(this);
-
+        slider = new JSlider(0,100);
+        slider.setValue(0);
+        slider.addMouseListener(this);
     }
     public void setDuration(int i , int sec){
         duration = i;
-        setMinimum(0);
-        setMaximum(duration);
-        setValue(0);
-        new Thread(new Time(sec)).start();
+        this.sec = sec;
     }
+
+    public JSlider getSlider() {
+        return slider;
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
 
@@ -31,7 +36,9 @@ public class SeekBar extends JSlider implements MouseListener {
     @Override
     public void mouseReleased(MouseEvent e) {
         try {
-            PlayMusic.seek(getValue());
+            int i=slider.getValue();
+            i = (i*duration)/100;
+            PlayMusic.seek(i);
         }catch (Exception err){
             System.out.println(err);
         }
@@ -46,5 +53,4 @@ public class SeekBar extends JSlider implements MouseListener {
     public void mouseExited(MouseEvent e) {
 
     }
-
 }

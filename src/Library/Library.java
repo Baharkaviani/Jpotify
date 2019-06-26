@@ -1,5 +1,8 @@
 package Library;
+import sun.util.resources.LocaleData;
+
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -21,7 +24,7 @@ public abstract class Library {
         paths = new ArrayList();
     }
 
-    abstract void findPath(String path);
+
 
     /**
      * readPlayList method read song's paths and sort the paths by time;
@@ -93,9 +96,13 @@ public abstract class Library {
     public void writeTime(String path)throws IOException {
         Date date = new Date();
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(".\\date.txt",true)));
-        out.println(path+"%"+date.getTime());
+        long e=(date.getTime()/(1000000000));
+        long re=(date.getTime()-e*1000000000)/1000;
+        out.println(path+"%"+re);
         out.close();
     }
+
+    public abstract void findPath(String path);
 
     public abstract int getIndex() ;
 

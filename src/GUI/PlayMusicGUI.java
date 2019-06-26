@@ -92,7 +92,7 @@ public class PlayMusicGUI extends JPanel{
         seekBar.setLayout(new BorderLayout());
         seekBar.add(totalTime ,BorderLayout.EAST);
         seekBar.add(remainTime , BorderLayout.WEST);
-        seekBar.add(slider,BorderLayout.CENTER);
+        seekBar.add(slider.getSlider(),BorderLayout.CENTER);
         //add panel to layout;
         this.add(playing , BorderLayout.CENTER);
         this.add(metaData , BorderLayout.WEST);
@@ -100,21 +100,33 @@ public class PlayMusicGUI extends JPanel{
         this.add(seekBar , BorderLayout.NORTH);
     }
 
-    public static void setSeekBar(int i , int j) throws Exception{
+    public static SeekBar setSeekBar(int i , int j) {
         slider.setDuration(i ,j);
+        return slider;
     }
+
     public static void setTotalLable(int i){
         int sec,min;
         min = i/60;
         sec = i%60;
-        totalTime.setText(min+":"+sec);
+        if(sec>=10) {
+            totalTime.setText(min + ":" + sec);
+        }
+        else
+            totalTime.setText(min + ":" + "0" +sec);
     }
+
     public static void setRemainLable(int i){
         int sec,min;
         min = i/60;
         sec = i%60;
-        remainTime.setText(min+":"+sec);
+        if(sec>=10) {
+            remainTime.setText(min + ":" + sec);
+        }
+        else
+            remainTime.setText(min + ":" + "0" +sec);
     }
+
     public static void setPauseIcon(){
         image = new ImageIcon(("C:\\Users\\vcc\\Desktop\\Jpotify\\src\\images\\pause.png"));
         Image img = image.getImage() ;

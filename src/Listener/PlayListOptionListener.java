@@ -12,7 +12,7 @@ public class PlayListOptionListener implements ActionListener {
     /**
      * Constructor new a SongLibrary to gets it to playMusic after each event;
      */
-    public PlayListOptionListener(PlaylistLibrary playlistLibrary) throws Exception{
+    public PlayListOptionListener(PlaylistLibrary playlistLibrary){
         this.playlistLibrary = playlistLibrary;
         playlistLibrary.readData();
     }

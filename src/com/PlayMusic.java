@@ -8,8 +8,10 @@
 package com;
 import javazoom.jl.player.Player;
 import java.io.*;
+import java.util.Date;
 import Library.*;
 import GUI.*;
+
 
 public class PlayMusic {
     private static FileInputStream musicFile;
@@ -20,7 +22,7 @@ public class PlayMusic {
     private static MP3FileData data;
     private static boolean shuffle = false;
     private static int turn =0;
-
+    private static SeekBar slider;
     public PlayMusic(Library library) throws Exception {
         playList = library;
         playSituation = "false";
@@ -31,7 +33,7 @@ public class PlayMusic {
      * creatFile's method gets path from library and makes a player with it then call startPlaying method
      * also read meta data of the song;
      */
-    public static void creatFile() throws Exception {
+    public synchronized static void creatFile() throws Exception {
         if(ThreadPlaying.getIsPlaying()) {
             musicFile.close();
             player.close();
@@ -60,8 +62,12 @@ public class PlayMusic {
         PlayMusicGUI.getMetaData().setTitle(data.getTitle());
         PlayMusicGUI.getMetaData().setArtist(data.getArtist());
         PlayMusicGUI.getMetaData().setArtwork(data.getImageByte());
-        PlayMusicGUI.setSeekBar(data.getLenght() , data.getSecond());
+        //add seek bar
+        slider=PlayMusicGUI.setSeekBar(data.getLenght() , data.getSecond());
         PlayMusicGUI.setTotalLable(data.getSecond());
+        Date date = new Date();
+        SendMusicToServer.setTitle(data.getTitle() ,date.getTime());
+        VolumePanel.setPlayer(player);
     }
     /**
      * get a new path from library and call create File;
@@ -121,6 +127,7 @@ public class PlayMusic {
             //start a thread to run song
             startPlaying();
             playSituation = "playing";
+            VolumePanel.setPlayer(player);
         } catch (Exception err) {
             System.out.println(err);
         }
@@ -148,6 +155,7 @@ public class PlayMusic {
         player = new Player(musicFile);
         //start a thread to run song
         startPlaying();
+        VolumePanel.setPlayer(player);
         playSituation = "playing";
     }
     /**
