@@ -4,23 +4,25 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Person extends JPanel {
-    private String userName,titleMusic,artist,playListName;
+    private String userName,titleMusic,artist,playListName,IP;
     private JButton user;
     private JTextField title,singer,playName , t;
     int time;
     private  GridBagConstraints gbc = new GridBagConstraints();
-    public Person(String userName, String titleMusic, String artist, String playListName , int time) {
+    public Person(String userName, String titleMusic, String artist, String playListName , int time , String IP) {
         super();
         this.setPreferredSize(new Dimension(150,100));
         this.setLayout(new GridBagLayout());
         this.setBackground(new Color(0x3C3151));
         gbc.gridx = 0;
         gbc.gridy = 0;
+        //initialize field
         this.userName = userName;
         this.titleMusic = titleMusic;
         this.artist = artist;
         this.playListName = playListName;
         this.time = time;
+        this.IP = IP;
         //user design
         user = new JButton(userName);
         user.setPreferredSize(new Dimension(100,30));
@@ -65,6 +67,15 @@ public class Person extends JPanel {
         this.add(playName , gbc);
         gbc.gridx++;
         this.add(t , gbc);
+
+    }
+
+    public String getIP() {
+        return IP;
+    }
+
+    public void setIP(String IP) {
+        this.IP = IP;
     }
 
     public String getUserName() {

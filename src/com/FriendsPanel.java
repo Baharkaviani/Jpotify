@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class FriendsPanel extends JPanel {
     private ArrayList<Person> friends;
-    private Person p =new Person("yasaman" , "nemiram" , "AP" , "s" , 20);
-    private Person p1 =new Person("sorena" , "nem" , "reza sadegi" , "man" , 100);
+    private Person p =new Person("yasaman" , "nemiram" , "AP" , "s" , 20 , "127.0.0.1");
+    private Person p1 =new Person("sorena" , "nem" , "reza sadegi" , "man" , 100, "127.0.0.1");
     private  GridBagConstraints gbc = new GridBagConstraints();
     public FriendsPanel(){
         super();
