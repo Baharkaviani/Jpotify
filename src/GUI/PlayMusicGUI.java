@@ -40,7 +40,6 @@ public class PlayMusicGUI extends JPanel{
         //set color
         playing.setBackground(new Color(0x4D0C7F));
         playButtons.setBackground(new Color(0x4D0C7F));
-        slider.setBackground(new Color(0x4D0C7F));
         totalTime.setBackground(new Color(0x4D0C7F));
         remainTime.setBackground(new Color(0x4D0C7F));
 

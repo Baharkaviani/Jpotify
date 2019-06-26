@@ -20,16 +20,17 @@ public class VolumePanel extends JPanel implements MouseListener {
     public VolumePanel(){
         this.setPreferredSize(new Dimension(200,150));
         this.setLayout(new GridLayout());
-        this.setBackground(Color.WHITE);
-
+        
+        slider.setBackground(new Color(0x4D0C7F));
         slider.setPaintTicks(false);
         slider.addMouseListener(this);
-        this.setBackground(new Color(0x39719E));
+        this.setBackground(new Color(0x4D0C7F));
         volumeIcone = new JLabel();
         setVolumeIcon();
         this.add(volumeIcone);
         this.add(slider);
         slider.setValue(100);
+
     }
     public static void setPlayer(Player music){
         player = music;
@@ -47,9 +48,7 @@ public class VolumePanel extends JPanel implements MouseListener {
         }
     }
     public void setVolumeIcon(){
-        slider.addChangeListener(this::stateChanged);
-        slider.setBackground(new Color(0x4D0C7F));
-        this.setBackground(new Color(0x4D0C7F));
+
         try {
             Image img = ImageIO.read(getClass().getResource("..\\images\\volume.png"));
             Image newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
