@@ -26,8 +26,6 @@ public class MyListListener implements ListSelectionListener {
     private JList myList;
     private HashMap<String, File> playlistMap;
     private JFrame infoPlaylist;
-    private JScrollPane scrollPane;
-    private JList allSongsJList;
     private boolean pressed;
 
     public MyListListener(DefaultListModel list, JList myList, HashMap playlistMap){
@@ -54,36 +52,25 @@ public class MyListListener implements ListSelectionListener {
             infoPlaylist.setSize(280, 200);
             JPanel p = new JPanel();
             JLabel L1 = new JLabel("Which one do you want?");
-            //......
-//            String[] songPaths = new String[.size()];
-//            songPaths = .toArray(songPaths);
-//            allSongsJList = new JList(songPaths);
-//            scrollPane = new JScrollPane(allSongsJList);
-            JTextField textField = new JTextField();
-            //......
             JButton deletePlaylist = new JButton("Delete the playlist");
-            JButton addSong = new JButton("Add song");
             JButton showSongs = new JButton("Show the songs of playlist");
 
             //add labels, buttons and textFields to the panel
             infoPlaylist.add(p);
-            p.setLayout(new GridLayout(5, 1));
+            p.setLayout(new GridLayout(3, 1));
             p.add(L1);
             p.add(deletePlaylist);
-            //.........
-            p.add(textField);
-            //.........
-            p.add(addSong);
             p.add(showSongs);
             infoPlaylist.setVisible(true);
 
             //add actionListener to the submitButton button
             deletePlaylist.addActionListener(new DeletePlaylistElement(selected, playlist, playlistMap, selectedIndex, infoPlaylist));
-            addSong.addActionListener(new AddSong(selected, playlistMap, infoPlaylist, textField));
             showSongs.addActionListener(new ShowSongs(selected, playlistMap, infoPlaylist));
             pressed = true;
         }
     }
+
+
 }
 
 /**
@@ -175,43 +162,6 @@ class DeletePlaylistElement implements ActionListener{
             //close the frame
             frame.dispose();
         }
-    }
-}
-
-/**
- * Add song to the playlist.
- * @author Bahar Kaviani & Yasaman Haghbin
- * @since 24/6/2019
- * @version 1.0
- */
-class AddSong implements ActionListener{
-    private String str;
-    private HashMap<String, File> playlistMap;
-    private JFrame frame;
-    private String path;
-    private JTextField textField;
-
-    AddSong(String str, HashMap playlistMap, JFrame frame, JTextField textField){
-        this.str = str;
-        this.playlistMap = playlistMap;
-        this.frame = frame;
-        this.textField = textField;
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        path = textField.getText();
-        if(!path.equals("")) {
-            try {
-                PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(".\\" + (playlistMap.get(str).getName()), true)));
-                writer.println(path);
-                writer.close();
-            } catch (IOException e1) {
-                System.out.println("MyListListener error: can not write path to the file =((");
-                System.out.println();
-            }
-        }
-        frame.dispose();
     }
 }
 

@@ -140,7 +140,7 @@ public class PlayMusicGUI extends JPanel{
     }
 
     public static void setPauseIcon(){
-        image = new ImageIcon(("C:\\Users\\vcc\\Desktop\\Jpotify\\src\\images\\pause.png"));
+        image = new ImageIcon(("D:\\Bahar\\Code\\Tamrin\\Term2-Kalbasi\\Final Project\\src\\images\\pause.png"));
         Image img = image.getImage() ;
         Image newimg = img.getScaledInstance( 60, 60,  java.awt.Image.SCALE_SMOOTH ) ;
         image = new ImageIcon( newimg );

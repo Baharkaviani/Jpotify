@@ -3,7 +3,6 @@ package Net;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -16,11 +15,10 @@ public class Server implements Runnable {
     private Socket socket;
     private ServerSocket serverSocket;
     private BufferedReader requestType;
+    private PrintWriter sendRequest;
     private ObjectInputStream in;
     private ObjectOutputStream out;
     private ExecutorService executorService;
-
-    private ArrayList<MyClient> users;
 
     public Server(int port){
         // starts server and waits for a connection
@@ -60,17 +58,22 @@ public class Server implements Runnable {
         @Override
         public void run() {
             try {
-                users = new ArrayList<>();
                 //check the request type
                 requestType = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 String str = "";
                 while (true) {
                     //read str from client
                     str = requestType.readLine();
-                    if (str.equals("music"))
-                        ;/////////music
-                    else if (str.equals("connect"))
-                        ;//////////
+                    if (str.equals("music")){
+                        //read the IP
+                        String friendIP = requestType.readLine();
+                        musicRequest(friendIP);
+                    }
+                    else if (str.equals("connect")){
+                        //read the IP
+                        String friendIP = requestType.readLine();
+                        connectRequest(friendIP);
+                    }
                     else if (str.equals("listen"))
                         ;///////////
                     else
@@ -84,12 +87,29 @@ public class Server implements Runnable {
         }
     }
 
-    public void musicRequest() {
+    public void musicRequest(String friendIP) {
         try {
+            sendRequest = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
             in = new ObjectInputStream(socket.getInputStream());
         }catch (IOException e){
             System.out.println("Server error: ");
             System.out.println(e);
         }
+    }
+
+    public void connectRequest(String friendIP) {
+        try {
+            sendRequest = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+
+            in = new ObjectInputStream(socket.getInputStream());
+        }catch (IOException e){
+            System.out.println("Server error: ");
+            System.out.println(e);
+        }
+    }
+
+    public static void main(String[] args) {
+        Server server = new Server(2000);
+        new Thread(server).start();
     }
 }

@@ -20,6 +20,7 @@ public class Song extends JPanel {
     private PlayButton playButton;
     private FavoriteButton likeButton;
     private SharedButton sharedButton;
+    private AddOrRemoveSong addToPlaylistButton;
     private String path , title;
     private MP3FileData mp3FileData;
 
@@ -36,6 +37,7 @@ public class Song extends JPanel {
         picturePanel = new JPanel();
         buttonPanel = new JPanel();
         playButton = new PlayButton(path);
+        addToPlaylistButton = new AddOrRemoveSong(path);
         information = new JLabel();
         //check the color of our heart :))
         if(songWasLiked(path))
@@ -54,13 +56,15 @@ public class Song extends JPanel {
         this.add(picturePanel, BorderLayout.NORTH);
         this.add(information, BorderLayout.CENTER);
         this.add(buttonPanel, BorderLayout.SOUTH);
-        buttonPanel.setLayout(new GridLayout(1, 3));
+        buttonPanel.setLayout(new GridLayout(1, 4));
+        buttonPanel.add(addToPlaylistButton);
         buttonPanel.add(sharedButton);
         buttonPanel.add(likeButton);
         buttonPanel.add(playButton);
         sharedButton.setBorder(null);
         likeButton.setBorder(null);
         playButton.setBorder(null);
+        addToPlaylistButton.setBorder(null);
         buttonPanel.setBackground(new Color(0x320851));
 
         //set size

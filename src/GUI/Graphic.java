@@ -59,6 +59,8 @@ public class Graphic {
         //Show a dialog asking the user to type in a String:
         String inputValue = showIPAsking();
         getAndWriteIP(inputValue);
+        String inputUserName = showUserNameAsking();
+        getAndWriteUserName(inputUserName);
         informationLine = new InformationPanel();
 
         //set background for panels
@@ -176,10 +178,52 @@ public class Graphic {
         }
     }
 
+    /**
+     * Show a dialog asking the user to type in a String
+     * for the first time user wants to use the application
+     * @return the userName
+     */
+    public String showUserNameAsking(){
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\user.txt")));
+            if(reader.readLine() == null){
+                String inputnserName = JOptionPane.showInputDialog("Please input your user name");
+                JOptionPane pane = new JOptionPane(inputnserName);
+                frame.add(pane);
+                reader.close();
+                return inputnserName;
+            }
+            else {
+                reader.close();
+                return "";
+            }
+        }catch (IOException e){
+            System.out.println("PlaylistLibrary error: can not open IP.txt");
+            System.out.println(e);
+        }
+        return "";
+    }
+
+    /**
+     * write the user's userName to the user.txt file
+     * @param userName the user's IP
+     */
+    public void getAndWriteUserName(String userName){
+        if(!userName.equals("")) {
+            try {
+                PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(".\\user.txt", true)));
+                writer.println(userName);
+                writer.close();
+            } catch (IOException e1) {
+                System.out.println("Graphic error: can not write IP to the file =((");
+                System.out.println();
+            }
+        }
+    }
+
     public static void main(String[] args)throws Exception {
         Graphic JPotify = new Graphic();
         SendMusicToServer t = new SendMusicToServer();
         t.run();
-
     }
 }

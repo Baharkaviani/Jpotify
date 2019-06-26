@@ -1,6 +1,5 @@
 package Library;
 
-import sun.util.resources.LocaleData;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -47,13 +46,13 @@ public abstract class Library {
             pathTime.put(address[0], address[1]);
             reverseMap.put(address[1], address[0]);
             line = reader.readLine();
-
         }
 
         //parse date to second and add it to arrayList
         for(String j : pathTime.values()){
             sec.add(j);
         }
+
         //sort arrayList sec by time
         Comparator c = Collections.reverseOrder();
         Collections.sort(sec,c);
