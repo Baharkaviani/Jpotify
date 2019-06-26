@@ -18,6 +18,7 @@ public class Graphic {
     private static PlayMusicGUI playLine;
     private static JPanel center, main, backMain, informationLine, friends;
     private static GridBagConstraints gbc = new GridBagConstraints();
+    private static FriendsPanel friendsPanel;
 
     /**
      * the constructor
@@ -36,6 +37,7 @@ public class Graphic {
         backMain = new JPanel();
         informationLine = new JPanel();
         playLine = new PlayMusicGUI();
+        friendsPanel = new FriendsPanel();
 
         //setLayout
         frame.setLayout(new BorderLayout(4, 4));
@@ -70,6 +72,7 @@ public class Graphic {
         informationLine.setPreferredSize(new Dimension(100, 40));
 
         //add panels
+        friends.add(friendsPanel);
         homeLine.add(musics, BorderLayout.NORTH);
         homeLine.add(playlist, BorderLayout.CENTER);
         center.add(informationLine, BorderLayout.NORTH);
@@ -78,9 +81,8 @@ public class Graphic {
         frame.getContentPane().add(homeLine,BorderLayout.WEST);
         frame.getContentPane().add(friends, BorderLayout.EAST);
         frame.add(playLine ,BorderLayout.SOUTH);
-
         //set size to frame
-        frame.setMinimumSize(new Dimension(1200, 700));
+        frame.setMinimumSize(new Dimension(1500, 800));
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
         frame.setVisible(true);

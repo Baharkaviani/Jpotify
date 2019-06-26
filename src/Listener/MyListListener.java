@@ -236,7 +236,7 @@ class ShowSongs implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         Graphic.refreshMain();
         try {
-            PlaylistLibrary playlistLibrary = new PlaylistLibrary(".\\" + (playlistMap.get(str).getName()));
+            PlaylistLibrary playlistLibrary = new PlaylistLibrary(".\\" + (playlistMap.get(str).getName()),playlistMap.get(str).getName());
             ArrayList<Song> songs = new ArrayList<>();
             ArrayList<String> paths = playlistLibrary.getSongs();
             Song song ;

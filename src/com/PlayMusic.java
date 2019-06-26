@@ -18,13 +18,13 @@ public class PlayMusic {
     private static Player player;
     private static int totalLenght, currentLenght;
     private static String playSituation, path;
-    private static Library playList;
+    private static Library library;
     private static MP3FileData data;
     private static boolean shuffle = false;
     private static int turn =0;
     private static SeekBar slider;
-    public PlayMusic(Library library) throws Exception {
-        playList = library;
+    public PlayMusic(Library l) throws Exception {
+        library = l;
         playSituation = "false";
         creatFile();
     }
@@ -40,13 +40,13 @@ public class PlayMusic {
             currentLenght =0;
         }
         if(!shuffle) {
-            path = playList.getPath();
+            path = library.getPath();
         }
         else {
             if(turn==0) {
-                playList.getShuffleArrayList();
+                library.getShuffleArrayList();
             }
-            path = playList.getPath();
+            path = library.getPath();
             turn++;
         }
         data = new MP3FileData(path);
@@ -54,19 +54,24 @@ public class PlayMusic {
         player = new Player(musicFile);
         totalLenght = musicFile.available();
         playSituation = "playing";
-        playList.writeTime(path);
+        //write this time for this music;
+        library.writeTime(path);
         startPlaying();
         PlayMusicGUI.setPauseIcon();
-        //read metaDat
-
+        //read metaData and set them to panel;
         PlayMusicGUI.getMetaData().setTitle(data.getTitle());
         PlayMusicGUI.getMetaData().setArtist(data.getArtist());
         PlayMusicGUI.getMetaData().setArtwork(data.getImageByte());
         //add seek bar
         slider=PlayMusicGUI.setSeekBar(data.getLenght() , data.getSecond());
         PlayMusicGUI.setTotalLable(data.getSecond());
+        //send information for thread to send to server;
         Date date = new Date();
-        SendMusicToServer.setTitle(data.getTitle() ,date.getTime());
+        if(library instanceof PlaylistLibrary) {
+            SendMusicToServer.setTitle(data.getTitle(), date.getTime());
+            System.out.println(((PlaylistLibrary) library).getPlayListName());
+        }
+        //send player for volume panel;
         VolumePanel.setPlayer(player);
     }
     /**
@@ -77,7 +82,7 @@ public class PlayMusic {
             musicFile.close();
             player.close();
             ThreadPlaying.setIsPlaying(false);
-            playList.plusIndex();
+            library.plusIndex();
             creatFile();
         } catch (Exception err) {
             System.out.println(err);
@@ -90,7 +95,7 @@ public class PlayMusic {
     public static void previous() {
         try {
             //get previous path from library
-            playList.minussIndex();
+            library.minussIndex();
             musicFile.close();
             player.close();
             ThreadPlaying.setIsPlaying(false);

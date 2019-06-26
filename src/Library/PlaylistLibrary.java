@@ -9,12 +9,13 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class PlaylistLibrary extends Library{
-    private String playlistFile;
+    private String playlistFile , playListName;
     private int index;
 
-    public PlaylistLibrary(String playlistFile) throws Exception{
+    public PlaylistLibrary(String playlistFile , String playListName) throws Exception{
         super();
         this.playlistFile = playlistFile;
+        this.playListName = playListName;
     }
     public void  readData(){
         if(paths.size()!=0){
@@ -36,6 +37,10 @@ public class PlaylistLibrary extends Library{
     {
         readData();
         return paths;
+    }
+
+    public String getPlayListName() {
+        return playListName;
     }
 
     @Override
