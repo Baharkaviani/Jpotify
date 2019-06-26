@@ -5,27 +5,24 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class FriendsPanel extends JPanel {
-    private ArrayList<Person> friends;
-    private Person p =new Person("yasaman" , "nemiram" , "AP" , "s" , 20 , "127.0.0.1");
-    private Person p1 =new Person("sorena" , "nem" , "reza sadegi" , "man" , 100, "127.0.0.1");
+    private static ArrayList<Friend> friends;
     private  GridBagConstraints gbc = new GridBagConstraints();
     public FriendsPanel(){
         super();
         friends = new ArrayList<>();
         setLayout (new BoxLayout (this, BoxLayout.Y_AXIS));
-
-        addFriend(p);
-        addFriend(p1);
         showFriends();
     }
-    public void addFriend(Person p){
+    public static void addFriend(Friend p){
         friends.add(p);
+        System.out.println("we success"+p.getArtist());
     }
-    public void removeFriend(Person p){
+    public static void removeFriend(Friend p){
         friends.remove(p);
     }
+
     public void showFriends(){
-        for(Person p :friends){
+        for(Friend p :friends){
             this.add(p);
         }
     }

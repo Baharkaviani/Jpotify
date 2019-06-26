@@ -69,8 +69,7 @@ public class PlayMusic {
         //send information for thread to send to server;
         Date date = new Date();
         if(library instanceof PlaylistLibrary) {
-            SendMusicToServer.setTitle(data.getTitle(), date.getTime());
-            System.out.println(((PlaylistLibrary) library).getPlayListName());
+            SendMusicToServer.setTitle(data.getTitle(), date.getTime() ,data.getArtist() , ((PlaylistLibrary) library).getPlayListName());
         }
         //send player for volume panel;
         VolumePanel.setPlayer(player);

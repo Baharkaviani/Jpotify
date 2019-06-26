@@ -2,55 +2,55 @@ package com;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.Socket;
 
-public class Person extends JPanel {
-    private String userName,titleMusic,artist,playListName,IP;
+public class Friend extends JPanel implements ActionListener {
+    private String userName,titleMusic,artist,playListName,IP  ,time;
     private JButton user;
-    private JTextField title,singer,playName , t;
-    int time;
+    private JTextField title,artistLable,playName , t;
+    private Socket socket;
     private  GridBagConstraints gbc = new GridBagConstraints();
-    public Person(String userName, String titleMusic, String artist, String playListName , int time , String IP) {
+    public Friend (Socket socket) {
         super();
         this.setPreferredSize(new Dimension(150,100));
         this.setLayout(new GridBagLayout());
         this.setBackground(new Color(0x3C3151));
         gbc.gridx = 0;
         gbc.gridy = 0;
+
         //initialize field
-        this.userName = userName;
-        this.titleMusic = titleMusic;
-        this.artist = artist;
-        this.playListName = playListName;
-        this.time = time;
         this.IP = IP;
+
         //user design
-        user = new JButton(userName);
+        user = new JButton();
         user.setPreferredSize(new Dimension(100,30));
         user.setBackground(new Color(0x320851));
         user.setForeground(new Color(0xAF5AA8));
         //title design
-        title = new JTextField(titleMusic);
+        title = new JTextField();
         title.setPreferredSize(new Dimension(70,30));
         title.setFont(new Font("Serif" , Font.ITALIC , 15));
         title.setForeground(new Color(0xAF5AA8));
         title.setBackground(new Color(0x320851));
         title.setEditable(false);
         //singer design
-        singer = new JTextField(artist);
-        singer.setPreferredSize(new Dimension(50,30));
-        singer.setFont(new Font("Serif" , Font.ITALIC , 20));
-        singer.setForeground(new Color(0xAF5AA8));
-        singer.setBackground(new Color(0x320851));
-        singer.setEditable(false);
+        artistLable = new JTextField();
+        artistLable.setPreferredSize(new Dimension(50,30));
+        artistLable.setFont(new Font("Serif" , Font.ITALIC , 20));
+        artistLable.setForeground(new Color(0xAF5AA8));
+        artistLable.setBackground(new Color(0x320851));
+        artistLable.setEditable(false);
         //playName design
-        playName = new JTextField(playListName);
+        playName = new JTextField();
         playName.setPreferredSize(new Dimension(50,30));
         playName.setFont(new Font("Serif" , Font.ITALIC , 20));
         playName.setForeground(new Color(0xAF5AA8));
         playName.setBackground(new Color(0x320851));
         playName.setEditable(false);
         //time design
-        t = new JTextField(""+time);
+        t = new JTextField();
         t.setPreferredSize(new Dimension(50,30));
         t.setFont(new Font("Serif" , Font.ITALIC , 20));
         t.setForeground(new Color(0xAF5AA8));
@@ -61,12 +61,14 @@ public class Person extends JPanel {
         gbc.gridy++;
         this.add(title , gbc);
         gbc.gridx++;
-        this.add(singer , gbc);
+        this.add(artistLable , gbc);
         gbc.gridy++;
         gbc.gridx=0;
         this.add(playName , gbc);
         gbc.gridx++;
         this.add(t , gbc);
+
+        this.socket = socket;
 
     }
 
@@ -78,12 +80,21 @@ public class Person extends JPanel {
         this.IP = IP;
     }
 
+    public void settime(String tim) {
+        time = tim;
+        t.setText(""+time);
+        System.out.println(time);
+    }
+
     public String getUserName() {
         return userName;
     }
 
     public void setUserName(String userName) {
+
         this.userName = userName;
+        user.setText(userName);
+
     }
 
     public String getTitleMusic() {
@@ -91,7 +102,9 @@ public class Person extends JPanel {
     }
 
     public void setTitleMusic(String titleMusic) {
+
         this.titleMusic = titleMusic;
+        title.setText(titleMusic);
     }
 
     public String getArtist() {
@@ -99,7 +112,9 @@ public class Person extends JPanel {
     }
 
     public void setArtist(String artist) {
+
         this.artist = artist;
+        artistLable.setText(artist);
     }
 
     public String getPlayListName() {
@@ -107,6 +122,13 @@ public class Person extends JPanel {
     }
 
     public void setPlayListName(String playListName) {
+
         this.playListName = playListName;
+        playName.setText(playListName);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 }
