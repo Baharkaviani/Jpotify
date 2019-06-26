@@ -62,7 +62,7 @@ public class Friends extends JPanel {
                     return;
             }
             reader.close();
-            PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(".\\IP.txt")), true);
+            PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(".\\IP.txt",true)));
             writer.println(str);
             writer.close();
         }catch (IOException e){

@@ -38,7 +38,6 @@ public class Graphic {
         center = new JPanel();
         main = new JPanel();
         backMain = new JPanel();
-        informationLine = new InformationPanel();
         playLine = new PlayMusicGUI();
 
         //setLayout
@@ -58,6 +57,7 @@ public class Graphic {
         //Show a dialog asking the user to type in a String:
         String inputValue = showIPAsking();
         getAndWriteIP(inputValue);
+        informationLine = new InformationPanel();
 
         //set background for panels
         frame.setBackground(new Color(0x320851));

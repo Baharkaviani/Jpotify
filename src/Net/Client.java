@@ -3,12 +3,17 @@ package Net;
 import java.io.*;
 import java.net.Socket;
 
-public class Client1 implements Runnable {
+/**
+ * @author Bahar Kaviani & Yasaman Haghbin
+ * @since 26/8/2019
+ * @version 1.0
+ */
+public class Client implements Runnable {
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
 
-    public Client1(String address, int port){
+    public Client(String address, int port){
         // establish a connection
         try {
             socket = new Socket(address, port);
