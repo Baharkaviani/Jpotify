@@ -1,8 +1,8 @@
 package Listener;
+
 import GUI.Graphic;
 import Library.PlaylistLibrary;
-import com.Song;
-
+import com.*;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -164,12 +164,12 @@ class DeletePlaylistElement implements ActionListener{
                     out.close();
                     in.close();
                 }catch (IOException e1){
-                    System.out.println("MyListListener error:");
+                    System.out.println("MyListListener error: 1");
                     System.err.println();
                 }
                 tempFile.delete();
             }catch (IOException e1){
-                System.out.println("MyListListener error:");
+                System.out.println("MyListListener error: 2");
                 System.err.println();
             }
             //close the frame

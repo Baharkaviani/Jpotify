@@ -1,7 +1,7 @@
 package GUI;
+
 import javazoom.jl.player.JavaSoundAudioDevice;
 import javazoom.jl.player.Player;
-
 import javax.imageio.ImageIO;
 import javax.sound.sampled.FloatControl;
 import javax.swing.*;
@@ -47,6 +47,9 @@ public class VolumePanel extends JPanel implements MouseListener {
         }
     }
     public void setVolumeIcon(){
+        slider.addChangeListener(this::stateChanged);
+        slider.setBackground(new Color(0x4D0C7F));
+        this.setBackground(new Color(0x4D0C7F));
         try {
             Image img = ImageIO.read(getClass().getResource("..\\images\\volume.png"));
             Image newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);

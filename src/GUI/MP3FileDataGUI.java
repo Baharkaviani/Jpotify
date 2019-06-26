@@ -1,4 +1,5 @@
 package GUI;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -30,8 +31,8 @@ public class MP3FileDataGUI extends JPanel {
         information.setLayout(new GridLayout(2, 1));
 
         //set color
-        artWorkPanel.setBackground(new Color(0x320851));
-        information.setBackground(new Color(0x320851));
+        artWorkPanel.setBackground(new Color(0x4D0C7F));
+        information.setBackground(new Color(0x4D0C7F));
         title.setForeground(new Color(0x2EA8FF));
         artist.setForeground(new Color(0x2EA8FF));
 

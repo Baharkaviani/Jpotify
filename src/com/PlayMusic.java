@@ -1,3 +1,11 @@
+package com;
+
+import GUI.*;
+import Library.*;
+import javazoom.jl.player.Player;
+import java.io.*;
+import java.util.Date;
+
 /**
  * PlayMusic plays a song which adding to library and can stop and pause it.
  * also can go to next and previous song.
@@ -5,13 +13,6 @@
  *  @since : 2019
  *  @version : 1.0
  */
-package com;
-import javazoom.jl.player.Player;
-import java.io.*;
-import java.util.Date;
-import Library.*;
-import GUI.*;
-
 
 public class PlayMusic {
     private static FileInputStream musicFile;

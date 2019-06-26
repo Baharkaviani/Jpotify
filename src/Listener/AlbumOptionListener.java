@@ -1,9 +1,8 @@
 package Listener;
-import GUI.Graphic;
-import Library.AlbumLibrary;
-import com.Album;
-import com.Song;
 
+import GUI.Graphic;
+import Library.*;
+import com.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -36,7 +35,7 @@ public class AlbumOptionListener implements ActionListener {
 
             Graphic.refreshMain();
 
-            int index=0;
+            int index = 0;
             LinkedHashMap<String , ArrayList<String>> map = library.getReverseMap();
             int size = map.size();
             album = new Album[size];

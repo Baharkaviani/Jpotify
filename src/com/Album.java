@@ -1,4 +1,6 @@
 package com;
+
+import Listener.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -6,7 +8,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
-import Listener.*;
 
 /**
  * Album class is a button which defines a album of songs;
@@ -109,5 +110,3 @@ public class Album extends JPanel {
         songs.add(song);
     }
 }
-
-

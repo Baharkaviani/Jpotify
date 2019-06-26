@@ -1,4 +1,6 @@
 package com;
+
+import Listener.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -7,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.Date;
-import Listener.*;
 
 /**
  * MusicOption is for choosing song and add them in library;
@@ -48,9 +49,9 @@ public class MusicOptions extends JPanel implements ActionListener {
         song.setBorder(null);
 
         //initialize album
-         album = new JButton("Album");
-         album.addActionListener(new AlbumOptionListener());
-         album.setBorder(null);
+        album = new JButton("Album");
+        album.addActionListener(new AlbumOptionListener());
+        album.setBorder(null);
 
         //add button to panel;
         add(jLabel);

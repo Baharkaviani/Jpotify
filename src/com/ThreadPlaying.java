@@ -1,5 +1,7 @@
 package com;
+
 import javazoom.jl.player.Player;
+
 /**
  * ThreadPlaying implements Runnable and play music;
  * @author Bahar Kaviani , Yasaman Haghbin

@@ -1,10 +1,9 @@
 package com;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
@@ -20,6 +19,7 @@ public class Song extends JPanel {
     private JLabel information;
     private PlayButton playButton;
     private FavoriteButton likeButton;
+    private SharedButton sharedButton;
     private String path , title;
     private MP3FileData mp3FileData;
 
@@ -43,14 +43,22 @@ public class Song extends JPanel {
         else
             likeButton = new FavoriteButton(path, false);
 
+        //check the color of our share button :))
+        if(songWasShared(path))
+            sharedButton = new SharedButton(path, true);
+        else
+            sharedButton = new SharedButton(path, false);
+
         //set layout and add components
         this.setLayout(new BorderLayout());
         this.add(picturePanel, BorderLayout.NORTH);
         this.add(information, BorderLayout.CENTER);
         this.add(buttonPanel, BorderLayout.SOUTH);
-        buttonPanel.setLayout(new GridLayout(1, 2));
+        buttonPanel.setLayout(new GridLayout(1, 3));
+        buttonPanel.add(sharedButton);
         buttonPanel.add(likeButton);
         buttonPanel.add(playButton);
+        sharedButton.setBorder(null);
         likeButton.setBorder(null);
         playButton.setBorder(null);
         buttonPanel.setBackground(new Color(0x320851));
@@ -123,6 +131,35 @@ public class Song extends JPanel {
             reader.close();
         }catch (IOException e){
             System.out.println("Song error: can not read from \"favoriteSongs.txt\" file");
+            System.out.println(e);
+        }
+        return false;
+    }
+
+    /**
+     * check if the song was liked or not
+     * @param path the path of the song
+     * @return true if the path as written in "sharedPlaylist.txt" file
+     */
+    public boolean songWasShared(String path){
+        //check if the song's path is in the file
+        try {
+            File inputFile = new File(".\\sharedPlaylist.txt");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(inputFile)));
+            String lineToCheck = path;
+            String currentLine;
+
+            while ((currentLine = reader.readLine()) != null) {
+                // trim newline when comparing with lineToRemove
+                String trimmedLine = currentLine.trim();
+                if (trimmedLine.equals(lineToCheck))
+                    return true;
+                else
+                    continue;
+            }
+            reader.close();
+        }catch (IOException e){
+            System.out.println("Song error: can not read from \"sharedPlaylist.txt\" file");
             System.out.println(e);
         }
         return false;

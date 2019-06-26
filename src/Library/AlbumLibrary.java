@@ -1,6 +1,6 @@
 package Library;
-import com.MP3FileData;
 
+import com.*;
 import java.util.*;
 
 /**
@@ -10,9 +10,8 @@ import java.util.*;
  */
 
 public class AlbumLibrary extends Library{
-    int index =0;
-    //key is path,value is albumName;
-    LinkedHashMap<String , String > pathAndAlbumMap;
+    int index = 0;
+    LinkedHashMap<String, String> pathAndAlbumMap;
     MP3FileData data ;
     //key is albumName,value is paths
     LinkedHashMap<String, ArrayList<String>> reverseMap = new LinkedHashMap<>();

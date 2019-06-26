@@ -1,8 +1,7 @@
 package Listener;
-import Library.SongLibrary;
-import com.PlayButton;
-import com.PlayMusic;
 
+import Library.*;
+import com.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

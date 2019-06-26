@@ -1,10 +1,12 @@
 package GUI;
+
+import com.*;
 import javax.swing.*;
 import java.awt.*;
-import com.*;
+import java.io.*;
 
 /**
- * shows each part of Potify's window
+ * shows each part of JPotify's window
  * @author Bahar Kaviani & Yasaman Haghbin
  * @since : 2019 - 6 -18
  * @version : 1.0
@@ -16,7 +18,9 @@ public class Graphic {
     private static PlaylistPanel playlist;
     private static MusicOptions musics;
     private static PlayMusicGUI playLine;
-    private static JPanel center, main, backMain, informationLine, friends;
+    private static JPanel center, main, backMain;
+    private static Friends friends;
+    private static InformationPanel informationLine;
     private static GridBagConstraints gbc = new GridBagConstraints();
     private static FriendsPanel friendsPanel;
 
@@ -31,11 +35,10 @@ public class Graphic {
         homeLine = new JPanel();
         musics = new MusicOptions();
         playlist = new PlaylistPanel();
-        friends = new JPanel();
+        friends = new Friends();
         center = new JPanel();
         main = new JPanel();
         backMain = new JPanel();
-        informationLine = new JPanel();
         playLine = new PlayMusicGUI();
         friendsPanel = new FriendsPanel();
 
@@ -53,6 +56,11 @@ public class Graphic {
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         backMain.add(scrollPane, BorderLayout.CENTER);
 
+        //Show a dialog asking the user to type in a String:
+        String inputValue = showIPAsking();
+        getAndWriteIP(inputValue);
+        informationLine = new InformationPanel();
+
         //set background for panels
         frame.setBackground(new Color(0x320851));
         homeLine.setBackground(new Color(0x000000));
@@ -69,7 +77,7 @@ public class Graphic {
         friends.setPreferredSize(new Dimension(230, 100));
         playLine.setPreferredSize(new Dimension(100, 100));
         center.setPreferredSize(new Dimension(100, 100));
-        informationLine.setPreferredSize(new Dimension(100, 40));
+        informationLine.setPreferredSize(new Dimension(100, 45));
 
         //add panels
         friends.add(friendsPanel);
@@ -123,6 +131,49 @@ public class Graphic {
             gbc.gridy++;
         }
         frame.validate();
+    }
+
+    /**
+     * Show a dialog asking the user to type in a String
+     * for the first time user wants to use the application
+     * @return the IP
+     */
+    public String showIPAsking(){
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\IP.txt")));
+            if(reader.readLine() == null){
+                String inputIP = JOptionPane.showInputDialog("Please input your ip address");
+                JOptionPane pane = new JOptionPane(inputIP);
+                frame.add(pane);
+                reader.close();
+                return inputIP;
+            }
+            else {
+                reader.close();
+                return "";
+            }
+        }catch (IOException e){
+            System.out.println("PlaylistLibrary error: can not open IP.txt");
+            System.out.println(e);
+        }
+        return "";
+    }
+
+    /**
+     * write the user's IP to the IP.txt file
+     * @param IP the user's IP
+     */
+    public void getAndWriteIP(String IP){
+        if(!IP.equals("")) {
+            try {
+                PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(".\\IP.txt", true)));
+                writer.println(IP);
+                writer.close();
+            } catch (IOException e1) {
+                System.out.println("Graphic error: can not write IP to the file =((");
+                System.out.println();
+            }
+        }
     }
 
     public static void main(String[] args)throws Exception {
