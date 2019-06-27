@@ -1,7 +1,9 @@
 package com;
 
+import GUI.Friends;
+
 import javax.swing.*;
-import java.awt.*;
+import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 
@@ -12,18 +14,39 @@ public  class  FriendsPanel extends JPanel {
     public FriendsPanel(){
         super();
         friends = new ArrayList<>();
-        showFriends();
+        makeFriend();
     }
-    public static void addFriend(Friend p){
+
+    private void addFriend(Friend p){
         friends.add(p);
     }
-    public static void removeFriend(Friend p){
+
+    public void removeFriend(Friend p){
         friends.remove(p);
     }
 
-    public void showFriends(){
+    private void showFriends(){
         for(Friend p :friends){
             this.add(p);
+        }
+    }
+    public static ArrayList<Friend> getFriend(){
+        return friends;
+    }
+    private void makeFriend(){
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\IP.txt")));
+            String current;
+            reader.readLine();
+            while ((current = reader.readLine()) != null){
+                Friend newFriend = new Friend(current);
+                addFriend(newFriend);
+            }
+            showFriends();
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("FriendsPanel error");
+            System.out.println(e);
         }
     }
 }

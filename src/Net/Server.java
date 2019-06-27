@@ -1,11 +1,14 @@
 package Net;
 
+import Library.PlaylistLibrary;
 import com.Friend;
 import com.FriendsPanel;
+import com.MP3FileData;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -17,12 +20,15 @@ import java.util.concurrent.Executors;
 public class Server implements Runnable {
     private Socket socket;
     private ServerSocket serverSocket;
-    private BufferedReader input;
-
+    private BufferedReader inputString;
+    private ObjectInputStream input;
+    private ObjectOutputStream output;
+    private ArrayList<Friend> friends;
     public Server(int port){
         // starts server and waits for a connection
         try {
             serverSocket = new ServerSocket(port);
+
             System.out.println("Server started");
             System.out.println("Waiting for a client ...");
         } catch (IOException e) {
@@ -57,32 +63,50 @@ public class Server implements Runnable {
 
         @Override
         public void run() {
-            try {
-                Friend f = new Friend(client);
-                FriendsPanel.addFriend(f);
-                System.out.println("make friend");
+            try{
+                Thread.sleep(2000);
                 //check the request type
-                input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                inputString = new BufferedReader(new InputStreamReader(client.getInputStream()));
+//                input = new ObjectInputStream(client.getInputStream());
+
+                String IP = inputString.readLine();
+
+                friends = FriendsPanel.getFriend();
+                Friend currentFriend;
+                for (Friend key: friends) {
+                    if((key.getIP()).equals(IP)) {
+                        key.setSocketInputput(client);
+                        currentFriend = key;
+                        output = new ObjectOutputStream((key.getSocketOutput()).getOutputStream());
+                        break;
+                    }
+                }
                 String str = "";
                 while (true) {
                     //read str from client
-                    str = input.readLine();
+                    str = inputString.readLine();
                     if (str.equals("music")) {
                         musicRequest();
                         musicIndex++;
                     }
                     else if (str.equals("listen")) {
                         System.out.println("reicied listene");
-                        f.setUserName(input.readLine());
-                        f.setTitleMusic(input.readLine());
-                        f.setArtist(input.readLine());
-                        f.setPlayListName(input.readLine());
-                        f.settime(input.readLine());
+//                        f.setUserName(input.readLine());
+//                        f.setTitleMusic(input.readLine());
+//                        f.setArtist(input.readLine());
+//                        f.setPlayListName(input.readLine());
+//                        f.settime(input.readLine());
+                    }
+                    else if(str.equals("sharePlayList")){
+                        System.out.println("start");
+                        output.writeObject(PlaylistLibrary.getSharePalyList());
+                        System.out.println("done");
                     }
 
                 }
-            } catch (IOException e){
-                System.out.println();
+            } catch (Exception e){
+                System.out.println("server Error");
+                System.out.println(e);
             }
         }
 

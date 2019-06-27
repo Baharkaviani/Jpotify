@@ -50,12 +50,12 @@ public class Friends extends JPanel {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\IP.txt")));
             String lineToCheck = str;
             String currentLine;
-            while ((currentLine = reader.readLine()) != null) {
-                // trim newline when comparing with lineToRemove
-                String trimmedLine = currentLine.trim();
-                if (trimmedLine.equals(lineToCheck))
-                    return;
-            }
+//            while ((currentLine = reader.readLine()) != null) {
+//                // trim newline when comparing with lineToRemove
+//                String trimmedLine = currentLine.trim();
+//                if (trimmedLine.equals(lineToCheck))
+//                    return;
+//            }
             reader.close();
             PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(".\\IP.txt",true)));
             writer.println(str);

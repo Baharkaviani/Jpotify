@@ -1,20 +1,29 @@
 package com;
 
+import Net.FriendListener;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.io.IOException;
 import java.net.Socket;
 
 public class Friend extends JPanel {
     private String userName, titleMusic, artist, playListName, IP, time;
-    private JButton user;
-    private Socket socket;
+    private FriendButton user;
+    private Socket socketInput , socketOutput;
     private JTextField title, artistLable, playName, t;
 
-    public Friend(Socket socket) {
+    public Friend(String IP) {
         super();
+        this.IP = IP;
+        try {
+            socketOutput = new Socket(IP , 5000);
+        } catch (IOException e) {
+            System.out.println("Error in Friend class");
+            System.out.println(e);
+        }
         JPanel p = new JPanel();
-        this.socket = socket;
 
         this.setPreferredSize(new Dimension(200,100));
         this.setLayout(new BorderLayout());
@@ -23,20 +32,14 @@ public class Friend extends JPanel {
         p.setLayout(new GridLayout(3, 1));
         this.setBorder(new LineBorder(Color.BLACK, 5));
 
-        //initialize field
-        this.userName = userName;
-        this.titleMusic = titleMusic;
-        this.artist = artist;
-        this.playListName = playListName;
-        this.time = time;
-        this.IP = IP;
 
         //user design
-        user = new JButton(userName);
+        user = new FriendButton(userName, socketOutput, IP);
         user.setPreferredSize(new Dimension(80,35));
         user.setBackground(new Color(0x320851));
         user.setForeground(new Color(0xAF5AA8));
-//        user.setBorder(null);
+        user.addActionListener(new FriendListener());
+
 
         //title design
         title = new JTextField(" " + titleMusic);
@@ -87,10 +90,6 @@ public class Friend extends JPanel {
         return IP;
     }
 
-    public void setIP(String IP) {
-        this.IP = IP;
-    }
-
     public void settime(String tim) {
         time = tim;
         t.setText("Time  "+time);
@@ -134,5 +133,11 @@ public class Friend extends JPanel {
 
         this.playListName = playListName;
         playName.setText(playListName);
+    }
+    public void setSocketInputput(Socket socket){
+        socketInput = socket;
+    }
+    public Socket getSocketOutput() {
+        return socketOutput;
     }
 }

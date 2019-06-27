@@ -1,7 +1,10 @@
 package Library;
 
+import com.MP3FileData;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 /**
@@ -39,6 +42,24 @@ public class PlaylistLibrary extends Library{
         readData();
         return paths;
     }
+    public static ArrayList<String> getSharePalyList(){
+        ArrayList<String> songsTitle = new ArrayList<>();
+        MP3FileData info;
+        try {
+            String cur;
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\sharedPlaylist.txt")));
+
+            while((cur=reader.readLine())!=null){
+                info = new MP3FileData(cur);
+                songsTitle.add(info.getTitle());
+            }
+        } catch (Exception e) {
+            System.out.println("getSharePalyList method in playListLibrary class");
+            System.out.println(e);
+        }
+        return songsTitle;
+    }
+
 
     public String getPlayListName() {
         return playListName;
