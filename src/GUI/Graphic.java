@@ -20,10 +20,9 @@ public class Graphic {
     private static MusicOptions musics;
     private static PlayMusicGUI playLine;
     private static JPanel center, main, backMain;
-    private static Friends friends;
+    private static FriendsPanel friendsPanel;
     private static InformationPanel informationLine;
     private static GridBagConstraints gbc = new GridBagConstraints();
-    private static FriendsPanel friendsPanel;
 
     /**
      * the constructor
@@ -36,12 +35,11 @@ public class Graphic {
         homeLine = new JPanel();
         musics = new MusicOptions();
         playlist = new PlaylistPanel();
-        friends = new Friends();
+        friendsPanel = new FriendsPanel();
         center = new JPanel();
         main = new JPanel();
         backMain = new JPanel();
         playLine = new PlayMusicGUI();
-        friendsPanel = new FriendsPanel();
 
         //setLayout
         frame.setLayout(new BorderLayout(4, 4));
@@ -67,7 +65,7 @@ public class Graphic {
         //set background for panels
         frame.setBackground(new Color(0x320851));
         homeLine.setBackground(new Color(0x000000));
-        friends.setBackground(new Color(0x320851));
+        friendsPanel.setBackground(new Color(0x320851));
         main.setBackground(new Color(0x320851));
         backMain.setBackground(new Color(0x320851));
         center.setBackground(new Color(0xFFFFFF));
@@ -77,21 +75,21 @@ public class Graphic {
         homeLine.setPreferredSize(new Dimension(190, 100));
         musics.setPreferredSize(new Dimension(100, 150));
         playlist.setPreferredSize(new Dimension(100, 300));
-        friends.setPreferredSize(new Dimension(230, 100));
+        friendsPanel.setPreferredSize(new Dimension(230, 100));
         playLine.setPreferredSize(new Dimension(100, 100));
         center.setPreferredSize(new Dimension(100, 100));
         informationLine.setPreferredSize(new Dimension(100, 45));
 
         //add panels
-        friends.add(friendsPanel);
         homeLine.add(musics, BorderLayout.NORTH);
         homeLine.add(playlist, BorderLayout.CENTER);
         center.add(informationLine, BorderLayout.NORTH);
         center.add(backMain, BorderLayout.CENTER);
         frame.getContentPane().add(center, BorderLayout.CENTER);
         frame.getContentPane().add(homeLine,BorderLayout.WEST);
-        frame.getContentPane().add(friends, BorderLayout.EAST);
+        frame.getContentPane().add(friendsPanel, BorderLayout.EAST);
         frame.add(playLine ,BorderLayout.SOUTH);
+        
         //set size to frame
         frame.setMinimumSize(new Dimension(1500, 800));
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
