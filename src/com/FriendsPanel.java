@@ -23,12 +23,13 @@ public  class  FriendsPanel extends JPanel {
     public FriendsPanel(){
         super();
         friends = new ArrayList<>();
-        makeFriend();
-
 
         //initialize button
         addFriend = new JButton("Add new friends");
-//        this.setLayout(new BorderLayout());
+
+        //add components to the JPanel
+        this.add(addFriend);
+        makeFriend();
 
         //effects
         addFriend.setBackground(new Color(0));
@@ -47,9 +48,6 @@ public  class  FriendsPanel extends JPanel {
                 add(newFriend);
             }
         });
-
-        //add components to the JPanel
-        this.add(addFriend, BorderLayout.SOUTH);
     }
 
     /**

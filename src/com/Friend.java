@@ -1,7 +1,6 @@
 package com;
 
 import Net.FriendListener;
-
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -14,6 +13,7 @@ public class Friend extends JPanel {
     private Socket socketInput , socketOutput;
     private JTextField title, artistLable, playName, t;
     private FriendListener friendListener;
+
     public Friend(String IP) {
         super();
         try {
@@ -24,14 +24,14 @@ public class Friend extends JPanel {
             System.out.println("Error in Friend class");
             System.out.println(e);
         }
-        JPanel p = new JPanel();
 
         this.setPreferredSize(new Dimension(200,100));
         this.setLayout(new BorderLayout());
         this.setBackground(new Color(0x3C3151));
-
-        p.setLayout(new GridLayout(3, 1));
         this.setBorder(new LineBorder(Color.BLACK, 5));
+
+        JPanel p = new JPanel();
+        p.setLayout(new GridLayout(3, 1));
 
 
         //user design

@@ -149,7 +149,7 @@ class FavoriteButton extends JButton {
         pressed = false;
     }
 
-    public boolean isPressed() {
+    private boolean isPressed() {
         return pressed;
     }
 }

@@ -226,9 +226,7 @@ public class Graphic {
         new Thread(s).start();
         Graphic JPotify = new Graphic();
 //        SendMusicToServer t = new SendMusicToServer();
-
 //        new Thread(t).start();
 //        System.out.println("salllam");
-
     }
 }

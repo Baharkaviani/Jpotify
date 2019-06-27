@@ -8,8 +8,8 @@ import java.io.ByteArrayInputStream;
 
 /**
  * MP3FileDataGUI is for showing meta data like artWork and artist's name;
- * @author : Yasaman Haghbin , Bahar Kaviani
- * @since : 2019 - 6 -18
+ * @author : Yasaman Haghbin & Bahar Kaviani
+ * @since : 18/6/2019
  * @version : 1.0
  */
 public class MP3FileDataGUI extends JPanel {

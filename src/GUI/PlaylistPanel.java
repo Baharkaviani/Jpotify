@@ -16,7 +16,7 @@ import javax.swing.JList;
  * @since 21/6/2019
  * @version 1.0
  */
-public class PlaylistPanel extends JPanel implements ActionListener {
+public class PlaylistPanel extends JPanel {
     private File playlistNames;
     private JScrollPane scrollPane;
     private DefaultListModel playlist;
@@ -98,10 +98,5 @@ public class PlaylistPanel extends JPanel implements ActionListener {
         this.add(showPlaylist, BorderLayout.NORTH);
         this.add(addPlaylist, BorderLayout.SOUTH);
         this.add(scrollPane, BorderLayout.CENTER);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
     }
 }

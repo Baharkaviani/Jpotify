@@ -11,6 +11,7 @@ public class FriendButton extends JButton {
         super(string);
         socketOutput = socket;
         this.IP = IP;
+        //////////////ip bayad user name bashe
     }
 
     public Socket getSocketOutput(){

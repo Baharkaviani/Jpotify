@@ -1,12 +1,8 @@
 package GUI;
 
-import javazoom.jl.player.JavaSoundAudioDevice;
 import javazoom.jl.player.Player;
 import javax.imageio.ImageIO;
-import javax.sound.sampled.FloatControl;
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -16,11 +12,11 @@ public class VolumePanel extends JPanel implements MouseListener {
     private static JSlider slider = new JSlider(0,100);
     private JLabel volumeIcone;
     private static Player player;
-    private static float v =100;
+    private static float v = 100;
+
     public VolumePanel(){
         this.setPreferredSize(new Dimension(200,150));
         this.setLayout(new GridLayout());
-
         slider.setBackground(new Color(0x4D0C7F));
         slider.setPaintTicks(false);
         slider.addMouseListener(this);
@@ -30,12 +26,13 @@ public class VolumePanel extends JPanel implements MouseListener {
         this.add(volumeIcone);
         this.add(slider);
         slider.setValue(100);
-
     }
+
     public static void setPlayer(Player music){
         player = music;
         player.setVolume((int)v);
     }
+
     public void setMuteIcon(){
         try {
             Image img = ImageIO.read(getClass().getResource("..\\images\\mute.png"));
@@ -47,8 +44,8 @@ public class VolumePanel extends JPanel implements MouseListener {
             System.err.println();
         }
     }
-    public void setVolumeIcon(){
 
+    public void setVolumeIcon(){
         try {
             Image img = ImageIO.read(getClass().getResource("..\\images\\volume.png"));
             Image newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);

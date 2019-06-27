@@ -15,8 +15,8 @@ import java.io.InputStreamReader;
  * @version 1.0
  */
 public class InformationPanel extends JPanel {
-    JLabel IP;
-    JLabel userName;
+    private JLabel IP;
+    private JLabel userName;
 
     InformationPanel(){
         //initialize
@@ -40,7 +40,7 @@ public class InformationPanel extends JPanel {
      * read the user's IP
      * @return IP
      */
-    public String ReadUserIP(){
+    private String ReadUserIP(){
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\IP.txt")));
             String IP =  reader.readLine();
@@ -57,7 +57,7 @@ public class InformationPanel extends JPanel {
      * read the user's userName
      * @return userName
      */
-    public String ReadUserName(){
+    private String ReadUserName(){
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\user.txt")));
             String IP =  reader.readLine();

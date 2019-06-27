@@ -14,7 +14,6 @@ import java.util.ArrayList;
  * @author Yasaman Haghbin & Bahar Kaviani;
  * @since 2019;
  */
-
 public class Album extends JPanel {
     private JPanel picturePanel;
     private JPanel buttonPanel;

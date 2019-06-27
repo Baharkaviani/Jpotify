@@ -3,14 +3,10 @@ package Net;
 import Library.PlaylistLibrary;
 import com.Friend;
 import com.FriendsPanel;
-import com.MP3FileData;
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * @author Bahar Kaviani & Yasaman Haghbin
@@ -24,13 +20,13 @@ public class Server implements Runnable {
     private ObjectInputStream input;
     private ObjectOutputStream output;
     private ArrayList<Friend> friends;
+
     public Server(int port){
         // starts server and waits for a connection
         try {
             serverSocket = new ServerSocket(port);
-
-            System.out.println("Server started");
-            System.out.println("Waiting for a client ...");
+            System.out.println("Server class: Server started");
+            System.out.println("Server class: Waiting for a client ...");
         } catch (IOException e) {
             System.out.println();
         }
@@ -39,16 +35,14 @@ public class Server implements Runnable {
     @Override
     public void run() {
         while (true) {
-        try {
-            socket = serverSocket.accept();
-            System.out.println("Client" + " accepted");
-            Handler h = new Handler(socket);
-            new Thread(h).start();
-            System.out.println("thread start");
-
-            }
-        catch(IOException e){
-            System.out.println();
+            try {
+                socket = serverSocket.accept();
+                System.out.println("Server class: Client" + " accepted");
+                Handler h = new Handler(socket);
+                new Thread(h).start();
+                System.out.println("Server class: thread start");
+            } catch(IOException e){
+                System.out.println();
             }
         }
     }
@@ -57,25 +51,32 @@ public class Server implements Runnable {
         private Socket client;
         private int musicIndex = 0;
 
-        public Handler(Socket client){
+        private Handler(Socket client){
             this.client = client;
         }
 
         @Override
         public void run() {
             try{
-//                Thread.sleep(2000);
                 //check the request type
-                inputString = new BufferedReader(new InputStreamReader(client.getInputStream()));
+//                inputString = new BufferedReader(new InputStreamReader(client.getInputStream()));
 
-                String IP = inputString.readLine();
+//                String IP = inputString.readLine();
+//                String userName = inputString.readLine();
+                input = new ObjectInputStream(new DataInputStream(new BufferedInputStream(client.getInputStream())));
+
+                String IP = input.readUTF();
+                String userName = input.readUTF();
 
                 friends = FriendsPanel.getFriend();
-                Friend currentFriend;
+                Friend currentFriend = null;
                 for (Friend key: friends) {
                     if((key.getIP()).equals(IP)) {
                         key.setSocketInputput(client);
                         currentFriend = key;
+                        currentFriend.setUserName(userName);
+                        System.out.println("Run Handler: current friend IP ->" + IP);
+                        System.out.println("Run Handler: current friend username ->" + userName);
                         output = new ObjectOutputStream((key.getSocketOutput()).getOutputStream());
                         break;
                     }
@@ -90,11 +91,10 @@ public class Server implements Runnable {
                     }
                     else if (str.equals("listen")) {
                         System.out.println("reicied listene");
-//                        f.setUserName(input.readLine());
-//                        f.setTitleMusic(input.readLine());
-//                        f.setArtist(input.readLine());
-//                        f.setPlayListName(input.readLine());
-//                        f.settime(input.readLine());
+                        String songSerialization = inputString.readLine();
+                        currentFriend.setTitleMusic(input.readLine());
+                        currentFriend.setArtist(input.readLine());
+                        currentFriend.settime(input.readLine());
                     }
                     else if(str.equals("sharePlayList")){
                         output.writeObject(PlaylistLibrary.getSharePalyList());

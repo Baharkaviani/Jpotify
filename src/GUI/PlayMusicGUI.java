@@ -38,10 +38,14 @@ public class PlayMusicGUI extends JPanel{
         remainTime = new JLabel();
 
         //set color
+        seekBar.setBackground(new Color(0x4D0C7F));
         playing.setBackground(new Color(0x4D0C7F));
         playButtons.setBackground(new Color(0x4D0C7F));
         totalTime.setBackground(new Color(0x4D0C7F));
         remainTime.setBackground(new Color(0x4D0C7F));
+        slider.getSlider().setBackground(new Color(0x4D0C7F));
+        totalTime.setForeground(new Color(0x2EA8FF));
+        remainTime.setForeground(new Color(0x2EA8FF));
 
         //set image
         Image img = ImageIO.read(getClass().getResource("..\\images\\previous.png"));
@@ -100,9 +104,9 @@ public class PlayMusicGUI extends JPanel{
         playButtons.add(stop);
 
         seekBar.setLayout(new BorderLayout());
-        seekBar.add(totalTime ,BorderLayout.EAST);
-        seekBar.add(remainTime , BorderLayout.WEST);
-        seekBar.add(slider.getSlider(),BorderLayout.CENTER);
+        seekBar.add(totalTime, BorderLayout.EAST);
+        seekBar.add(remainTime, BorderLayout.WEST);
+        seekBar.add(slider.getSlider(), BorderLayout.CENTER);
 
         //add panel to layout;
         this.add(playing , BorderLayout.CENTER);

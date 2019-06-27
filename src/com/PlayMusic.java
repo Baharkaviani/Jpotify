@@ -2,6 +2,7 @@ package com;
 
 import GUI.*;
 import Library.*;
+import Net.SongSerialization;
 import javazoom.jl.player.Player;
 import java.io.*;
 import java.util.Date;
@@ -24,9 +25,10 @@ public class PlayMusic {
     private static Library library;
     private static MP3FileData data;
     private static boolean shuffle = false;
-    private static int turn =0;
+    private static int turn = 0;
     private static int secendRemain;
     private static Timer timer;
+
     public PlayMusic(Library l) throws Exception {
         library = l;
         playSituation = "false";
@@ -42,7 +44,7 @@ public class PlayMusic {
             musicFile.close();
             player.close();
             timer.cancel();
-            currentLenght =0;
+            currentLenght = 0;
         }
         if(!shuffle) {
             path = library.getPath();
@@ -54,32 +56,39 @@ public class PlayMusic {
             path = library.getPath();
             turn++;
         }
+
         data = new MP3FileData(path);
         musicFile = new FileInputStream(path);
         player = new Player(musicFile);
         totalLenght = musicFile.available();
         playSituation = "playing";
+
         //write this time for this music;
         library.writeTime(path);
         startPlaying();
         PlayMusicGUI.setPauseIcon();
+
         //read metaData and set them to panel;
         PlayMusicGUI.getMetaData().setTitle(data.getTitle());
         PlayMusicGUI.getMetaData().setArtist(data.getArtist());
         PlayMusicGUI.getMetaData().setArtwork(data.getImageByte());
+
         //add seek bar
-        secendRemain =0;
+        secendRemain = 0;
         PlayMusicGUI.setSeekBar(data.getLenght() , data.getSecond());
         PlayMusicGUI.setTotalLable(data.getSecond());
         PlayMusicGUI.setRemainLable(secendRemain);
         TimerTask task = new ChangeSeek();
         timer = new Timer();
         timer.schedule(task,0,1000);
+
         //send information for thread to send to server;
         Date date = new Date();
         if(library instanceof PlaylistLibrary) {
-//            SendMusicToServer.setTitle(data.getTitle(), date.getTime() ,data.getArtist() , ((PlaylistLibrary) library).getPlayListName());
+            SongSerialization songInfo = new SongSerialization(data.getTitle(), data.getArtist(), "" + date.getTime());
+            SendMusicToServer.setSongInfo(songInfo);
         }
+
         //send player for volume panel;
         VolumePanel.setPlayer(player);
     }
