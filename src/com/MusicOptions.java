@@ -22,13 +22,13 @@ public class MusicOptions extends JPanel implements ActionListener {
     private JButton library;
     private JButton song;
     private JButton album;
-
+    private JButton artist;
     /**
      * Constructor create Button library and add it to a listener to choose file
      * also create song library and add it to a Song listener
      */
         public MusicOptions() throws Exception{
-        setLayout(new GridLayout(4, 1));
+        setLayout(new GridLayout(5, 1));
 
         JLabel jLabel = new JLabel("JPotify");
         Image img = ImageIO.read(getClass().getResource("..\\images\\Spotify1.jpg"));
@@ -50,14 +50,20 @@ public class MusicOptions extends JPanel implements ActionListener {
 
         //initialize album
         album = new JButton("Album");
-        album.addActionListener(new AlbumOptionListener());
+        album.addActionListener(new AlbumOptionListener("album"));
         album.setBorder(null);
+
+        //initialize artist
+         artist = new JButton("Artist");
+         artist.addActionListener(new AlbumOptionListener("artist"));
+         artist.setBorder(null);
 
         //add button to panel;
         add(jLabel);
         add(library);
         add(song);
         add(album);
+        add(artist);
 
         //set background
         this.setBackground(new Color(0x320851));
@@ -70,6 +76,9 @@ public class MusicOptions extends JPanel implements ActionListener {
         album.setBackground(new Color(0x320851));
         album.setFont(new Font("Serif", Font.BOLD, 30));
         album.setForeground(new Color(0xAF5AA8));
+        artist.setBackground(new Color(0x320851));
+        artist.setFont(new Font("Serif", Font.BOLD, 30));
+        artist.setForeground(new Color(0xAF5AA8));
     }
 
     /**

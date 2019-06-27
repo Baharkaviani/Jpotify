@@ -10,14 +10,16 @@ import java.util.*;
  */
 
 public class AlbumLibrary extends Library{
-    int index = 0;
-    LinkedHashMap<String, String> pathAndAlbumMap;
-    MP3FileData data ;
+    private int index = 0;
+    private LinkedHashMap<String, String> pathAndAlbumMap;
+    private MP3FileData data ;
     //key is albumName,value is paths
-    LinkedHashMap<String, ArrayList<String>> reverseMap = new LinkedHashMap<>();
+    private LinkedHashMap<String, ArrayList<String>> reverseMap = new LinkedHashMap<>();
+    private String sit , info;
 
-    public AlbumLibrary()throws Exception{
+    public AlbumLibrary(String situation)throws Exception{
         super();
+        sit = situation;
         pathAndAlbumMap = new LinkedHashMap<>();
         findSameAlbumSong();
     }
@@ -29,11 +31,15 @@ public class AlbumLibrary extends Library{
             if(pathAndAlbumMap.size()!=0){
                 pathAndAlbumMap.clear();
             }
+
             for (String i : paths) {
                 data = new MP3FileData(i);
-                pathAndAlbumMap.put(i,data.getAlbum());
+                if(sit.equals("album"))
+                    info = data.getAlbum();
+                else if(sit.equals("artist"))
+                    info = data.getArtist();
+                pathAndAlbumMap.put(i,info);
             }
-
 
         }catch (Exception e){
             System.out.println("Error in AlbumLibrary class");

@@ -178,12 +178,12 @@ public class Graphic {
     }
 
     public static void main(String[] args)throws Exception {
-        Server s = new Server(5000);
+//        Server s = new Server(5000);
         Graphic JPotify = new Graphic();
-        SendMusicToServer t = new SendMusicToServer();
-        new Thread(s).start();
-        new Thread(t).start();
-        System.out.println("salllam");
+//        SendMusicToServer t = new SendMusicToServer();
+//        new Thread(s).start();
+//        new Thread(t).start();
+//        System.out.println("salllam");
 
     }
 }
