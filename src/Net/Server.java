@@ -64,10 +64,9 @@ public class Server implements Runnable {
         @Override
         public void run() {
             try{
-                Thread.sleep(2000);
+//                Thread.sleep(2000);
                 //check the request type
                 inputString = new BufferedReader(new InputStreamReader(client.getInputStream()));
-//                input = new ObjectInputStream(client.getInputStream());
 
                 String IP = inputString.readLine();
 
@@ -98,12 +97,11 @@ public class Server implements Runnable {
 //                        f.settime(input.readLine());
                     }
                     else if(str.equals("sharePlayList")){
-                        System.out.println("start");
                         output.writeObject(PlaylistLibrary.getSharePalyList());
-                        System.out.println("done");
+                        String s = inputString.readLine();
                     }
-
                 }
+
             } catch (Exception e){
                 System.out.println("server Error");
                 System.out.println(e);

@@ -16,16 +16,19 @@ import java.util.ArrayList;
  */
 public  class  FriendsPanel extends JPanel {
     private static ArrayList<Friend> friends;
-    static Socket s;
-    JButton addFriend;
-    JOptionPane newIPs;
+    private static Socket s;
+    private JButton addFriend;
+    private JOptionPane newIPs;
 
     public FriendsPanel(){
         super();
         friends = new ArrayList<>();
+        makeFriend();
+
 
         //initialize button
         addFriend = new JButton("Add new friends");
+//        this.setLayout(new BorderLayout());
 
         //effects
         addFriend.setBackground(new Color(0));
@@ -46,8 +49,7 @@ public  class  FriendsPanel extends JPanel {
         });
 
         //add components to the JPanel
-        this.add(addFriend);
-        makeFriend();
+        this.add(addFriend, BorderLayout.SOUTH);
     }
 
     /**
@@ -84,8 +86,7 @@ public  class  FriendsPanel extends JPanel {
     }
 
     public void showFriends(){
-        System.out.println(friends.size());
-        for(Friend p :friends){
+        for(Friend p :friends) {
             this.add(p);
         }
     }
@@ -93,8 +94,7 @@ public  class  FriendsPanel extends JPanel {
     public static ArrayList<Friend> getFriend(){
         return friends;
     }
-
-    private void makeFriend(){
+    public void makeFriend(){
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\IP.txt")));
             String current;
