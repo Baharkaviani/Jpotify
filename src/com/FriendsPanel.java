@@ -1,13 +1,10 @@
 package com;
 
-import GUI.Friends;
-
 import javax.swing.*;
-import java.io.*;
 import java.awt.*;
+import java.io.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 
@@ -26,12 +23,9 @@ public  class  FriendsPanel extends JPanel {
     public FriendsPanel(){
         super();
         friends = new ArrayList<>();
-        makeFriend();
-        showFriends();
 
         //initialize button
         addFriend = new JButton("Add new friends");
-        this.setLayout(new BorderLayout());
 
         //effects
         addFriend.setBackground(new Color(0));
@@ -45,11 +39,15 @@ public  class  FriendsPanel extends JPanel {
                 String inputIP = JOptionPane.showInputDialog("Please enter your friend's IP");
                 newIPs = new JOptionPane(inputIP);
                 writeNewIP(inputIP);
+                Friend newFriend = new Friend(inputIP);
+                addFriend(newFriend);
+                add(newFriend);
             }
         });
 
         //add components to the JPanel
-        this.add(addFriend, BorderLayout.SOUTH);
+        this.add(addFriend);
+        makeFriend();
     }
 
     /**
@@ -57,16 +55,17 @@ public  class  FriendsPanel extends JPanel {
      */
     public void writeNewIP(String str){
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\IP.txt")));
-            String lineToCheck = str;
-            String currentLine;
-            while ((currentLine = reader.readLine()) != null) {
-                // trim newline when comparing with lineToRemove
-                String trimmedLine = currentLine.trim();
-                if (trimmedLine.equals(lineToCheck))
-                    return;
-            }
-            reader.close();
+//            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\IP.txt")));
+//            reader.readLine();
+//            String lineToCheck = str;
+//            String currentLine;
+//            while ((currentLine = reader.readLine()) != null) {
+//                // trim newline when comparing with lineToRemove
+//                String trimmedLine = currentLine.trim();
+//                if (trimmedLine.equals(lineToCheck))
+//                    return;
+//            }
+//            reader.close();
             PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(".\\IP.txt",true)));
             writer.println(str);
             writer.close();
@@ -76,7 +75,7 @@ public  class  FriendsPanel extends JPanel {
         }
     }
 
-    public static void addFriend(Friend p){
+    public void addFriend(Friend p){
         friends.add(p);
     }
 
@@ -84,19 +83,24 @@ public  class  FriendsPanel extends JPanel {
         friends.remove(p);
     }
 
-    private void showFriends(){
+    public void showFriends(){
+        System.out.println(friends.size());
         for(Friend p :friends){
             this.add(p);
         }
     }
+
     public static ArrayList<Friend> getFriend(){
         return friends;
     }
+
     private void makeFriend(){
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\IP.txt")));
             String current;
             reader.readLine();
+            if(friends.size() != 0)
+                friends.removeAll(friends);
             while ((current = reader.readLine()) != null){
                 Friend newFriend = new Friend(current);
                 addFriend(newFriend);

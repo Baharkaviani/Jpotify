@@ -32,7 +32,7 @@ public class MusicOptions extends JPanel implements ActionListener {
 
         JLabel jLabel = new JLabel("JPotify");
         Image img = ImageIO.read(getClass().getResource("..\\images\\Spotify1.jpg"));
-        Image newImage = img.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+        Image newImage = img.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
         jLabel.setIcon(new ImageIcon(newImage));
         jLabel.setForeground(new Color(0x2EA8FF));
         jLabel.setFont(new Font("serif", Font.BOLD, 40));
@@ -69,15 +69,15 @@ public class MusicOptions extends JPanel implements ActionListener {
         this.setBackground(new Color(0x320851));
         song.setBackground(new Color(0x320851));
         song.setForeground(new Color(0xAF5AA8));
-        song.setFont(new Font("Serif", Font.BOLD, 30));
+        song.setFont(new Font("Serif", Font.BOLD, 20));
         library.setBackground(new Color(0x320851));
         library.setForeground(new Color(0xAF5AA8));
-        library.setFont(new Font("Serif", Font.BOLD, 30));
+        library.setFont(new Font("Serif", Font.BOLD, 20));
         album.setBackground(new Color(0x320851));
-        album.setFont(new Font("Serif", Font.BOLD, 30));
+        album.setFont(new Font("Serif", Font.BOLD, 20));
         album.setForeground(new Color(0xAF5AA8));
         artist.setBackground(new Color(0x320851));
-        artist.setFont(new Font("Serif", Font.BOLD, 30));
+        artist.setFont(new Font("Serif", Font.BOLD, 20));
         artist.setForeground(new Color(0xAF5AA8));
     }
 

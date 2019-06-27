@@ -40,7 +40,6 @@ public class Friend extends JPanel {
         user.setForeground(new Color(0xAF5AA8));
         user.addActionListener(new FriendListener());
 
-
         //title design
         title = new JTextField(" " + titleMusic);
         title.setPreferredSize(new Dimension(70,30));
@@ -100,10 +99,8 @@ public class Friend extends JPanel {
     }
 
     public void setUserName(String userName) {
-
         this.userName = userName;
         user.setText(userName);
-
     }
 
     public String getTitleMusic() {
@@ -111,7 +108,6 @@ public class Friend extends JPanel {
     }
 
     public void setTitleMusic(String titleMusic) {
-
         this.titleMusic = titleMusic;
         title.setText(titleMusic);
     }
@@ -134,9 +130,11 @@ public class Friend extends JPanel {
         this.playListName = playListName;
         playName.setText(playListName);
     }
+
     public void setSocketInputput(Socket socket){
         socketInput = socket;
     }
+
     public Socket getSocketOutput() {
         return socketOutput;
     }

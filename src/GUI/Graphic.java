@@ -91,7 +91,7 @@ public class Graphic {
         frame.add(playLine ,BorderLayout.SOUTH);
         
         //set size to frame
-        frame.setMinimumSize(new Dimension(1500, 800));
+        frame.setMinimumSize(new Dimension(1100, 600));
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
         frame.setVisible(true);
