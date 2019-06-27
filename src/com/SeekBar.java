@@ -11,16 +11,19 @@ public class SeekBar implements MouseListener {
     private static JSlider slider;
     public SeekBar(){
         super();
-        slider = new JSlider(0,100);
+        slider = new JSlider();
         slider.setValue(0);
         slider.addMouseListener(this);
     }
     public void setDuration(int i , int sec){
         duration = i;
         this.sec = sec;
+        slider.setMinimum(0);
+        slider.setMaximum(sec);
+
     }
 
-    public JSlider getSlider() {
+    public static JSlider getSlider() {
         return slider;
     }
 
@@ -37,8 +40,8 @@ public class SeekBar implements MouseListener {
     public void mouseReleased(MouseEvent e) {
         try {
             int i=slider.getValue();
-            i = (i*duration)/100;
-            PlayMusic.seek(i);
+            int j = (i*duration)/sec;
+            PlayMusic.seek(j ,i);
         }catch (Exception err){
             System.out.println(err);
         }

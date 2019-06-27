@@ -23,11 +23,12 @@ public class Album extends JPanel {
     ArrayList<Song> songs = new ArrayList<>();
     AlbumActionListener albumActionListener;
     MP3FileData mp3FileData;
-    private String title;
+    private String title , info;
 
-    public Album()throws Exception{
+    public Album(String info)throws Exception{
         super();
-        albumActionListener = new AlbumActionListener();
+        albumActionListener = new AlbumActionListener(info);
+        this.info = info;
     }
 
     /**
@@ -99,7 +100,7 @@ public class Album extends JPanel {
             information.setFont(new Font("Serif", Font.BOLD, 15));
             information.setForeground(new Color(0xAF5AA8));
         }
-        playButton.addActionListener(new AlbumActionListener());
+        playButton.addActionListener(new AlbumActionListener(info));
     }
 
     /**

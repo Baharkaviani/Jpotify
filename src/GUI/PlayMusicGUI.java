@@ -112,9 +112,8 @@ public class PlayMusicGUI extends JPanel{
         playing.add(playButtons, BorderLayout.SOUTH);
     }
 
-    public static SeekBar setSeekBar(int i , int j) {
+    public static void  setSeekBar(int i , int j) {
         slider.setDuration(i ,j);
-        return slider;
     }
 
     public static void setTotalLable(int i){
@@ -127,7 +126,6 @@ public class PlayMusicGUI extends JPanel{
         else
             totalTime.setText(min + ":" + "0" +sec);
     }
-
     public static void setRemainLable(int i){
         int sec,min;
         min = i/60;

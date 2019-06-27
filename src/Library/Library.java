@@ -58,7 +58,6 @@ public abstract class Library {
         Collections.sort(sec,c);
         //add path in paths arrayList in order of time
         for(String j : sec){
-//            System.out.println(reverseMap.get(j));
             paths.add(reverseMap.get(j));
         }
         reader.close();
@@ -82,7 +81,8 @@ public abstract class Library {
         try {
             readPlayList();
         } catch (Exception e) {
-            System.out.println("can't open library file");
+            System.out.println("Library Class");
+            System.out.println(e);
         }
         return paths;
     }

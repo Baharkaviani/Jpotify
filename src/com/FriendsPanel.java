@@ -2,32 +2,31 @@ package com;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.Socket;
 import java.util.ArrayList;
 
-public class FriendsPanel extends JPanel {
-    private ArrayList<Person> friends;
-    private Person p = new Person("yasaman" , "nemiram" , "AP" , "s" , 20 , "127.0.0.1");
-    private Person p1 = new Person("sorena" , "nem" , "reza sadegi" , "man" , 100, "127.0.0.1");
-
+public  class  FriendsPanel extends JPanel {
+    private static ArrayList<Friend> friends;
+    static Socket s;
+    static Friend  f = new Friend(s);
+    static Friend  f1 = new Friend(s);
     public FriendsPanel(){
         super();
         friends = new ArrayList<>();
 
-        addFriend(p);
-        addFriend(p1);
+        addFriend(f);
+        addFriend(f1);
         showFriends();
     }
-
-    public void addFriend(Person p){
+    public static void addFriend(Friend p){
         friends.add(p);
     }
-
-    public void removeFriend(Person p){
+    public static void removeFriend(Friend p){
         friends.remove(p);
     }
-    
+
     public void showFriends(){
-        for(Person p :friends){
+        for(Friend p :friends){
             this.add(p);
         }
     }

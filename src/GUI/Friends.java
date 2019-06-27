@@ -34,12 +34,7 @@ public class Friends extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String inputIP = JOptionPane.showInputDialog("Please enter your friend's IP");
                 newIPs = new JOptionPane(inputIP);
-                //write inputIP to "IP.txt"
-                ////////////////////bug dare
                 writeNewIP(inputIP);
-                /////send a request to server to connect user to the IP
-                /////add user's JButton to the friends list
-                /////write offline for now up to two minutes later
             }
         });
 

@@ -17,12 +17,13 @@ import java.util.Map;
 public class AlbumOptionListener implements ActionListener {
     private AlbumLibrary library;
     private Album[] album;
-
-    public AlbumOptionListener(){
+    private String info;
+    public AlbumOptionListener(String info){
         try {
-            library = new AlbumLibrary();
+            library = new AlbumLibrary(info);
+            this.info = info;
         }catch (Exception e){
-            System.out.println("can't open library file");
+            System.out.println("constructor in AlbumOptionListener");
         }
     }
 
@@ -41,7 +42,8 @@ public class AlbumOptionListener implements ActionListener {
             album = new Album[size];
 
             for (String i : map.keySet()) {
-                album[index] = new Album();
+                album[index] = new Album(info);
+
                 //iterate through paths which have same album;
                 for (int j = 0; j < map.get(i).size(); j++) {
                     //make song with each path;

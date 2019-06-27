@@ -14,8 +14,8 @@ public class AlbumActionListener implements ActionListener {
     AlbumLibrary albumLibrary;
     PlayMusic playMusic;
 
-    public AlbumActionListener() throws Exception{
-        albumLibrary = new AlbumLibrary();
+    public AlbumActionListener(String info) throws Exception{
+        albumLibrary = new AlbumLibrary(info);
     }
 
     /**

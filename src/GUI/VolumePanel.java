@@ -20,7 +20,7 @@ public class VolumePanel extends JPanel implements MouseListener {
     public VolumePanel(){
         this.setPreferredSize(new Dimension(200,150));
         this.setLayout(new GridLayout());
-        
+
         slider.setBackground(new Color(0x4D0C7F));
         slider.setPaintTicks(false);
         slider.addMouseListener(this);

@@ -5,6 +5,8 @@ import Library.*;
 import javazoom.jl.player.Player;
 import java.io.*;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * PlayMusic plays a song which adding to library and can stop and pause it.
@@ -17,13 +19,14 @@ import java.util.Date;
 public class PlayMusic {
     private static FileInputStream musicFile;
     private static Player player;
-    private static int totalLenght, currentLenght;
+    private static int totalLenght, currentLenght ;
     private static String playSituation, path;
     private static Library library;
     private static MP3FileData data;
     private static boolean shuffle = false;
     private static int turn =0;
-    private static SeekBar slider;
+    private static int secendRemain;
+    private static Timer timer;
     public PlayMusic(Library l) throws Exception {
         library = l;
         playSituation = "false";
@@ -38,6 +41,7 @@ public class PlayMusic {
         if(ThreadPlaying.getIsPlaying()) {
             musicFile.close();
             player.close();
+            timer.cancel();
             currentLenght =0;
         }
         if(!shuffle) {
@@ -64,13 +68,17 @@ public class PlayMusic {
         PlayMusicGUI.getMetaData().setArtist(data.getArtist());
         PlayMusicGUI.getMetaData().setArtwork(data.getImageByte());
         //add seek bar
-        slider=PlayMusicGUI.setSeekBar(data.getLenght() , data.getSecond());
+        secendRemain =0;
+        PlayMusicGUI.setSeekBar(data.getLenght() , data.getSecond());
         PlayMusicGUI.setTotalLable(data.getSecond());
+        PlayMusicGUI.setRemainLable(secendRemain);
+        TimerTask task = new ChangeSeek();
+        timer = new Timer();
+        timer.schedule(task,0,1000);
         //send information for thread to send to server;
         Date date = new Date();
         if(library instanceof PlaylistLibrary) {
-            SendMusicToServer.setTitle(data.getTitle(), date.getTime());
-            System.out.println(((PlaylistLibrary) library).getPlayListName());
+            SendMusicToServer.setTitle(data.getTitle(), date.getTime() ,data.getArtist() , ((PlaylistLibrary) library).getPlayListName());
         }
         //send player for volume panel;
         VolumePanel.setPlayer(player);
@@ -80,8 +88,9 @@ public class PlayMusic {
      */
     public static void next() {
         try {
-            musicFile.close();
             player.close();
+            musicFile.close();
+            timer.cancel();
             ThreadPlaying.setIsPlaying(false);
             library.plusIndex();
             creatFile();
@@ -97,8 +106,9 @@ public class PlayMusic {
         try {
             //get previous path from library
             library.minussIndex();
-            musicFile.close();
             player.close();
+            musicFile.close();
+            timer.cancel();
             ThreadPlaying.setIsPlaying(false);
             creatFile();
         } catch (Exception err) {
@@ -114,8 +124,9 @@ public class PlayMusic {
             //find current position of file
             currentLenght = musicFile.available();
             playSituation = "pause";
-            musicFile.close();
             player.close();
+            musicFile.close();
+            timer.cancel();
             ThreadPlaying.setIsPlaying(false);
         } catch (Exception err) {
             System.out.println(err);
@@ -131,6 +142,9 @@ public class PlayMusic {
             musicFile.skip(totalLenght - currentLenght);
             player = new Player(musicFile);
             //start a thread to run song
+            TimerTask task = new ChangeSeek();
+            timer = new Timer();
+            timer.schedule(task,0,1000);
             startPlaying();
             playSituation = "playing";
             VolumePanel.setPlayer(player);
@@ -146,19 +160,22 @@ public class PlayMusic {
         try {
             currentLenght = totalLenght;
             playSituation = "pause";
-            musicFile.close();
             player.close();
+            musicFile.close();
+            timer.cancel();
+            secendRemain =0;
             ThreadPlaying.setIsPlaying(false);
         } catch (Exception err) {
             System.out.println(err);
         }
     }
-    public static void seek(int i) throws Exception{
+    public static void seek(int l , int sec) throws Exception{
         musicFile.close();
         player.close();
         musicFile = new FileInputStream(path);
-        musicFile.skip(i);
+        musicFile.skip(l);
         player = new Player(musicFile);
+        secendRemain = sec;
         //start a thread to run song
         startPlaying();
         VolumePanel.setPlayer(player);
@@ -175,5 +192,15 @@ public class PlayMusic {
 
     public static void setShuffle(boolean shuffle) {
         PlayMusic.shuffle = shuffle;
+    }
+
+    private static class ChangeSeek extends TimerTask {
+
+        @Override
+        public void run() {
+            PlayMusicGUI.setRemainLable(secendRemain);
+            SeekBar.getSlider().setValue(secendRemain);
+            secendRemain++;
+        }
     }
 }
