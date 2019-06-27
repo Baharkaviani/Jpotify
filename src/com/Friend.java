@@ -1,70 +1,86 @@
 package com;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.net.Socket;
 
-public class Friend extends JPanel implements ActionListener {
-    private String userName,titleMusic,artist,playListName,IP  ,time;
+public class Friend extends JPanel {
+    private String userName, titleMusic, artist, playListName, IP, time;
     private JButton user;
-    private JLabel title,artistLable,playName , t;
     private Socket socket;
-    private static GridBagConstraints gbc = new GridBagConstraints();
-    public Friend (Socket socket) {
+    private JTextField title, artistLable, playName, t;
+
+    public Friend(Socket socket) {
         super();
-        this.setSize(230,100);
-        this.setLayout(new GridBagLayout());
+        JPanel p = new JPanel();
+        this.socket = socket;
+
+        this.setPreferredSize(new Dimension(200,100));
+        this.setLayout(new BorderLayout());
         this.setBackground(new Color(0x3C3151));
 
+        p.setLayout(new GridLayout(3, 1));
+        this.setBorder(new LineBorder(Color.BLACK, 5));
+
         //initialize field
+        this.userName = userName;
+        this.titleMusic = titleMusic;
+        this.artist = artist;
+        this.playListName = playListName;
+        this.time = time;
         this.IP = IP;
 
         //user design
-        user = new JButton();
-        user.setPreferredSize(new Dimension(200,30));
+        user = new JButton(userName);
+        user.setPreferredSize(new Dimension(80,35));
         user.setBackground(new Color(0x320851));
         user.setForeground(new Color(0xAF5AA8));
+//        user.setBorder(null);
+
         //title design
-        title = new JLabel();
-        title.setPreferredSize(new Dimension(200,30));
-        title.setFont(new Font("Serif" , Font.BOLD , 20));
+        title = new JTextField(" " + titleMusic);
+        title.setPreferredSize(new Dimension(70,30));
+        title.setFont(new Font("Serif" , Font.ITALIC , 15));
         title.setForeground(new Color(0xAF5AA8));
         title.setBackground(new Color(0x320851));
+        title.setEditable(false);
+        title.setBorder(null);
+
         //singer design
-        artistLable = new JLabel();
-        artistLable.setPreferredSize(new Dimension(200,30));
-        artistLable.setFont(new Font("Serif" , Font.BOLD , 20));
+        artistLable = new JTextField(" " + artist);
+        artistLable.setPreferredSize(new Dimension(50,30));
+        artistLable.setFont(new Font("Serif" , Font.ITALIC , 20));
         artistLable.setForeground(new Color(0xAF5AA8));
         artistLable.setBackground(new Color(0x320851));
+        artistLable.setEditable(false);
+        artistLable.setBorder(null);
+
         //playName design
-        playName = new JLabel();
-        playName.setPreferredSize(new Dimension(200,30));
-        playName.setFont(new Font("Serif" , Font.BOLD , 20));
+        playName = new JTextField(" " + playListName);
+        playName.setPreferredSize(new Dimension(50,30));
+        playName.setFont(new Font("Serif" , Font.ITALIC , 20));
         playName.setForeground(new Color(0xAF5AA8));
         playName.setBackground(new Color(0x320851));
+        playName.setEditable(false);
+        playName.setBorder(null);
+
         //time design
-        t = new JLabel();
-        t.setPreferredSize(new Dimension(200,30));
-        t.setFont(new Font("Serif" , Font.BOLD , 20));
+        t = new JTextField(" " + time);
+        t.setPreferredSize(new Dimension(50,30));
+        t.setFont(new Font("Serif" , Font.ITALIC , 20));
         t.setForeground(new Color(0xAF5AA8));
         t.setBackground(new Color(0x320851));
+        t.setEditable(false);
+        t.setBorder(null);
+
         //add option to panel
-        gbc.gridx=0;
-        gbc.gridy=0;
-        this.add(user,gbc);
-        gbc.gridy++;
-        this.add(title,gbc);
-        gbc.gridy++;
-        this.add(artistLable,gbc);
-        gbc.gridy++;
-        this.add(playName,gbc);
-        gbc.gridy++;
-        this.add(t,gbc);
-
-        this.socket = socket;
-
+        this.add(user, BorderLayout.NORTH);
+        this.add(p, BorderLayout.CENTER);
+        p.add(title);
+        p.add(artistLable);
+        p.add(playName);
+        this.add(t, BorderLayout.EAST);
     }
 
     public String getIP() {
@@ -106,7 +122,6 @@ public class Friend extends JPanel implements ActionListener {
     }
 
     public void setArtist(String artist) {
-
         this.artist = artist;
         artistLable.setText(artist);
     }
@@ -119,10 +134,5 @@ public class Friend extends JPanel implements ActionListener {
 
         this.playListName = playListName;
         playName.setText(playListName);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
     }
 }

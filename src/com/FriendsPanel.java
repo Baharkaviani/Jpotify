@@ -8,14 +8,10 @@ import java.util.ArrayList;
 public  class  FriendsPanel extends JPanel {
     private static ArrayList<Friend> friends;
     static Socket s;
-    static Friend  f = new Friend(s);
-    static Friend  f1 = new Friend(s);
+
     public FriendsPanel(){
         super();
         friends = new ArrayList<>();
-
-        addFriend(f);
-        addFriend(f1);
         showFriends();
     }
     public static void addFriend(Friend p){
