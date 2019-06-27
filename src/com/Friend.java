@@ -13,11 +13,12 @@ public class Friend extends JPanel {
     private FriendButton user;
     private Socket socketInput , socketOutput;
     private JTextField title, artistLable, playName, t;
-
+    private FriendListener friendListener;
     public Friend(String IP) {
         super();
-        this.IP = IP;
         try {
+        this.IP = IP;
+
             socketOutput = new Socket(IP , 5000);
         } catch (IOException e) {
             System.out.println("Error in Friend class");
@@ -38,7 +39,8 @@ public class Friend extends JPanel {
         user.setPreferredSize(new Dimension(80,35));
         user.setBackground(new Color(0x320851));
         user.setForeground(new Color(0xAF5AA8));
-        user.addActionListener(new FriendListener());
+        friendListener = new FriendListener();
+        user.addActionListener(friendListener);
 
 
         //title design
@@ -135,7 +137,9 @@ public class Friend extends JPanel {
         playName.setText(playListName);
     }
     public void setSocketInputput(Socket socket){
+
         socketInput = socket;
+        friendListener.setSocketInput(socket);
     }
     public Socket getSocketOutput() {
         return socketOutput;

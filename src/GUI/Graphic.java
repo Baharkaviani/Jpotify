@@ -23,6 +23,7 @@ public class Graphic {
     private static FriendsPanel friendsPanel;
     private static InformationPanel informationLine;
     private static GridBagConstraints gbc = new GridBagConstraints();
+    public  static String IP;
 
     /**
      * the constructor
@@ -142,7 +143,7 @@ public class Graphic {
     public String showIPAsking(){
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\IP.txt")));
-            if(reader.readLine() == null){
+            if( reader.readLine()== null){
                 String inputIP = JOptionPane.showInputDialog("Please input your ip address");
                 JOptionPane pane = new JOptionPane(inputIP);
                 frame.add(pane);

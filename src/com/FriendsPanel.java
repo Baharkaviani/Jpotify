@@ -1,13 +1,10 @@
 package com;
 
-import GUI.Friends;
-
 import javax.swing.*;
 import java.io.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 
@@ -19,19 +16,19 @@ import java.util.ArrayList;
  */
 public  class  FriendsPanel extends JPanel {
     private static ArrayList<Friend> friends;
-    static Socket s;
-    JButton addFriend;
-    JOptionPane newIPs;
+    private static Socket s;
+    private JButton addFriend;
+    private JOptionPane newIPs;
 
     public FriendsPanel(){
         super();
         friends = new ArrayList<>();
         makeFriend();
-        showFriends();
+
 
         //initialize button
         addFriend = new JButton("Add new friends");
-        this.setLayout(new BorderLayout());
+//        this.setLayout(new BorderLayout());
 
         //effects
         addFriend.setBackground(new Color(0));
@@ -61,7 +58,7 @@ public  class  FriendsPanel extends JPanel {
             String lineToCheck = str;
             String currentLine;
             while ((currentLine = reader.readLine()) != null) {
-                // trim newline when comparing with lineToRemove
+//                 trim newline when comparing with lineToRemove
                 String trimmedLine = currentLine.trim();
                 if (trimmedLine.equals(lineToCheck))
                     return;
@@ -76,7 +73,7 @@ public  class  FriendsPanel extends JPanel {
         }
     }
 
-    public static void addFriend(Friend p){
+    public void addFriend(Friend p){
         friends.add(p);
     }
 
@@ -84,15 +81,15 @@ public  class  FriendsPanel extends JPanel {
         friends.remove(p);
     }
 
-    private void showFriends(){
-        for(Friend p :friends){
+    public void showFriends(){
+        for(Friend p :friends) {
             this.add(p);
         }
     }
     public static ArrayList<Friend> getFriend(){
         return friends;
     }
-    private void makeFriend(){
+    public void makeFriend(){
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\IP.txt")));
             String current;

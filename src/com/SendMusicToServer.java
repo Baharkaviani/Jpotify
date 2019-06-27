@@ -1,33 +1,25 @@
 package com;
-
-import GUI.Graphic;
+import Net.SongSerialization;
 
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.*;
 import java.util.Date;
 
-public class SendMusicToServer implements Runnable{
-
-    private static String title="" , artist="" , playListName="";
-    private static long time = 0;
+/*public class SendMusicToServer implements Runnable{
+    private SongSerialization songInfo;
     private Date date;
     private  Socket socket;
     private PrintWriter out;
-    public SendMusicToServer() {
+    public SendMusicToServer(SongSerialization songInfo) {
         try {
-            socket = new Socket("127.0.0.1", 5000);
+            this.songInfo = songInfo;
+//            socket = new Socket("127.0.0.1", 5000);
             out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
         }catch (Exception e){
             System.out.println("sendMusicToServer");
             System.out.println(e);
         }
-    }
-    public static void setTitle(String titlle ,long t , String singer , String playName){
-        title = titlle;
-        time= t;
-        artist = singer;
-        playListName = playName;
     }
 
     @Override
@@ -64,4 +56,4 @@ public class SendMusicToServer implements Runnable{
             System.out.println(err);
         }
     }
-}
+}*/
