@@ -23,20 +23,11 @@ public class Friend extends JPanel {
         p.setLayout(new GridLayout(3, 1));
         this.setBorder(new LineBorder(Color.BLACK, 5));
 
-        //initialize field
-        this.userName = userName;
-        this.titleMusic = titleMusic;
-        this.artist = artist;
-        this.playListName = playListName;
-        this.time = time;
-        this.IP = IP;
-
         //user design
         user = new JButton(userName);
         user.setPreferredSize(new Dimension(80,35));
         user.setBackground(new Color(0x320851));
         user.setForeground(new Color(0xAF5AA8));
-//        user.setBorder(null);
 
         //title design
         title = new JTextField(" " + titleMusic);
