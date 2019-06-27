@@ -15,7 +15,9 @@ import java.util.ArrayList;
  */
 public class AddOrRemoveSong extends JButton{
     private String path;
-    ArrayList<JButton> addButtons, deleteButtons;
+    private ArrayList<JButton> addButtons, deleteButtons;
+    private JFrame question;
+    private boolean pressed;
 
     AddOrRemoveSong(String path) {
         super();
@@ -35,7 +37,10 @@ public class AddOrRemoveSong extends JButton{
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame question = new JFrame();
+                if(pressed) {
+                    question.dispose();
+                }
+                question = new JFrame();
                 question.setAlwaysOnTop(true);
                 question.setSize(280, 200);
                 JPanel p = new JPanel();
@@ -67,6 +72,7 @@ public class AddOrRemoveSong extends JButton{
                     p2.add(deleteButtons.get(i));
                 }
                 question.setVisible(true);
+                pressed = true;
             }
         });
     }
