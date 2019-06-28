@@ -11,28 +11,27 @@ import java.util.ArrayList;
 
 /**
  * FriendListener class manage each friend with sending message for him by socket;
- *@author Bahar Kaviani , Yasaman Haghbin
+ * @author Bahar Kaviani , Yasaman Haghbin
  * @since 2019
  * @version : 1.0
  */
 public class FriendListener implements ActionListener {
-    private Socket socketOutPut, socketInput;
+    private Socket socket;
     private static PrintWriter out;
-    private ObjectInputStream objectInputStream;
-    private ArrayList<String> sharedPalyList;
+    private ObjectInputStream objectInputStream = null;
+    private ArrayList<String> sharedPlayList;
     private String result;
     private int index = 1;
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        socketOutPut = ((FriendButton)(e.getSource())).getSocketOutput();
-        socketInput = ((FriendButton)(e.getSource())).getSocketInput();
+        socket = ((FriendButton)(e.getSource())).getSocket();
         try {
             out.println("sharedPlayList");
-            objectInputStream = new ObjectInputStream(socketInput.getInputStream());
-            System.out.println("before array");
-            sharedPalyList = (ArrayList<String>)(objectInputStream.readObject());
-            System.out.println("after array");
+            if (objectInputStream == null) {
+                objectInputStream = new ObjectInputStream(socket.getInputStream());
+            }
+            sharedPlayList = (ArrayList<String>)(objectInputStream.readObject());
             chooseSong();
         } catch (Exception e1) {
             System.out.println("FriendListener class");
@@ -48,7 +47,7 @@ public class FriendListener implements ActionListener {
         JFrame frame = new JFrame();
         frame.setSize(300,300);
         frame.setLayout(new BorderLayout());
-        String[] sharedStrings = sharedPalyList.toArray(new String[sharedPalyList.size()]);
+        String[] sharedStrings = sharedPlayList.toArray(new String[sharedPlayList.size()]);
         JList list = new JList(sharedStrings);
         JScrollPane scrollPane = new JScrollPane(list);
         frame.add(scrollPane, BorderLayout.CENTER);
@@ -59,7 +58,7 @@ public class FriendListener implements ActionListener {
         out.println(result);
         try {
 
-            String path = "D:\\Bahar\\Code\\Tamrin\\Term2-Kalbasi\\Final Project\\"+index+".mp3";
+            String path = "D:\\Bahar\\Code\\Tamrin\\Term2-Kalbasi\\Final Project\\" + index + ".mp3";
             int filesize = 16*1024;
             byte [] mybytearray  = new byte [filesize];
 

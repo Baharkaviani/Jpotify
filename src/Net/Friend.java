@@ -3,7 +3,6 @@ package Net;
 import GUI.*;
 import Listener.*;
 import com.AcceptFriendButton;
-
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -12,15 +11,15 @@ import java.net.Socket;
 
 /**
  * Friend class describe friend's of client and make panel for him;
- *@author Yasaman Haghbin & Bahar Kaviani;
- *@since 2019;
+ * @author Yasaman Haghbin & Bahar Kaviani;
+ * @since 2019;
  * @version 1.0
  */
 public class Friend extends JPanel {
     private String userName, titleMusic, artist, playListName, IP, time;
     private FriendButton user;
     private AcceptFriendButton accept;
-    private Socket socketInput , socketOutput;
+    private Socket socket;
     private JTextField title, artistLable, playName, t;
     private FriendListener friendListener;
     private AcceptFriendListener acceptFriendListener;
@@ -32,7 +31,7 @@ public class Friend extends JPanel {
         super();
         try {
         this.IP = IP;
-        socketOutput = new Socket(IP , 5000);
+        socket = new Socket(IP , 5000);
         } catch (IOException e) {
             System.out.println("Error in Friend class");
             System.out.println(e);
@@ -49,7 +48,7 @@ public class Friend extends JPanel {
         p2.setLayout(new BorderLayout());
 
         //user design
-        user = new FriendButton(userName, socketOutput, socketInput, IP);
+        user = new FriendButton(userName, socket, IP);
         user.setPreferredSize(new Dimension(80,35));
         user.setBackground(new Color(0x320851));
         user.setForeground(new Color(0xAF5AA8));
@@ -57,7 +56,7 @@ public class Friend extends JPanel {
         user.addActionListener(friendListener);
 
         //accept design
-        accept = new AcceptFriendButton(socketOutput);
+        accept = new AcceptFriendButton(socket);
         accept.setPreferredSize(new Dimension(20,20));
         accept.setBackground(new Color(0x320851));
         accept.setForeground(new Color(0xAF5AA8));
@@ -156,12 +155,8 @@ public class Friend extends JPanel {
         playName.setText(playListName);
     }
 
-    public void setSocketInputput(Socket socket){
-        socketInput = socket;
-        user.setSocketInput(socket);
-    }
-
-    public Socket getSocketOutput() {
-        return socketOutput;
+    public Socket getSocket() {
+        System.out.println("getSocket in Friend: " + socket);
+        return socket;
     }
 }

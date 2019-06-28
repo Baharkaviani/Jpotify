@@ -19,7 +19,7 @@ public class SendMusicToServer implements Runnable{
             while (true) {
                 Thread.sleep(120000);
                 for (Friend key: friends) {
-                    socket = key.getSocketOutput();
+                    socket = key.getSocket();
                     out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
                     out.println("listen");
                     out.flush();

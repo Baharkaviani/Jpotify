@@ -37,24 +37,24 @@ public class Server implements Runnable {
         while (true) {
             try {
                 socket = serverSocket.accept();
-                System.out.println("Client" + " accepted");
+                System.out.println("Server class: Client" + " accepted");
                 Handler h = new Handler(socket);
                 new Thread(h).start();
-                System.out.println("handler run");
+                System.out.println("Server class: handler run");
 
                 inputString = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 String IP = inputString.readLine();
-                friends = FriendsPanel.getFriend();
-                Friend currentFriend = null;
-                for (Friend key: friends) {
-                    System.out.println("IP: " + IP);
-                    if((key.getIP()).equals(IP)) {
-                        key.setSocketInputput(socket);
-                        currentFriend = key;
-                        output = new ObjectOutputStream((key.getSocketOutput()).getOutputStream());
-                        break;
-                    }
-                }
+//                friends = FriendsPanel.getFriend();
+//                Friend currentFriend = null;
+//                for (Friend key: friends) {
+//                    if((key.getIP()).equals(IP)) {
+//                        key.setSocket(socket);
+//                        currentFriend = key;
+                        System.out.println("IP: " + IP);
+                        output = new ObjectOutputStream(socket.getOutputStream());
+//                        break;
+//                    }
+//                }
             } catch(Exception e){
                 System.out.println();
             }
@@ -63,7 +63,6 @@ public class Server implements Runnable {
 
     private class Handler implements Runnable{
         private Socket client;
-        private Socket outputSocket ;
         public Handler(Socket client){
             this.client = client;
         }
@@ -78,16 +77,17 @@ public class Server implements Runnable {
                     str = inputString.readLine();
                     System.out.println(str);
                     if (str.equals("listen")) {
-                        System.out.println("reicied listene");
+                        System.out.println("received listen");
 //                        String songSerialization = input.readUTF();
 //                        currentFriend.setTitleMusic(input.readLine());
 //                        currentFriend.setArtist(input.readLine());
 //                        currentFriend.settime(input.readLine());
                     }
-                    else if(str.equals("sharePlayList")){
+                    else if(str.equals("sharedPlayList")){
                         System.out.println("i want get your playlist");
-                        HashMap<String , String> hashMap = PlaylistLibrary.getSharePalyListMap();
-                        output.writeObject(PlaylistLibrary.getSharePalyList());
+                        HashMap<String , String> hashMap = PlaylistLibrary.getSharePlayListMap();
+                        output.writeObject(PlaylistLibrary.getSharePlayList());
+                        System.out.println("write the playlist hashMap for friend");
                         String s = inputString.readLine().trim();
                         String path = hashMap.get(s);
                         sendMusic(path);
