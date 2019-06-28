@@ -1,6 +1,9 @@
-package com;
+package Net;
 
-import Net.FriendListener;
+import GUI.*;
+import Listener.*;
+import com.AcceptFriendButton;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -16,9 +19,11 @@ import java.net.Socket;
 public class Friend extends JPanel {
     private String userName, titleMusic, artist, playListName, IP, time;
     private FriendButton user;
+    private AcceptFriendButton accept;
     private Socket socketInput , socketOutput;
     private JTextField title, artistLable, playName, t;
     private FriendListener friendListener;
+    private AcceptFriendListener acceptFriendListener;
 
     /**
      * make panel and get IP to make socket for friend;
@@ -40,14 +45,24 @@ public class Friend extends JPanel {
 
         JPanel p = new JPanel();
         p.setLayout(new GridLayout(3, 1));
+        JPanel p2 = new JPanel();
+        p2.setLayout(new BorderLayout());
 
         //user design
-        user = new FriendButton(userName, socketOutput, IP);
+        user = new FriendButton(userName, socketOutput, socketInput, IP);
         user.setPreferredSize(new Dimension(80,35));
         user.setBackground(new Color(0x320851));
         user.setForeground(new Color(0xAF5AA8));
         friendListener = new FriendListener();
         user.addActionListener(friendListener);
+
+        //accept design
+        accept = new AcceptFriendButton(socketOutput);
+        accept.setPreferredSize(new Dimension(20,20));
+        accept.setBackground(new Color(0x320851));
+        accept.setForeground(new Color(0xAF5AA8));
+        acceptFriendListener = new AcceptFriendListener();
+        accept.addActionListener(acceptFriendListener);
 
         //title design
         title = new JTextField(" " + titleMusic);
@@ -86,11 +101,13 @@ public class Friend extends JPanel {
         t.setBorder(null);
 
         //add option to panel
-        this.add(user, BorderLayout.NORTH);
+        this.add(p2, BorderLayout.NORTH);
         this.add(p, BorderLayout.CENTER);
         p.add(title);
         p.add(artistLable);
         p.add(playName);
+        p2.add(accept, BorderLayout.WEST);
+        p2.add(user, BorderLayout.CENTER);
         this.add(t, BorderLayout.EAST);
     }
 
@@ -141,7 +158,7 @@ public class Friend extends JPanel {
 
     public void setSocketInputput(Socket socket){
         socketInput = socket;
-        friendListener.setSocketInput(socket);
+        user.setSocketInput(socket);
     }
 
     public Socket getSocketOutput() {

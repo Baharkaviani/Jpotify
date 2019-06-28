@@ -1,6 +1,6 @@
-package Net;
+package Listener;
 
-import com.FriendButton;
+import GUI.FriendButton;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,27 +14,22 @@ import java.util.ArrayList;
  */
 public class FriendListener implements ActionListener {
     private Socket socketOutPut, socketInput;
-    private PrintWriter out;
+    private static PrintWriter out;
     private ObjectInputStream objectInputStream;
     private ArrayList<String> sharedPalyList;
     private String result;
-    private int index=1;
-
-    public void setSocketInput(Socket socketInput) {
-        this.socketInput = socketInput;
-    }
+    private int index = 1;
 
     @Override
     public void actionPerformed(ActionEvent e) {
         socketOutPut = ((FriendButton)(e.getSource())).getSocketOutput();
+        socketInput = ((FriendButton)(e.getSource())).getSocketInput();
         try {
-            out = new PrintWriter(new OutputStreamWriter(socketOutPut.getOutputStream()));
-            writeIPOnSocket();
-//            writeUserNameOnSocket();
-            out.println("sharePlayList");
-            out.flush();
+            out.println("sharedPlayList");
             objectInputStream = new ObjectInputStream(socketInput.getInputStream());
+            System.out.println("before array");
             sharedPalyList = (ArrayList<String>)(objectInputStream.readObject());
+            System.out.println("after array");
             chooseSong();
         } catch (Exception e1) {
             System.out.println("FriendListener class");
@@ -42,8 +37,11 @@ public class FriendListener implements ActionListener {
         }
     }
 
-    public void chooseSong() throws Exception{
+    public static void setOut(PrintWriter o) {
+        out = o;
+    }
 
+    public void chooseSong() throws Exception{
         JFrame frame = new JFrame();
         frame.setSize(300,300);
         frame.setLayout(new BorderLayout());
@@ -56,10 +54,9 @@ public class FriendListener implements ActionListener {
         JOptionPane pane = new JOptionPane(musicRequest);
         result = musicRequest;
         out.println(result);
-        out.flush();
         try {
 
-            String path = "C:\\Users\\vcc\\Music\\musics\\"+index+".mp3";
+            String path = "D:\\Bahar\\Code\\Tamrin\\Term2-Kalbasi\\Final Project\\"+index+".mp3";
             int filesize = 16*1024;
             byte [] mybytearray  = new byte [filesize];
 
@@ -70,7 +67,6 @@ public class FriendListener implements ActionListener {
                 count = objectInputStream.read(mybytearray);
                 if(count == 1)
                     break;
-                System.out.println(count);
                 fos.write(mybytearray, 0, count);
                 fos.flush();
             }
@@ -82,40 +78,5 @@ public class FriendListener implements ActionListener {
             System.out.println(e);
         }
     }
-
-    /**
-     * when the user wants to connect to server, must send the IP to let server find the output socket of that user.
-     */
-    private void writeIPOnSocket(){
-        try {
-            String IP;
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\IP.txt")));
-            if((IP = reader.readLine())!= null) {
-                out.println(IP);
-                out.flush();
-            }
-            reader.close();
-        } catch (Exception e1) {
-            System.out.println("FriendListener class");
-            System.out.println(e1);
-        }
-    }
-
-    /**
-     * if the user connects to server, server should have it's user name.
-     */
-    private void writeUserNameOnSocket(){
-        try {
-            String user;
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\user.txt")));
-            if((user = reader.readLine())!= null) {
-                out.println(user);
-                out.flush();
-            }
-            reader.close();
-        } catch (Exception e1) {
-            System.out.println("FriendListener class");
-            System.out.println(e1);
-        }
-    }
 }
+

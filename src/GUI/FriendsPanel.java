@@ -1,11 +1,11 @@
-package com;
+package GUI;
 
+import Net.*;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.Socket;
 import java.util.ArrayList;
 
 /**
@@ -121,3 +121,4 @@ public class FriendsPanel extends JPanel {
         }
     }
 }
+

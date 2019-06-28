@@ -1,5 +1,4 @@
-package com;
-import Net.SongSerialization;
+package Net;
 
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
