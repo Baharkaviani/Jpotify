@@ -52,10 +52,10 @@ public class PlaylistLibrary extends Library{
     }
 
     /**
-     * getSharePalyList read sharePlaylist data and add it to an array list and return it;
+     * getSharePlayList read sharePlaylist data and add it to an array list and return it;
      * @return sharePlaylist'path;
      */
-    public static ArrayList<String> getSharePalyList(){
+    public static ArrayList<String> getSharePlayList(){
         ArrayList<String> songsTitle = new ArrayList<>();
         MP3FileData info;
         try {
@@ -68,16 +68,16 @@ public class PlaylistLibrary extends Library{
             }
             reader.close();
         } catch (Exception e) {
-            System.out.println("getSharePalyList method in playListLibrary class");
+            System.out.println("getSharePlayList method in playListLibrary class");
             System.out.println(e);
         }
         return songsTitle;
     }
     /**
-     * getSharePalyListMap read sharePlaylist data and add it to an hashMap with song's title;
+     * getSharePlayListMap read sharePlaylist data and add it to an hashMap with song's title;
      * @return HashMap;
      */
-    public static HashMap<String , String> getSharePalyListMap(){
+    public static HashMap<String , String> getSharePlayListMap(){
         HashMap<String , String > songsTitle = new HashMap<>();
         MP3FileData info;
         try {
@@ -96,9 +96,6 @@ public class PlaylistLibrary extends Library{
         return songsTitle;
     }
 
-    public String getPlayListName() {
-        return playListName;
-    }
 
     /**
      * findPath method find index of a song'path in paths arrayList;

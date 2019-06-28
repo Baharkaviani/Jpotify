@@ -1,12 +1,11 @@
 package GUI;
 
+import Listener.Search;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 /**
  * shows the user's IP
@@ -17,9 +16,12 @@ import java.io.InputStreamReader;
 public class InformationPanel extends JPanel {
     private JLabel IP;
     private JLabel userName;
+    private Search search;
 
-    InformationPanel(){
+    InformationPanel() throws Exception{
         //initialize
+        super();
+        this.setLayout(new GridLayout());
         IP = new JLabel("IP: " + ReadUserIP());
         userName = new JLabel("user name: " + ReadUserName());
 
@@ -30,8 +32,10 @@ public class InformationPanel extends JPanel {
         userName.setForeground(new Color(0x2EA8FF));
         userName.setFont(new Font("Serif" ,Font.BOLD, 20));
         userName.setBorder(new LineBorder(new Color(0x4D0C7F), 5));
-
+        //initialize search
+        search= new Search();
         //add components to the JPanel
+        this.add(search);
         this.add(userName);
         this.add(IP);
     }

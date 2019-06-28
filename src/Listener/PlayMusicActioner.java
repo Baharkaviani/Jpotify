@@ -61,6 +61,9 @@ public class PlayMusicActioner implements ActionListener {
                 PlayMusic.setShuffle(true);
                 PlayMusic.next();
             }
+            if(e.getSource() == GUI.getRepeat()) {
+                ThreadPlaying.changRepeat();
+            }
         } catch (Exception error) {
             System.err.println(error);
         }

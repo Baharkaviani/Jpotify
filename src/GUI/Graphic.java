@@ -232,5 +232,6 @@ public class Graphic {
         Server s = new Server(5000);
         new Thread(s).start();
         Graphic JPotify = new Graphic();
+
     }
 }

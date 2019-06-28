@@ -11,9 +11,7 @@ public class SendMusicToServer implements Runnable{
     private Socket socket;
     private PrintWriter out;
 
-    public SendMusicToServer(ArrayList<Friend> friends) {
-        this.friends = friends;
-    }
+    public SendMusicToServer(ArrayList<Friend> friends) { this.friends = friends;}
 
     @Override
     public void run() {

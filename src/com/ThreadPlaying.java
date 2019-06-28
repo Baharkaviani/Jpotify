@@ -2,6 +2,8 @@ package com;
 
 import javazoom.jl.player.Player;
 
+import java.io.FileInputStream;
+
 /**
  * ThreadPlaying implements Runnable and play music;
  * @author Bahar Kaviani , Yasaman Haghbin
@@ -10,8 +12,10 @@ import javazoom.jl.player.Player;
  */
 public class ThreadPlaying implements Runnable{
     private Player player;
+    private  FileInputStream musicFile;
     private static boolean isPlaying=false;
-    public ThreadPlaying(Player pleyer) {
+    private static boolean repeat = false;
+    public ThreadPlaying(Player pleyer){
 
         this.player = pleyer;
     }
@@ -24,6 +28,10 @@ public class ThreadPlaying implements Runnable{
         ThreadPlaying.isPlaying = b;
     }
 
+    public static void changRepeat(){
+        repeat = !repeat;
+    }
+
     /**
      * play player which passed to constructor;
      */
@@ -34,7 +42,11 @@ public class ThreadPlaying implements Runnable{
             player.play();
             if(player.isComplete()){
                 isPlaying =false;
-                PlayMusic.next();
+                if(!repeat)
+                    PlayMusic.next();
+                else {
+                    PlayMusic.repeat();
+                }
             }
         } catch (Exception e) {
             System.err.println(e);

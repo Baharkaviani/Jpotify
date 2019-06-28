@@ -1,5 +1,8 @@
 package Library;
 
+import com.MP3FileData;
+
+import javax.print.attribute.HashAttributeSet;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -12,8 +15,9 @@ import java.util.*;
  * @version : 1.0
  */
 public abstract class Library {
-    protected ArrayList<String> paths;
+    protected  static ArrayList<String> paths;
     protected BufferedReader musicPath;
+    private static HashMap<String , String> titleMap;
 
     /**
      * Constructor

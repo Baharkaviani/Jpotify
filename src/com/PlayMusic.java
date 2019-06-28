@@ -86,7 +86,7 @@ public class PlayMusic {
 
         //send information for thread to send to server;
         Date date = new Date();
-        if(library instanceof PlaylistLibrary) {
+        if(library instanceof PlaylistLibrary && PlaylistLibrary.getSharePlayList().contains(data.getTitle())) {
             SongSerialization songInfo = new SongSerialization(data.getTitle(), data.getArtist(), "" + date.getTime());
             SendMusicToServer.setSongInfo(songInfo);
         }
@@ -181,6 +181,25 @@ public class PlayMusic {
         }
     }
 
+    public static void repeat() throws Exception{
+        try {
+        player.close();
+        musicFile.close();
+        timer.cancel();
+        musicFile = new FileInputStream(path);
+        player = new Player(musicFile);
+        secendRemain =0;
+         TimerTask task = new ChangeSeek();
+         timer = new Timer();
+         timer.schedule(task,0,1000);
+         startPlaying();
+        VolumePanel.setPlayer(player);
+        playSituation = "playing";
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
     /**
      * seek method close player and make new player from special byte;
      * @param l is lenght of songs;
@@ -195,6 +214,7 @@ public class PlayMusic {
         secendRemain = sec;
         //start a thread to run song
         startPlaying();
+        PlayMusicGUI.setPauseIcon();
         VolumePanel.setPlayer(player);
         playSituation = "playing";
     }

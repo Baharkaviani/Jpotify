@@ -10,7 +10,10 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 /**
- * FriendListener
+ * FriendListener class manage each friend with sending message for him by socket;
+ *@author Bahar Kaviani , Yasaman Haghbin
+ * @since 2019
+ * @version : 1.0
  */
 public class FriendListener implements ActionListener {
     private Socket socketOutPut, socketInput;

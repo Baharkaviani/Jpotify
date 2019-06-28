@@ -10,36 +10,21 @@ import java.net.Socket;
  * @version 1.0
  */
 public class FriendButton extends JButton {
-    private Socket socketOutput, socketInput;
+    private Socket socketOutput;
     private String IP;
 
     /**
-     * @param string is userName for writing on button
-     * @param socketOutput the output socket of our friend
-     * @param socketInput the input socket of our friend
-     * @param IP our friend IP
+     * @param string is userName for writing on button;
      */
-    public FriendButton(String string, Socket socketOutput, Socket socketInput, String IP){
+    public FriendButton(String string, Socket socket, String IP){
         super(string);
-        this.socketOutput = socketOutput;
-        this.socketInput = socketInput;
+        socketOutput = socket;
         this.IP = IP;
-    }
-
-    public void setSocketInput(Socket socketInput) {
-        this.socketInput = socketInput;
-    }
-
-    public void setSocketOutput(Socket socketOutput) {
-        this.socketOutput = socketOutput;
+        //////////////ip bayad user name bashe
     }
 
     public Socket getSocketOutput(){
         return socketOutput;
-    }
-
-    public Socket getSocketInput() {
-        return socketInput;
     }
 
     public String getIP() {
