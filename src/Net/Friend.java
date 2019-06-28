@@ -1,6 +1,8 @@
 package Net;
 
 import GUI.FriendButton;
+import Listener.FriendListener;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;

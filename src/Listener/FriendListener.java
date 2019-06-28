@@ -1,4 +1,4 @@
-package Net;
+package Listener;
 
 import GUI.FriendButton;
 
