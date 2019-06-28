@@ -14,9 +14,8 @@ import java.util.ArrayList;
  * @since 26/6/2019
  * @version 1.0
  */
-public  class  FriendsPanel extends JPanel {
+public class FriendsPanel extends JPanel {
     private static ArrayList<Friend> friends;
-    private static Socket s;
     private JButton addFriend;
     private JOptionPane newIPs;
 
@@ -92,6 +91,7 @@ public  class  FriendsPanel extends JPanel {
     public static ArrayList<Friend> getFriend(){
         return friends;
     }
+
     public void makeFriend(){
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\IP.txt")));

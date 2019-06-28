@@ -14,9 +14,8 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class Server implements Runnable {
-    private Socket socket;
+    private Socket client;
     private ServerSocket serverSocket;
-    private BufferedReader inputString;
     private ObjectInputStream input;
     private ObjectOutputStream output;
     private ArrayList<Friend> friends;
@@ -36,9 +35,9 @@ public class Server implements Runnable {
     public void run() {
         while (true) {
             try {
-                socket = serverSocket.accept();
+                client = serverSocket.accept();
                 System.out.println("Server class: Client" + " accepted");
-                Handler h = new Handler(socket);
+                Handler h = new Handler(client);
                 new Thread(h).start();
                 System.out.println("Server class: thread start");
             } catch(IOException e){
@@ -59,10 +58,6 @@ public class Server implements Runnable {
         public void run() {
             try{
                 //check the request type
-//                inputString = new BufferedReader(new InputStreamReader(client.getInputStream()));
-
-//                String IP = inputString.readLine();
-//                String userName = inputString.readLine();
                 input = new ObjectInputStream(new DataInputStream(new BufferedInputStream(client.getInputStream())));
 
                 String IP = input.readUTF();
@@ -75,30 +70,33 @@ public class Server implements Runnable {
                         key.setSocketInputput(client);
                         currentFriend = key;
                         currentFriend.setUserName(userName);
-                        System.out.println("Run Handler: current friend IP ->" + IP);
-                        System.out.println("Run Handler: current friend username ->" + userName);
-                        output = new ObjectOutputStream((key.getSocketOutput()).getOutputStream());
+                        System.out.println("Run Handler: IP -> " + IP);
+                        System.out.println("Run Handler: username -> " + userName);
+                        System.out.println("Run Handler: current friend IP -> " + currentFriend.getIP());
+                        System.out.println("Run Handler: current friend username -> " + currentFriend.getUserName());
+                        output = new ObjectOutputStream(new DataOutputStream((key.getSocketOutput()).getOutputStream()));
                         break;
                     }
                 }
                 String str = "";
                 while (true) {
                     //read str from client
-                    str = inputString.readLine();
+                    str = input.readUTF();
                     if (str.equals("music")) {
                         musicRequest();
                         musicIndex++;
                     }
                     else if (str.equals("listen")) {
                         System.out.println("reicied listene");
-                        String songSerialization = inputString.readLine();
+                        String songSerialization = input.readUTF();
                         currentFriend.setTitleMusic(input.readLine());
                         currentFriend.setArtist(input.readLine());
                         currentFriend.settime(input.readLine());
                     }
                     else if(str.equals("sharePlayList")){
                         output.writeObject(PlaylistLibrary.getSharePalyList());
-                        String s = inputString.readLine();
+                        System.out.println("Run Handler: if sharePlayList: playlist -> " + PlaylistLibrary.getSharePalyList());
+                        String s = input.readUTF();
                     }
                 }
 

@@ -18,8 +18,7 @@ public class Friend extends JPanel {
         super();
         try {
         this.IP = IP;
-
-            socketOutput = new Socket(IP , 5000);
+        socketOutput = new Socket(IP , 5000);
         } catch (IOException e) {
             System.out.println("Error in Friend class");
             System.out.println(e);
@@ -32,7 +31,6 @@ public class Friend extends JPanel {
 
         JPanel p = new JPanel();
         p.setLayout(new GridLayout(3, 1));
-
 
         //user design
         user = new FriendButton(userName, socketOutput, IP);
@@ -128,13 +126,11 @@ public class Friend extends JPanel {
     }
 
     public void setPlayListName(String playListName) {
-
         this.playListName = playListName;
         playName.setText(playListName);
     }
 
     public void setSocketInputput(Socket socket){
-
         socketInput = socket;
         friendListener.setSocketInput(socket);
     }

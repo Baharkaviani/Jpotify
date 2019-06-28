@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 public class FriendListener implements ActionListener {
     private Socket socketOutPut, socketInput;
-//    private PrintWriter out;
     private ObjectOutputStream out;
     private ObjectInputStream objectInputStream;
     private ArrayList<String> sharedPalyList;
@@ -25,12 +24,12 @@ public class FriendListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         socketOutPut = ((FriendButton)(e.getSource())).getSocketOutput();
         try {
-//            out = new PrintWriter(new OutputStreamWriter(socketOutPut.getOutputStream()));
             out = new ObjectOutputStream(new DataOutputStream(socketOutPut.getOutputStream()));
             writeIPOnSocket();
             writeUserNameOnSocket();
             out.writeUTF("sharePlayList");
             out.flush();
+            Thread.sleep(1000);
             objectInputStream = new ObjectInputStream(socketInput.getInputStream());
             sharedPalyList = (ArrayList<String>)(objectInputStream.readObject());
             chooseSong();
@@ -41,7 +40,6 @@ public class FriendListener implements ActionListener {
             System.out.println("FriendListener error:");
             e1.printStackTrace();
         }
-
     }
 
     /**

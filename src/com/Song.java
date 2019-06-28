@@ -168,4 +168,8 @@ public class Song extends JPanel {
         }
         return false;
     }
+
+    public AddOrRemoveSong getAddOrRemoveSong(){
+        return addToPlaylistButton;
+    }
 }

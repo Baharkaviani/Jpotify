@@ -175,6 +175,7 @@ class ShowSongs implements ActionListener{
     private String str;
     private HashMap<String, File> playlistMap;
     private JFrame frame;
+    private static boolean lastSongSelected = false;
 
     ShowSongs(String str, HashMap playlistMap, JFrame frame){
         this.str = str;
@@ -193,6 +194,7 @@ class ShowSongs implements ActionListener{
             PlayListOptionListener playListOptionListener = new PlayListOptionListener(playlistLibrary);
             for (int i = 0; i < paths.size(); i++) {
                 song = new Song(paths.get(i));
+                song.getAddOrRemoveSong().addActionListener(new ReverseTwoSong(".\\" + (playlistMap.get(str).getName())));
                 song.getPlayButton().addActionListener(playListOptionListener);
                 songs.add(song);
             }
@@ -204,5 +206,106 @@ class ShowSongs implements ActionListener{
             System.out.println(e1);
         }
         frame.dispose();
+    }
+
+    public static boolean isLastSongSelected() {
+        return lastSongSelected;
+    }
+
+    public static void setLastSongSelected(boolean lastSongSelected) {
+        ShowSongs.lastSongSelected = lastSongSelected;
+    }
+}
+
+class ReverseTwoSong implements ActionListener{
+    private String fileName;
+    //for changing two elements of a playlist
+    private String firstPath, secondPath;
+
+    ReverseTwoSong(String fileName){
+        this.fileName = fileName;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(((AddOrRemoveSong)(e.getSource())).getQuestion() != null)
+            ((AddOrRemoveSong)(e.getSource())).getQuestion().dispose();
+        if(!ShowSongs.isLastSongSelected()){
+            //write first path to the myTemp.txt file
+            File tempFile = new File("myTemp.txt");
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+                String str = ((AddOrRemoveSong)(e.getSource())).getPath();
+                writer.write(str);
+                writer.close();
+            } catch (IOException e1) {
+                System.out.println("ReverseTwoSong error");
+                System.out.println(e1);
+            }
+            ShowSongs.setLastSongSelected(true);
+        }
+        else {
+            File tempFile = new File("myTemp.txt");
+            try {
+                //read first path from the myTemp.txt file
+                BufferedReader reader = new BufferedReader(new FileReader(tempFile));
+                firstPath = reader.readLine();
+                reader.close();
+                secondPath = ((AddOrRemoveSong)(e.getSource())).getPath();
+                reverse(fileName, firstPath, secondPath);
+            } catch (IOException e1) {
+                System.out.println("ReverseTwoSong error");
+                System.out.println(e1);
+            }
+            ShowSongs.setLastSongSelected(false);
+        }
+    }
+
+    public void reverse(String fileName, String firstPath, String secondPath){
+        //delete the name from "playlistNames.txt" file
+        File inputFile = new File(fileName);
+        File tempFile = new File("temp.txt");
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+            String currentLine;
+
+            while ((currentLine = reader.readLine()) != null) {
+                // trim newline when comparing with lineToRemove
+                String trimmedLine = currentLine.trim();
+                if (trimmedLine.equals(secondPath))
+                    writer.write(firstPath + System.getProperty("line.separator"));
+                else if(trimmedLine.equals(firstPath))
+                    writer.write(secondPath + System.getProperty("line.separator"));
+                else
+                    writer.write(currentLine + System.getProperty("line.separator"));
+            }
+            writer.close();
+            reader.close();
+
+            //update the "playlistNames.txt" file
+            File inputFile2 = new File("temp.txt");
+            File outputFile2 = new File(fileName);
+            try {
+                BufferedReader in = new BufferedReader(new FileReader(inputFile2));
+                BufferedWriter out = new BufferedWriter(new FileWriter(outputFile2));
+
+                String currentString;
+
+                while ((currentString = in.readLine()) != null) {
+                    out.write(currentString + System.getProperty("line.separator"));
+                }
+                out.close();
+                in.close();
+            }catch (IOException e1){
+                System.out.println("MyListListener error: 1");
+                System.err.println();
+            }
+            tempFile.delete();
+        }catch (IOException e1){
+            System.out.println("MyListListener error: 2");
+            System.err.println();
+        }
     }
 }

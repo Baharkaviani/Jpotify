@@ -43,7 +43,7 @@ public class AddOrRemoveSong extends JButton{
                 }
                 question = new JFrame();
                 question.setAlwaysOnTop(true);
-                question.setSize(280, 200);
+                question.setSize(280, 300);
                 JPanel p = new JPanel();
                 JPanel p1 = new JPanel();
                 JPanel p2 = new JPanel();
@@ -132,5 +132,13 @@ public class AddOrRemoveSong extends JButton{
             System.err.println();
         }
         return false;
+    }
+
+    public JFrame getQuestion() {
+        return question;
+    }
+
+    public String getPath(){
+        return path;
     }
 }
