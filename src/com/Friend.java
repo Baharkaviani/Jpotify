@@ -8,12 +8,21 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.Socket;
 
+/**
+ * Friend class describe friend's of client and make panel for him;
+ *@author Yasaman Haghbin & Bahar Kaviani;
+ *@since 2019;
+ * @version 1.0
+ */
 public class Friend extends JPanel {
     private String userName, titleMusic, artist, playListName, IP, time;
     private FriendButton user;
     private Socket socketInput , socketOutput;
     private JTextField title, artistLable, playName, t;
     private FriendListener friendListener;
+    /**
+     * make panel and get IP to make socket for friend;
+     */
     public Friend(String IP) {
         super();
         try {

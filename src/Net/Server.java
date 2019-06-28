@@ -9,8 +9,10 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.SocketHandler;
 
 /**
  * @author Bahar Kaviani & Yasaman Haghbin
@@ -21,7 +23,7 @@ public class Server implements Runnable {
     private Socket socket;
     private ServerSocket serverSocket;
     private BufferedReader inputString;
-    private ObjectInputStream input;
+    private ObjectInputStream inputObject;
     private ObjectOutputStream output;
     private ArrayList<Friend> friends;
     public Server(int port){
@@ -45,7 +47,6 @@ public class Server implements Runnable {
             Handler h = new Handler(socket);
             new Thread(h).start();
             System.out.println("thread start");
-
             }
         catch(IOException e){
             System.out.println();
@@ -55,8 +56,7 @@ public class Server implements Runnable {
 
     private class Handler implements Runnable{
         private Socket client;
-        private int musicIndex = 0;
-
+        private Socket outputSocket ;
         public Handler(Socket client){
             this.client = client;
         }
@@ -64,11 +64,13 @@ public class Server implements Runnable {
         @Override
         public void run() {
             try{
-//                Thread.sleep(2000);
+                System.out.println("start client handling");
                 //check the request type
+
                 inputString = new BufferedReader(new InputStreamReader(client.getInputStream()));
 
                 String IP = inputString.readLine();
+//                String userName = inputString.readLine();
 
                 friends = FriendsPanel.getFriend();
                 Friend currentFriend;
@@ -76,82 +78,60 @@ public class Server implements Runnable {
                     if((key.getIP()).equals(IP)) {
                         key.setSocketInputput(client);
                         currentFriend = key;
+//                        currentFriend.setUserName(userName);
                         output = new ObjectOutputStream((key.getSocketOutput()).getOutputStream());
                         break;
                     }
                 }
+
                 String str = "";
                 while (true) {
                     //read str from client
                     str = inputString.readLine();
-                    if (str.equals("music")) {
-                        musicRequest();
-                        musicIndex++;
-                    }
-                    else if (str.equals("listen")) {
+                    System.out.println(str);
+                    if (str.equals("listen")) {
                         System.out.println("reicied listene");
-//                        f.setUserName(input.readLine());
 //                        f.setTitleMusic(input.readLine());
 //                        f.setArtist(input.readLine());
 //                        f.setPlayListName(input.readLine());
 //                        f.settime(input.readLine());
                     }
                     else if(str.equals("sharePlayList")){
+                        System.out.println("i want get your playlist");
+                        HashMap<String , String> hashMap = PlaylistLibrary.getSharePalyListMap();
                         output.writeObject(PlaylistLibrary.getSharePalyList());
-                        String s = inputString.readLine();
+                        String s =inputString.readLine().trim();
+                        String path = hashMap.get(s);
+                        sendMusic("C:\\Users\\vcc\\Music\\musics\\Reza Bahram - Atash (128).mp3");
                     }
                 }
 
             } catch (Exception e){
-                System.out.println("server Error");
+                System.out.println("server Error : in run method");
                 System.out.println(e);
             }
         }
 
-        /**
-         * get the mp3 file with byteArray;
-         */
-        private void musicRequest() {
+        public void sendMusic(String path) {
             try {
-                String path = "C:\\Users\\vcc\\Music\\musics\\abc" + musicIndex + ".mp3";
-                int filesize=6022386; // filesize temporary hardcoded
-                int bytesRead;
-                int current = 0;
-                byte [] mybytearray  = new byte [filesize];
-                InputStream is = client.getInputStream();
-                FileOutputStream fos = new FileOutputStream(path);
-                BufferedOutputStream bos = new BufferedOutputStream(fos);
-                bytesRead = is.read(mybytearray,0,mybytearray.length);
-                current = bytesRead;
-                // thanks to A. Cdiz for the bug fix
-                do {
-                    bytesRead = is.read(mybytearray, current, (mybytearray.length-current));
-                    if(bytesRead >= 0) current += bytesRead;
-                } while(bytesRead > -1);
-                bos.write(mybytearray, 0 , current);
-                bos.flush();
-                bos.close();
-                writeNewSharedMusic(path);
+                System.out.println("start sendMusic");
+                File myFile = new File(path);
+                System.out.println("openFile");
+                byte[] mybytearray = new byte[(int) myFile.length()];
+                FileInputStream fis = new FileInputStream(myFile);
+                System.out.println("Sending...");
+                int count;
+                while ((count = fis.read(mybytearray)) > 0) {
+                    output.write(mybytearray, 0, count);
+                    output.flush();
+                }
+                output.write(0);
+                output.flush();
+                fis.close();
+                System.out.println("finish sending");
             }catch (Exception e){
-                System.out.println("Server error: ");
+                System.out.println("sendMusic method");
                 System.out.println(e);
-            }
-        }
-    }
-
-    /**
-     * writeNewSharedMusic method write path to sharePlayList file.
-     * @param path's music which received from friend;
-     */
-    private void writeNewSharedMusic(String path){
-        if(!path.equals("")) {
-            try {
-                PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(".\\sharedPlaylist.txt", true)));
-                writer.println(path);
-                writer.close();
-            } catch (IOException e1) {
-                System.out.println("Server socket");
-                System.out.println(e1);
             }
         }
     }

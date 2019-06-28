@@ -12,11 +12,22 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 
+/**
+ * VolumePanel class manage the player volume with a slider;
+ * @author : Yasaman Haghbin , Bahar Kaviani
+ * @since : 18/6/2019
+ * @version : 1.0
+ */
 public class VolumePanel extends JPanel implements MouseListener {
+
     private static JSlider slider = new JSlider(0,100);
     private JLabel volumeIcone;
     private static Player player;
     private static float v =100;
+
+    /**
+     * set a slider and an icon foe volume panel;
+     */
     public VolumePanel(){
         this.setPreferredSize(new Dimension(200,150));
         this.setLayout(new GridLayout());
@@ -24,6 +35,7 @@ public class VolumePanel extends JPanel implements MouseListener {
         slider.setBackground(new Color(0x4D0C7F));
         slider.setPaintTicks(false);
         slider.addMouseListener(this);
+
         this.setBackground(new Color(0x4D0C7F));
         volumeIcone = new JLabel();
         setVolumeIcon();
@@ -32,10 +44,18 @@ public class VolumePanel extends JPanel implements MouseListener {
         slider.setValue(100);
 
     }
+
+    /**
+     * @param music is a player which we want to change it volume;
+     */
     public static void setPlayer(Player music){
         player = music;
         player.setVolume((int)v);
     }
+
+    /**
+     * setMuteIcon method change volume ;
+     */
     public void setMuteIcon(){
         try {
             Image img = ImageIO.read(getClass().getResource("..\\images\\mute.png"));
@@ -47,6 +67,9 @@ public class VolumePanel extends JPanel implements MouseListener {
             System.err.println();
         }
     }
+    /**
+     * setMuteIcon method change volume ;
+     */
     public void setVolumeIcon(){
 
         try {
@@ -69,6 +92,9 @@ public class VolumePanel extends JPanel implements MouseListener {
 
     }
 
+    /**
+     * get slider value and set that value for player volume;
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
         v = slider.getValue();

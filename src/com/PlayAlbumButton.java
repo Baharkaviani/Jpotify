@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 
 /**
+ * This class describes playIcon of each Album;
  * When the user click on this button the song will play
  * @author Bahar Kaviani & Yasaman Haghbin
  * @since 24/6/2019
@@ -17,6 +18,9 @@ import java.util.ArrayList;
 public class PlayAlbumButton extends JButton {
     private ArrayList songs;
 
+    /**
+     * @param songs is all of the songs we have;
+     */
     public PlayAlbumButton(ArrayList songs){
         super();
         this.songs = songs;

@@ -23,8 +23,8 @@ public class PlayMusicGUI extends JPanel{
     private static JLabel totalTime;
     private static JLabel remainTime;
     /**
-     * @param :void
      * get size to button and add them in panel and add to actionListener;
+     * also make a seekbar
      */
     public PlayMusicGUI()throws Exception{
         //create object
@@ -113,9 +113,12 @@ public class PlayMusicGUI extends JPanel{
     }
 
     public static void  setSeekBar(int i , int j) {
+
         slider.setDuration(i ,j);
     }
-
+    /**
+     * setTotalLable set song's time to totalTime;
+     */
     public static void setTotalLable(int i){
         int sec,min;
         min = i/60;
@@ -126,6 +129,11 @@ public class PlayMusicGUI extends JPanel{
         else
             totalTime.setText(min + ":" + "0" +sec);
     }
+
+    /**
+     * setRemainLable method change remainTime;
+     * @param i is new time;
+     */
     public static void setRemainLable(int i){
         int sec,min;
         min = i/60;
@@ -138,7 +146,7 @@ public class PlayMusicGUI extends JPanel{
     }
 
     public static void setPauseIcon(){
-        image = new ImageIcon(("D:\\Bahar\\Code\\Tamrin\\Term2-Kalbasi\\Final Project\\src\\images\\pause.png"));
+        image = new ImageIcon(("C:\\Users\\vcc\\Desktop\\Jpotify\\src\\images\\pause.png"));
         Image img = image.getImage() ;
         Image newimg = img.getScaledInstance( 60, 60,  java.awt.Image.SCALE_SMOOTH ) ;
         image = new ImageIcon( newimg );

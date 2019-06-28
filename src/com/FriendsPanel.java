@@ -20,6 +20,10 @@ public  class  FriendsPanel extends JPanel {
     private JButton addFriend;
     private JOptionPane newIPs;
 
+    /**
+     * Constructor:
+     * add "Add new friends" button to panel and make JOptionPane for it;
+     */
     public FriendsPanel(){
         super();
         friends = new ArrayList<>();
@@ -58,7 +62,6 @@ public  class  FriendsPanel extends JPanel {
             String lineToCheck = str;
             String currentLine;
             while ((currentLine = reader.readLine()) != null) {
-//                 trim newline when comparing with lineToRemove
                 String trimmedLine = currentLine.trim();
                 if (trimmedLine.equals(lineToCheck))
                     return;
@@ -81,6 +84,9 @@ public  class  FriendsPanel extends JPanel {
         friends.remove(p);
     }
 
+    /**
+     * showFriends method add each friend to panel;
+     */
     public void showFriends(){
         for(Friend p :friends) {
             this.add(p);
@@ -89,6 +95,10 @@ public  class  FriendsPanel extends JPanel {
     public static ArrayList<Friend> getFriend(){
         return friends;
     }
+
+    /**
+     * makeFriend method create friend with each IP address;
+     */
     public void makeFriend(){
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\IP.txt")));
