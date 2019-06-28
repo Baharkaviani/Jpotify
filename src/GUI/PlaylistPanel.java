@@ -25,6 +25,7 @@ public class PlaylistPanel extends JPanel {
 
     /**
      * make a new panel to show playlist.
+     * also design each component;
      */
     PlaylistPanel(){
         setLayout(new BorderLayout());

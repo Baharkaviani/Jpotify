@@ -1,20 +1,29 @@
 package com;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * SeekBar class is slider of seekbar and add it to mouseListener .
+ */
 public class SeekBar implements MouseListener {
     private  int duration;
     private int sec;
     private static JSlider slider;
+
     public SeekBar(){
         super();
         slider = new JSlider();
         slider.setValue(0);
         slider.addMouseListener(this);
     }
+
+    /**
+     * setDuration method initialize slider and fields;
+     * @param i is song's lenght;
+     * @param sec is song's second;
+     */
     public void setDuration(int i , int sec){
         duration = i;
         this.sec = sec;

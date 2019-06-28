@@ -13,6 +13,7 @@ import java.util.ArrayList;
  * Album class is a button which defines a album of songs;
  * @author Yasaman Haghbin & Bahar Kaviani;
  * @since 2019;
+ * @version 1.0
  */
 public class Album extends JPanel {
     private JPanel picturePanel;

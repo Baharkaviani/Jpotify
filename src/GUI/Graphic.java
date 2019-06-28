@@ -29,6 +29,7 @@ public class Graphic {
      * the constructor
      * shows Jpotify's frame
      * dose not let user make frame smaller than a specific size
+     * also design each panel;
      */
     public Graphic()throws Exception{
         //new objects
@@ -112,6 +113,9 @@ public class Graphic {
           frame.validate();
     }
 
+    /**
+     * refreshMain method repaint main panel;
+     */
     public static void refreshMain() {
         gbc.gridy = 0;
         gbc.gridx = 0;
@@ -125,6 +129,9 @@ public class Graphic {
         main.repaint();
     }
 
+    /**
+     * show album to panel;
+     */
     public static void addAlbumToPanel(Album album){
         main.add(album,gbc);
         gbc.gridx++;
@@ -225,8 +232,5 @@ public class Graphic {
         Server s = new Server(5000);
         new Thread(s).start();
         Graphic JPotify = new Graphic();
-//        SendMusicToServer t = new SendMusicToServer();
-//        new Thread(t).start();
-//        System.out.println("salllam");
     }
 }

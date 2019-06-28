@@ -36,7 +36,7 @@ public class PlayMusic {
     }
 
     /**
-     * creatFile's method gets path from library and makes a player with it then call startPlaying method
+     * createFile's method gets path from library and makes a player with it then call startPlaying method
      * also read meta data of the song;
      */
     public synchronized static void creatFile() throws Exception {
@@ -46,6 +46,7 @@ public class PlayMusic {
             timer.cancel();
             currentLenght = 0;
         }
+
         if(!shuffle) {
             path = library.getPath();
         }
@@ -178,6 +179,12 @@ public class PlayMusic {
             System.out.println(err);
         }
     }
+
+    /**
+     * seek method close player and make new player from special byte;
+     * @param l is lenght of songs;
+     * @param sec is song's second;
+     */
     public static void seek(int l , int sec) throws Exception{
         musicFile.close();
         player.close();
@@ -203,6 +210,9 @@ public class PlayMusic {
         PlayMusic.shuffle = shuffle;
     }
 
+    /**
+     * make Timer for seekBar panel;
+     */
     private static class ChangeSeek extends TimerTask {
 
         @Override
