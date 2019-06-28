@@ -14,7 +14,7 @@ import java.awt.*;
  */
 public class PlayMusicGUI extends JPanel{
     private PlayMusicActioner playMusic;
-    private static JButton pauseAndResumeButton , back , next , stop , shuffle;
+    private static JButton pauseAndResumeButton , back , next , stop , shuffle , repeat;
     private static ImageIcon image;
     private JPanel playing ,seekBar, playButtons;
     private static MP3FileDataGUI metaData;
@@ -78,6 +78,12 @@ public class PlayMusicGUI extends JPanel{
         pauseAndResumeButton.setBackground(new Color(0x4D0C7F));
         pauseAndResumeButton.setBorder(null);
 
+        img = ImageIO.read(getClass().getResource("..\\images\\repeate.png"));
+        newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
+        repeat = new JButton(new ImageIcon(newImage));
+        repeat.setBackground(new Color(0x4D0C7F));
+        repeat.setBorder(null);
+
         //set size
         playing.setPreferredSize(new Dimension(900,50));
         totalTime.setPreferredSize(new Dimension(40, 10));
@@ -95,8 +101,10 @@ public class PlayMusicGUI extends JPanel{
         pauseAndResumeButton.addActionListener(playMusic);
         next.addActionListener(playMusic);
         back.addActionListener(playMusic);
+        repeat.addActionListener(playMusic);
 
         //add button to Playing panel;
+        playButtons.add(repeat);
         playButtons.add(shuffle);
         playButtons.add(back);
         playButtons.add(pauseAndResumeButton);
@@ -187,4 +195,7 @@ public class PlayMusicGUI extends JPanel{
         return shuffle;
     }
 
+    public JButton getRepeat() {
+        return repeat;
+    }
 }

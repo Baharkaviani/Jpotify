@@ -8,6 +8,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * AddSongToPlaylist
+ */
 public class AddSongToPlaylist implements ActionListener {
     private String path, fileName;
     private JFrame frame;

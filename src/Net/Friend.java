@@ -1,10 +1,9 @@
-package com;
+package Net;
 
-import Net.FriendListener;
+import GUI.FriendButton;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.io.IOException;
 import java.net.Socket;
 
 /**
@@ -27,8 +26,9 @@ public class Friend extends JPanel {
         super();
         try {
         this.IP = IP;
+//        Thread.sleep(10000);
         socketOutput = new Socket(IP , 5000);
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println("Error in Friend class");
             System.out.println(e);
         }
@@ -130,9 +130,6 @@ public class Friend extends JPanel {
         artistLable.setText(artist);
     }
 
-    public String getPlayListName() {
-        return playListName;
-    }
 
     public void setPlayListName(String playListName) {
         this.playListName = playListName;

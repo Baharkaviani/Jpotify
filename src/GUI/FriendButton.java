@@ -1,4 +1,4 @@
-package com;
+package GUI;
 
 import javax.swing.*;
 import java.net.Socket;

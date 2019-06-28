@@ -1,16 +1,12 @@
 package Net;
 
+import GUI.FriendsPanel;
 import Library.PlaylistLibrary;
-import com.Friend;
-import com.FriendsPanel;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.logging.SocketHandler;
 
 /**
  * @author Bahar Kaviani & Yasaman Haghbin
@@ -43,10 +39,23 @@ public class Server implements Runnable {
             socket = serverSocket.accept();
             System.out.println("Client" + " accepted");
             Handler h = new Handler(socket);
+            inputString = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            String IP = inputString.readLine();
+            friends = FriendsPanel.getFriend();
+            Friend currentFriend = null;
+            for (Friend key: friends) {
+                if((key.getIP()).equals(IP)) {
+                    key.setSocketInputput(socket);
+                    currentFriend = key;
+//                        currentFriend.setUserName(userName);
+                    output = new ObjectOutputStream((key.getSocketOutput()).getOutputStream());
+                    break;
+                }
+            }
             new Thread(h).start();
             System.out.println("thread start");
             }
-        catch(IOException e){
+        catch(Exception e){
             System.out.println();
             }
         }
@@ -64,28 +73,14 @@ public class Server implements Runnable {
             try{
                 //check the request type
 
-                inputString = new BufferedReader(new InputStreamReader(client.getInputStream()));
-
-                String IP = inputString.readLine();
 //                String userName = inputString.readLine();
 
-                friends = FriendsPanel.getFriend();
-                Friend currentFriend = null;
-                for (Friend key: friends) {
-                    if((key.getIP()).equals(IP)) {
-                        key.setSocketInputput(client);
-                        currentFriend = key;
-//                        currentFriend.setUserName(userName);
-                        output = new ObjectOutputStream((key.getSocketOutput()).getOutputStream());
-                        break;
-                    }
-                }
+
 
                 String str = "";
                 while (true) {
                     //read str from client
                     str = inputString.readLine();
-                    System.out.println(str);
                     if (str.equals("listen")) {
                         System.out.println("reicied listene");
 //                        String songSerialization = input.readUTF();
@@ -94,12 +89,11 @@ public class Server implements Runnable {
 //                        currentFriend.settime(input.readLine());
                     }
                     else if(str.equals("sharePlayList")){
-                        System.out.println("i want get your playlist");
-                        HashMap<String , String> hashMap = PlaylistLibrary.getSharePalyListMap();
-                        output.writeObject(PlaylistLibrary.getSharePalyList());
+                        HashMap<String , String> hashMap = PlaylistLibrary.getSharePlayListMap();
+                        output.writeObject(PlaylistLibrary.getSharePlayList());
                         String s =inputString.readLine().trim();
                         String path = hashMap.get(s);
-                        sendMusic("C:\\Users\\vcc\\Music\\musics\\Reza Bahram - Atash (128).mp3");
+                        sendMusic(path);
                     }
                 }
 

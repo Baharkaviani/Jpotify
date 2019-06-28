@@ -1,6 +1,7 @@
 package Net;
 
-import com.FriendButton;
+import GUI.FriendButton;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +11,10 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 /**
- * FriendListener
+ * FriendListener class manage each friend with sending message for him by socket;
+ *@author Bahar Kaviani , Yasaman Haghbin
+ * @since 2019
+ * @version : 1.0
  */
 public class FriendListener implements ActionListener {
     private Socket socketOutPut, socketInput;
@@ -30,11 +34,11 @@ public class FriendListener implements ActionListener {
         try {
             out = new PrintWriter(new OutputStreamWriter(socketOutPut.getOutputStream()));
             writeIPOnSocket();
-//            writeUserNameOnSocket();
             out.println("sharePlayList");
             out.flush();
             objectInputStream = new ObjectInputStream(socketInput.getInputStream());
             sharedPalyList = (ArrayList<String>)(objectInputStream.readObject());
+            Thread.sleep(1000);
             chooseSong();
         } catch (Exception e1) {
             System.out.println("FriendListener class");
@@ -70,7 +74,6 @@ public class FriendListener implements ActionListener {
                 count = objectInputStream.read(mybytearray);
                 if(count == 1)
                     break;
-                System.out.println(count);
                 fos.write(mybytearray, 0, count);
                 fos.flush();
             }

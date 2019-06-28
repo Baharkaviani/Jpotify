@@ -42,9 +42,9 @@ public class MP3FileData{
                 //separate data with eachOther;
                 String tag = id3.substring(0, 3);
                 if (tag.equals("TAG")) {
-                    title = id3.substring(3, 32);
-                    artist = id3.substring(33, 62);
-                    album = id3.substring(63, 91);
+                    title = (id3.substring(3, 32)).trim();
+                    artist =(id3.substring(33, 62)).trim();
+                    album = id3.substring(63, 91).trim();
                 }
                 file.close();
             } catch (Exception e) {
@@ -68,7 +68,8 @@ public class MP3FileData{
         else
             return null;
     }
-    public String getTitle() { return title; }
+    public String getTitle() {
+        return title; }
 
     public int  getSecond(){ return (int)mp3file.getLengthInSeconds(); }
 

@@ -1,4 +1,6 @@
-package com;
+package GUI;
+
+import Net.Friend;
 
 import javax.swing.*;
 import java.awt.*;
