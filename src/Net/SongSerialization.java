@@ -1,5 +1,8 @@
 package Net;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.io.Serializable;
 
 /**
@@ -19,8 +22,27 @@ public class SongSerialization implements Serializable {
 
     @Override
     public String toString(){
-        return "" + title +
-                "," + artist +
-                "," + time;
+        return  writeIPOnSocket() + ","
+                + title + ","
+                + artist + ","
+                + time;
+    }
+
+    /**
+     * when the user wants to send SongSerialization, it must first send it's IP.
+     */
+    private String writeIPOnSocket(){
+        try {
+            String IP;
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\IP.txt")));
+            if((IP = reader.readLine())!= null) {
+                reader.close();
+                return IP;
+            }
+        } catch (Exception e1) {
+            System.out.println("FriendListener class");
+            System.out.println(e1);
+        }
+        return "";
     }
 }

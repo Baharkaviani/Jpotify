@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class FriendListener implements ActionListener {
     private Socket socket;
-    private static PrintWriter out;
+    private PrintWriter out;
     private ObjectInputStream objectInputStream = null;
     private ArrayList<String> sharedPlayList;
     private String result;
@@ -26,6 +26,7 @@ public class FriendListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         socket = ((FriendButton)(e.getSource())).getSocket();
+        out = ((FriendButton)(e.getSource())).getOut();
         try {
             out.println("sharedPlayList");
             if (objectInputStream == null) {
@@ -37,10 +38,6 @@ public class FriendListener implements ActionListener {
             System.out.println("FriendListener class");
             System.out.println(e1);
         }
-    }
-
-    public static void setOut(PrintWriter o) {
-        out = o;
     }
 
     public void chooseSong() throws Exception{
@@ -58,7 +55,7 @@ public class FriendListener implements ActionListener {
         out.println(result);
         try {
 
-            String path = "D:\\Bahar\\Code\\Tamrin\\Term2-Kalbasi\\Final Project\\" + index + ".mp3";
+            String path = ".\\newMusic\\" + index + ".mp3";
             int filesize = 16*1024;
             byte [] mybytearray  = new byte [filesize];
 

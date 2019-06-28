@@ -41,20 +41,7 @@ public class Server implements Runnable {
                 Handler h = new Handler(socket);
                 new Thread(h).start();
                 System.out.println("Server class: handler run");
-
                 inputString = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                String IP = inputString.readLine();
-//                friends = FriendsPanel.getFriend();
-//                Friend currentFriend = null;
-//                for (Friend key: friends) {
-//                    if((key.getIP()).equals(IP)) {
-//                        key.setSocket(socket);
-//                        currentFriend = key;
-                        System.out.println("IP: " + IP);
-                        output = new ObjectOutputStream(socket.getOutputStream());
-//                        break;
-//                    }
-//                }
             } catch(Exception e){
                 System.out.println();
             }
@@ -75,13 +62,33 @@ public class Server implements Runnable {
                 while (true) {
                     //read str from client
                     str = inputString.readLine();
-                    System.out.println(str);
                     if (str.equals("listen")) {
                         System.out.println("received listen");
-//                        String songSerialization = input.readUTF();
-//                        currentFriend.setTitleMusic(input.readLine());
-//                        currentFriend.setArtist(input.readLine());
-//                        currentFriend.settime(input.readLine());
+
+                        String songSerialization = inputString.readLine();
+                        System.out.println(songSerialization);
+                        String[] myStrings = songSerialization.split(",");
+
+                        //read the IP
+                        String IP = myStrings[0];
+
+                        //find the friend
+                        friends = FriendsPanel.getFriend();
+                        Friend currentFriend = null;
+
+                        for (Friend key: friends) {
+                            if((key.getIP()).equals(IP)) {
+                                currentFriend = key;
+                                System.out.println("IP: " + IP);
+                                break;
+                            }
+                        }
+                        currentFriend.setTitleMusic(myStrings[1]);
+                        System.out.println("1: " + myStrings[1]);
+                        currentFriend.setArtist(myStrings[2]);
+                        System.out.println("2: " + myStrings[2]);
+                        currentFriend.settime(myStrings[3]);
+                        System.out.println("3: " + myStrings[3]);
                     }
                     else if(str.equals("sharedPlayList")){
                         System.out.println("i want get your playlist");

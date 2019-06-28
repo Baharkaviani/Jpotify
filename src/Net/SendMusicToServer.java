@@ -1,17 +1,19 @@
 package Net;
 
+import GUI.FriendsPanel;
+
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.net.*;
 import java.util.ArrayList;
 
 public class SendMusicToServer implements Runnable{
     private static SongSerialization songInfo;
     private ArrayList<Friend> friends;
-    private Socket socket;
     private PrintWriter out;
 
-    public SendMusicToServer(ArrayList<Friend> friends) { this.friends = friends;}
+    public SendMusicToServer(ArrayList<Friend> friends) {
+        this.friends = friends;
+    }
 
     @Override
     public void run() {
@@ -19,8 +21,7 @@ public class SendMusicToServer implements Runnable{
             while (true) {
                 Thread.sleep(120000);
                 for (Friend key: friends) {
-                    socket = key.getSocket();
-                    out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+                    out = key.getOut();
                     out.println("listen");
                     out.flush();
                     out.println(songInfo.toString());

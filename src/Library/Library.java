@@ -1,10 +1,6 @@
 package Library;
 
-import com.MP3FileData;
-
-import javax.print.attribute.HashAttributeSet;
 import java.io.*;
-import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -15,7 +11,7 @@ import java.util.*;
  * @version : 1.0
  */
 public abstract class Library {
-    protected  static ArrayList<String> paths;
+    protected static ArrayList<String> paths;
     protected BufferedReader musicPath;
     private static HashMap<String , String> titleMap;
 
@@ -26,8 +22,6 @@ public abstract class Library {
     public Library(){
         paths = new ArrayList();
     }
-
-
 
     /**
      * readPlayList method read song's paths and sort the paths by time;
@@ -60,6 +54,7 @@ public abstract class Library {
         //sort arrayList sec by time
         Comparator c = Collections.reverseOrder();
         Collections.sort(sec,c);
+
         //add path in paths arrayList in order of time
         for(String j : sec){
             paths.add(reverseMap.get(j));
@@ -71,7 +66,7 @@ public abstract class Library {
      *getShuffleArrayList add path to arrayList in shuffle;
      */
     public void getShuffleArrayList()throws Exception{
-        if(paths!=null)
+        if(paths != null)
             paths.removeAll(paths);
         readPlayList();
         Collections.shuffle(paths);
