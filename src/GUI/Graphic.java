@@ -12,8 +12,8 @@ import java.util.ArrayList;
 /**
  * shows each part of JPotify's window.
  * @author Bahar Kaviani & Yasaman Haghbin
- * @since : 2019 - 6 -18
- * @version : 1.0
+ * @since 18/6/2019
+ * @version 1.0
  */
 public class Graphic {
     private static JFrame frame;
@@ -76,28 +76,28 @@ public class Graphic {
         informationLine.setBackground(new Color(0x320851));
 
         //set size for panels
-        homeLine.setPreferredSize(new Dimension(190, 100));
-        musics.setPreferredSize(new Dimension(100, 150));
-        playlist.setPreferredSize(new Dimension(100, 300));
+        homeLine.setPreferredSize(new Dimension(190, 120));
+        musics.setPreferredSize(new Dimension(100, 200));
+        playlist.setPreferredSize(new Dimension(100, 280));
         friendsPanel.setPreferredSize(new Dimension(230, 100));
         playLine.setPreferredSize(new Dimension(100, 100));
         center.setPreferredSize(new Dimension(100, 100));
         informationLine.setPreferredSize(new Dimension(100, 45));
 
         //add image in main
-        main.add(new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\JJ.png")).getImage().getScaledInstance(200, 300, Image.SCALE_DEFAULT))));
+        main.add(new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\JJ.png")).getImage().getScaledInstance(150, 250, Image.SCALE_DEFAULT))));
         gbc.gridx++;
-        main.add(new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\P.png")).getImage().getScaledInstance(200, 300, Image.SCALE_DEFAULT))));
+        main.add(new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\P.png")).getImage().getScaledInstance(150, 250, Image.SCALE_DEFAULT))));
         gbc.gridx++;
-        main.add(new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\O.png")).getImage().getScaledInstance(200, 300, Image.SCALE_DEFAULT))));
+        main.add(new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\O.png")).getImage().getScaledInstance(150, 250, Image.SCALE_DEFAULT))));
         gbc.gridx++;
-        main.add(new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\T.png")).getImage().getScaledInstance(200, 300, Image.SCALE_DEFAULT))));
+        main.add(new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\T.png")).getImage().getScaledInstance(150, 250, Image.SCALE_DEFAULT))));
         gbc.gridx++;
-        main.add(new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\I.png")).getImage().getScaledInstance(200, 300, Image.SCALE_DEFAULT))));
+        main.add(new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\I.png")).getImage().getScaledInstance(150, 250, Image.SCALE_DEFAULT))));
         gbc.gridx++;
-        main.add(new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\F.png")).getImage().getScaledInstance(200, 300, Image.SCALE_DEFAULT))));
+        main.add(new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\F.png")).getImage().getScaledInstance(150, 250, Image.SCALE_DEFAULT))));
         gbc.gridx++;
-        main.add(new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\Y.png")).getImage().getScaledInstance(200, 300, Image.SCALE_DEFAULT))));
+        main.add(new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\Y.png")).getImage().getScaledInstance(150, 250, Image.SCALE_DEFAULT))));
         gbc.gridx++;
         //add panels
         homeLine.add(musics, BorderLayout.NORTH);

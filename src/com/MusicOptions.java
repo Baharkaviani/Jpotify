@@ -18,7 +18,6 @@ import java.util.Date;
  * @version : 1.0
  */
 public class MusicOptions extends JPanel implements ActionListener {
-
     private JButton library;
     private JButton song;
     private JButton album;
@@ -30,7 +29,9 @@ public class MusicOptions extends JPanel implements ActionListener {
      * @throws Exception
      */
     public MusicOptions() throws Exception{
-        setLayout(new GridLayout(5, 1));
+        JPanel panel = new JPanel();
+        this.setLayout(new BorderLayout());
+        panel.setLayout(new GridLayout(4, 1));
 
         JLabel jLabel = new JLabel("JPotify");
         Image img = ImageIO.read(getClass().getResource("..\\images\\Spotify1.jpg"));
@@ -56,16 +57,17 @@ public class MusicOptions extends JPanel implements ActionListener {
         album.setBorder(null);
 
         //initialize artist
-         artist = new JButton("Artist");
-         artist.addActionListener(new AlbumOptionListener("artist"));
-         artist.setBorder(null);
+        artist = new JButton("Artist");
+        artist.addActionListener(new AlbumOptionListener("artist"));
+        artist.setBorder(null);
 
         //add button to panel;
-        add(jLabel);
-        add(library);
-        add(song);
-        add(album);
-        add(artist);
+        this.add(jLabel, BorderLayout.NORTH);
+        this.add(panel, BorderLayout.CENTER);
+        panel.add(library);
+        panel.add(song);
+        panel.add(album);
+        panel.add(artist);
 
         //set background
         this.setBackground(new Color(0x320851));
