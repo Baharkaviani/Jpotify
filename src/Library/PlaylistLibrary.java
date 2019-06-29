@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * PlaylistLibrary extends library class and manage playList'song;
+ * PlaylistLibrary extends library class and manage playList'song.
  * @author Bahar Kaviani & Yasaman Haghbin
  * @since 24/6/2019
  * @version 1.0
@@ -26,7 +26,7 @@ public class PlaylistLibrary extends Library{
     }
 
     /**
-     * readData method read playList file and add each path to paths arrayList;
+     * readData method read playList file and add each path to paths arrayList.
      */
     public void  readData(){
         if(paths.size()!=0){
@@ -52,7 +52,7 @@ public class PlaylistLibrary extends Library{
     }
 
     /**
-     * getSharePlayList read sharePlaylist data and add it to an array list and return it;
+     * getSharePlayList read sharePlaylist data and add it to an array list and return it.
      * @return sharePlaylist'path;
      */
     public static ArrayList<String> getSharePlayList(){
@@ -74,8 +74,8 @@ public class PlaylistLibrary extends Library{
         return songsTitle;
     }
     /**
-     * getSharePlayListMap read sharePlaylist data and add it to an hashMap with song's title;
-     * @return HashMap;
+     * getSharePlayListMap read sharePlaylist data and add it to an hashMap with song's title.
+     * @return HashMap of share playlist
      */
     public static HashMap<String , String> getSharePlayListMap(){
         HashMap<String , String > songsTitle = new HashMap<>();
@@ -84,7 +84,7 @@ public class PlaylistLibrary extends Library{
             String cur;
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\sharedPlaylist.txt")));
 
-            while((cur=reader.readLine())!=null){
+            while((cur = reader.readLine()) != null){
                 info = new MP3FileData(cur);
                 songsTitle.put(info.getTitle(),cur);
             }
@@ -98,12 +98,12 @@ public class PlaylistLibrary extends Library{
 
 
     /**
-     * findPath method find index of a song'path in paths arrayList;
-     * @param path is String;
+     * findPath method find index of a song'path in paths arrayList.
+     * @param path is String
      */
     @Override
     public void findPath(String path){
-        int i=0;
+        int i = 0;
         for(String s :paths){
             if(s.equals(path)){
                 index = i;
@@ -121,8 +121,8 @@ public class PlaylistLibrary extends Library{
     @Override
     public void minussIndex() {
         index--;
-        if(index<0){
-            index=paths.size()-1;
+        if(index < 0){
+            index = paths.size()-1;
         }
     }
 
@@ -135,8 +135,8 @@ public class PlaylistLibrary extends Library{
     @Override
     public void plusIndex() {
         index++;
-        if(index==paths.size()){
-            index=0;
+        if(index == paths.size()){
+            index = 0;
         }
     }
 }

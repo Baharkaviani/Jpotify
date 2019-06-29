@@ -8,10 +8,10 @@ import java.awt.event.ActionListener;
 import java.util.*;
 
 /**
- * SongOptionListener get all song from songLibrary and add call Graphic's method to add it to panel;
- * @author Bahar Kaviani , Yasaman Haghbin
- * @since : 2019 - 6 -18
- * @version : 1.0
+ * SongOptionListener get all song from songLibrary and add call Graphic's method to add it to panel.
+ * @author Bahar Kaviani & Yasaman Haghbin
+ * @since 18/6/2019
+ * @version 1.0
  */
 public class SongOptionListener implements ActionListener {
     private SongLibrary songLibrary;
@@ -26,8 +26,9 @@ public class SongOptionListener implements ActionListener {
             System.out.println("can't open library file");
         }
     }
+
     /**
-     * actionPerformed as much as the number of paths's size creates song
+     * actionPerformed as much as the number of paths's size creates song.
     */
     @Override
     public void actionPerformed(ActionEvent e) {

@@ -10,9 +10,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * AlbumOptionListener create song whit each path of music and pass the same album'song to library class;
- *@author Yasaman Haghbin & Bahar Kaviani;
- * @since 2019;
+ * AlbumOptionListener create song with each path of music and pass the same album'song to library class.
+ * @author Yasaman Haghbin & Bahar Kaviani
+ * @since 2019
+ * @version 1.0
  */
 public class AlbumOptionListener implements ActionListener {
     private AlbumLibrary library;
@@ -28,7 +29,7 @@ public class AlbumOptionListener implements ActionListener {
     }
 
     /**
-     * @param e is event of Album Button in panel;
+     * @param e is event of Album Button in panel
      */
     @Override
     public void actionPerformed(ActionEvent e) {

@@ -13,9 +13,9 @@ import java.util.TimerTask;
 /**
  * PlayMusic plays a song which adding to library and can stop and pause it.
  * also can go to next and previous song.
- *  @author Bahar Kaviani , Yasaman Haghbin
- *  @since : 2019
- *  @version : 1.0
+ * @author Bahar Kaviani , Yasaman Haghbin
+ * @since : 2019
+ * @version : 1.0
  */
 
 public class PlayMusic {
@@ -37,8 +37,8 @@ public class PlayMusic {
     }
 
     /**
-     * createFile's method gets path from library and makes a player with it then call startPlaying method
-     * also read meta data of the song;
+     * createFile's method gets path from library and makes a player with it then call startPlaying method.
+     * also read meta data of the song.
      */
     public synchronized static void creatFile() throws Exception {
         if(ThreadPlaying.getIsPlaying()) {
@@ -95,7 +95,7 @@ public class PlayMusic {
         VolumePanel.setPlayer(player);
     }
     /**
-     * get a new path from library and call create File;
+     * get a new path from library and call create File.
      */
     public static void next() {
         try {
@@ -111,7 +111,7 @@ public class PlayMusic {
     }
 
     /**
-     * get a new path from library and call create File;
+     * get a new path from library and call create File.
      */
     public static void previous() {
         try {
@@ -128,7 +128,7 @@ public class PlayMusic {
     }
 
     /**
-     * close player and save position of file and save it in currentLenght;
+     * close player and save position of file and save it in currentLength.
      **/
     public static void pause() {
         try {
@@ -145,7 +145,7 @@ public class PlayMusic {
     }
 
     /**
-     * create a player and read the file from totalLenght-currentLenght;
+     * create a player and read the file from totalLength-currentLength.
      */
     public static void reseume() {
         try {
@@ -165,7 +165,7 @@ public class PlayMusic {
     }
 
     /**
-     * Stop method stop songs;
+     * Stop method stop songs.
      */
     public static void stop() {
         try {
@@ -201,9 +201,9 @@ public class PlayMusic {
     }
 
     /**
-     * seek method close player and make new player from special byte;
-     * @param l is lenght of songs;
-     * @param sec is song's second;
+     * seek method close player and make new player from special byte.
+     * @param l is lenght of songs
+     * @param sec is song's second
      */
     public static void seek(int l , int sec) throws Exception{
         musicFile.close();
@@ -219,7 +219,7 @@ public class PlayMusic {
         playSituation = "playing";
     }
     /**
-     * this method make a thread from ThreadPlaying class and starts it;
+     * this method make a thread from ThreadPlaying class and starts it.
      */
     public static void startPlaying(){
             ThreadPlaying t = new ThreadPlaying(player);
@@ -232,7 +232,7 @@ public class PlayMusic {
     }
 
     /**
-     * make Timer for seekBar panel;
+     * make Timer for seekBar panel.
      */
     private static class ChangeSeek extends TimerTask {
 

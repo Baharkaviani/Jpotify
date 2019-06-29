@@ -1,7 +1,7 @@
 package Library;
 
 /**
- * SongLibrary extends library class and manage Songs;
+ * SongLibrary extends library class and manage Songs.
  * @author Bahar Kaviani & Yasaman Haghbin
  * @since 24/6/2019
  * @version 1.0
@@ -14,7 +14,7 @@ public class SongLibrary extends Library{
     }
 
     /**
-     * findPath method find index of a song'path in paths arrayList;
+     * findPath method find index of a song'path in paths arrayList.
      * @param path is String;
      */
     @Override
@@ -37,15 +37,15 @@ public class SongLibrary extends Library{
     @Override
     public void minussIndex(){
         index--;
-        if(index<0){
-            index=paths.size()-1;
+        if(index < 0){
+            index = paths.size() - 1;
         }
     }
     @Override
     public void plusIndex(){
         index++;
-        if(index==paths.size()){
-            index=0;
+        if(index == paths.size()){
+            index = 0;
         }
     }
     @Override

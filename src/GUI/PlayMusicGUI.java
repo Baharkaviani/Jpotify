@@ -7,10 +7,10 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * PlayMusicGUI contains JFrame to show play,pause,stop,next,back,button and has JSlider for rewind and forward;
- * @author : Yasaman Haghbin , Bahar Kaviani
- * @since : 18/6/2019
- * @version : 1.0
+ * PlayMusicGUI contains JFrame to show play,pause,stop,next,back,button and has JSlider for rewind and forward.
+ * @author Yasaman Haghbin & Bahar Kaviani
+ * @since 18/6/2019
+ * @version 1.0
  */
 public class PlayMusicGUI extends JPanel{
     private PlayMusicActioner playMusic;
@@ -23,8 +23,8 @@ public class PlayMusicGUI extends JPanel{
     private static JLabel totalTime;
     private static JLabel remainTime;
     /**
-     * get size to button and add them in panel and add to actionListener;
-     * also make a seekbar
+     * get size to button and add them in panel and add to actionListener.
+     * also make a seekBar.
      */
     public PlayMusicGUI()throws Exception{
         //create object
@@ -129,7 +129,7 @@ public class PlayMusicGUI extends JPanel{
         slider.setDuration(i ,j);
     }
     /**
-     * setTotalLable set song's time to totalTime;
+     * setTotalLabel set song's time to totalTime.
      */
     public static void setTotalLable(int i){
         int sec,min;
@@ -143,8 +143,8 @@ public class PlayMusicGUI extends JPanel{
     }
 
     /**
-     * setRemainLable method change remainTime;
-     * @param i is new time;
+     * setRemainLabel method change remainTime.
+     * @param i is new time
      */
     public static void setRemainLable(int i){
         int sec,min;

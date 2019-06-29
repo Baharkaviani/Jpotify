@@ -9,7 +9,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * the button witch lets you to add the song to the playlist or remove it from one.
+ * the button witch lets you to add the song to the playlist or remove it from one;
  * @author Bahar Kaviani & Yasaman Haghbin
  * @since 27/6/2019
  * @version 1.0
@@ -79,10 +79,10 @@ public class AddOrRemoveSong extends JButton{
     }
 
     /**
-     * check all playlist names which the song can be added to.
-     * make an "addButtons" for that playlist.
-     * also check all playlist names which the song can be removed from.
-     * make a "deleteButtons" for that playlist.
+     * check all playlist names which the song can be added to;
+     * make an "addButtons" for that playlist;
+     * also check all playlist names which the song can be removed from;
+     * make a "deleteButtons" for that playlist;
      */
     private void canSongAdded(){
         File inputFile = new File(".\\playlistNames.txt");
@@ -111,7 +111,7 @@ public class AddOrRemoveSong extends JButton{
     }
 
     /**
-     * check if the song is in that playlist.
+     * check if the song is in that playlist;
      */
     private boolean isSongInFile(String fileName){
         File inputFile = new File(".\\" + fileName + ".txt");

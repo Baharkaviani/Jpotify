@@ -10,9 +10,9 @@ import java.util.*;
 /**
  * Library class read paths which saves, and return paths to the other class.
  * This class is abstract and SongLibrary class and AlbumClass extends it.
- * @author Bahar Kaviani , Yasaman Haghbin
- * @since : 2019
- * @version : 1.0
+ * @author Bahar Kaviani & Yasaman Haghbin
+ * @since 2019
+ * @version 1.0
  */
 public abstract class Library {
     protected  static ArrayList<String> paths;
@@ -20,8 +20,7 @@ public abstract class Library {
     private static HashMap<String , String> titleMap;
 
     /**
-     * Constructor
-     * read path from file;
+     * read path from file.
      */
     public Library(){
         paths = new ArrayList();
@@ -30,8 +29,8 @@ public abstract class Library {
 
 
     /**
-     * readPlayList method read song's paths and sort the paths by time;
-     * @throws IOException if library file can't be opened;
+     * readPlayList method read song's paths and sort the paths by time.
+     * @throws IOException if library file can't be opened
      */
     public void readPlayList() throws Exception {
         if(paths.size() != 0){
@@ -68,7 +67,7 @@ public abstract class Library {
     }
 
     /**
-     *getShuffleArrayList add path to arrayList in shuffle;
+     * getShuffleArrayList add path to arrayList in shuffle.
      */
     public void getShuffleArrayList()throws Exception{
         if(paths!=null)
@@ -78,8 +77,8 @@ public abstract class Library {
     }
 
     /**
+     * before return them read file first to return which song add to library among the playing song.
      * @return paths of songs which are add to library
-     * before return them read file first to return which song add to library among the playing song;
      */
     public ArrayList getArrayListPaths() {
         try {
@@ -92,16 +91,16 @@ public abstract class Library {
     }
 
     /**
-     * writeTime write each path's song to date file with its time
+     * writeTime write each path's song to date file with its time.
      * @param path is path of a song
      * @throws IOException if can't open the date file
      */
     public void writeTime(String path)throws IOException {
         Date date = new Date();
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(".\\date.txt",true)));
-        long e=(date.getTime()/(1000000000));
-        long re=(date.getTime()-e*1000000000)/1000;
-        out.println(path+"%"+re);
+        long e = (date.getTime() / (1000000000));
+        long re = (date.getTime() - e * 1000000000) / 1000;
+        out.println(path + "%" + re);
         out.close();
     }
 

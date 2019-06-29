@@ -5,7 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- * SeekBar class is slider of seekbar and add it to mouseListener .
+ * SeekBar class is slider of seekBar and add it to mouseListener
  */
 public class SeekBar implements MouseListener {
     private  int duration;
@@ -20,9 +20,9 @@ public class SeekBar implements MouseListener {
     }
 
     /**
-     * setDuration method initialize slider and fields;
-     * @param i is song's lenght;
-     * @param sec is song's second;
+     * setDuration method initialize slider and fields.
+     * @param i is song's length
+     * @param sec is song's second
      */
     public void setDuration(int i , int sec){
         duration = i;
@@ -48,9 +48,9 @@ public class SeekBar implements MouseListener {
     @Override
     public void mouseReleased(MouseEvent e) {
         try {
-            int i=slider.getValue();
-            int j = (i*duration)/sec;
-            PlayMusic.seek(j ,i);
+            int i = slider.getValue();
+            int j = (i * duration) / sec;
+            PlayMusic.seek(j, i);
         }catch (Exception err){
             System.out.println(err);
         }

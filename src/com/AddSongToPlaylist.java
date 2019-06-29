@@ -9,7 +9,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * AddSongToPlaylist
+ * AddSongToPlaylist is an action listener to add the song to each playlist that user wants;
+ * @author Yasaman Haghbin & Bahar Kaviani
+ * @since 29/6/2019
+ * @version 1.0
  */
 public class AddSongToPlaylist implements ActionListener {
     private String path, fileName;
@@ -21,6 +24,10 @@ public class AddSongToPlaylist implements ActionListener {
         this.frame = frame;
     }
 
+    /**
+     * write the song to the text file of selected playlist;
+     * @param e actionEvent of each playlist
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(!path.equals("")) {

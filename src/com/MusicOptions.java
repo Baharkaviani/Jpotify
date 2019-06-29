@@ -11,10 +11,10 @@ import java.io.*;
 import java.util.Date;
 
 /**
- * MusicOption is for choosing song and add them in library;
+ * MusicOption is for choosing song and add them in library
  * also create songButton
  * @author Bahar Kaviani & Yasaman Haghbin
- * @since : 2019 - 6 -18
+ * @since : 18/6/2019
  * @version : 1.0
  */
 public class MusicOptions extends JPanel implements ActionListener {
@@ -23,11 +23,13 @@ public class MusicOptions extends JPanel implements ActionListener {
     private JButton song;
     private JButton album;
     private JButton artist;
+
     /**
-     * Constructor create Button library and add it to a listener to choose file
-     * also create song library and add it to a Song listener
+     * Constructor create Button library and add it to a listener to choose file.
+     * also create song library and add it to a Song listener.
+     * @throws Exception
      */
-        public MusicOptions() throws Exception{
+    public MusicOptions() throws Exception{
         setLayout(new GridLayout(5, 1));
 
         JLabel jLabel = new JLabel("JPotify");
@@ -82,7 +84,7 @@ public class MusicOptions extends JPanel implements ActionListener {
     }
 
     /**
-     * this method make a fileChooser to choose mp3 file and save it's path to library file with its time;
+     * this method make a fileChooser to choose mp3 file and save it's path to library file with its time.
      * @param e :Event for click library button
      */
     @Override

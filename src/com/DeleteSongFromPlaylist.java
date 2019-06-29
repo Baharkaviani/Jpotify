@@ -5,6 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
+/**
+ * DeleteSongFromPlaylist is an action listener to remove the song from each playlist that user wants.
+ * @author Yasaman Haghbin & Bahar Kaviani
+ * @since 29/6/2019
+ * @version 1.0
+ */
 public class DeleteSongFromPlaylist implements ActionListener {
     private String path, fileName;
     private JFrame frame;
@@ -15,6 +21,10 @@ public class DeleteSongFromPlaylist implements ActionListener {
         this.frame = frame;
     }
 
+    /**
+     * delete the song from the text file of selected playlist.
+     * @param e actionEvent of each playlist
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         File inputFile = new File(".\\" + fileName + ".txt");

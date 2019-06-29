@@ -1,22 +1,21 @@
 package Listener;
 
 import GUI.*;
-import com.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import GUI.*;
 import com.PlayMusic;
 import com.ThreadPlaying;
 
 /**
- * PlayMusicActioner manage the event of PlayMusicGUI panel;
- * @author Bahar Kaviani , Yasaman Haghbin
- * @since : 2019
- * @version : 1.0
+ * PlayMusicActioner manage the event of PlayMusicGUI panel.
+ * @author Bahar Kaviani & Yasaman Haghbin
+ * @since 2019
+ * @version 1.0
  */
 public class PlayMusicActioner implements ActionListener {
 
     private PlayMusicGUI GUI;
+
     /**
      * @param GUI is panel of buttons
      */
@@ -25,9 +24,9 @@ public class PlayMusicActioner implements ActionListener {
     }
 
     /**
-     *if event is pause : call pause method of playMusic class and set icon;
-     *if event is resume : call resume method of playMusic class and set icon;
-     * also manage next and previous and shuffle event;
+     * if event is pause : call pause method of playMusic class and set icon.
+     * if event is resume : call resume method of playMusic class and set icon.
+     * also manage next and previous and shuffle event.
      */
     @Override
     public void actionPerformed(ActionEvent e) {

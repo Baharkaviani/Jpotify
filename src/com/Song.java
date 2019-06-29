@@ -8,9 +8,9 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 
 /**
- * Song class create button which has path and title and set artWork and title of each song to it's button;
- * @author Bahar Kaviani , Yasaman Haghbin
- * @since : 2019 - 6 -18
+ * Song class create button which has path and title and set artWork and title of each song to it's button.
+ * @author Bahar Kaviani & Yasaman Haghbin
+ * @since : 18/6/2019
  * @version : 1.0
  */
 public class Song extends JPanel {
@@ -25,7 +25,7 @@ public class Song extends JPanel {
     private MP3FileData mp3FileData;
 
     /**
-     * Constructor get data of song and set it to button and add each button to SongActionListener;
+     * Constructor get data of song and set it to button and add each button to SongActionListener.
      */
     public Song(String path) throws Exception {
         //initialize the panel
@@ -112,7 +112,7 @@ public class Song extends JPanel {
     }
 
     /**
-     * check if the song was liked or not
+     * check if the song was liked or not.
      * @param path the path of the song
      * @return true if the path as written in "favoriteSongs.txt" file
      */
@@ -141,7 +141,7 @@ public class Song extends JPanel {
     }
 
     /**
-     * check if the song was liked or not
+     * check if the song was liked or not.
      * @param path the path of the song
      * @return true if the path as written in "sharedPlaylist.txt" file
      */

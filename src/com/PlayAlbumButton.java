@@ -6,20 +6,18 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
 /**
- * This class describes playIcon of each Album;
- * When the user click on this button the song will play
+ * This class describes playIcon of each Album.
+ * When the user click on this button the song will play.
  * @author Bahar Kaviani & Yasaman Haghbin
  * @since 24/6/2019
  * @version 1.0
  */
-
 public class PlayAlbumButton extends JButton {
     private ArrayList songs;
 
     /**
-     * @param songs is all of the songs we have;
+     * @param songs is all of the songs we have
      */
     public PlayAlbumButton(ArrayList songs){
         super();
@@ -38,7 +36,7 @@ public class PlayAlbumButton extends JButton {
     }
 
     /**
-     * @return first song's album path;
+     * @return first song's album path
      */
     public String getFirstPath(){
         return ((Song)songs.get(0)).getPath();

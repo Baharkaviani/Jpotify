@@ -217,6 +217,12 @@ class ShowSongs implements ActionListener{
     }
 }
 
+/**
+ * A listener can let songs in a playlist to change their positions in a playlist.
+ * @author Bahar Kaviani & Yasaman Haghbin
+ * @since 24/6/2019
+ * @version 1.0
+ */
 class ReverseTwoSong implements ActionListener{
     private String fileName;
     //for changing two elements of a playlist
@@ -261,6 +267,12 @@ class ReverseTwoSong implements ActionListener{
         }
     }
 
+    /**
+     * Reverse the place of two songs in a playlist
+     * @param fileName the file name of playlist
+     * @param firstPath path of first song clicked
+     * @param secondPath path of second song clicked
+     */
     public void reverse(String fileName, String firstPath, String secondPath){
         //delete the name from "playlistNames.txt" file
         File inputFile = new File(fileName);

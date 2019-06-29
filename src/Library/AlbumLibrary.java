@@ -5,8 +5,9 @@ import java.util.*;
 
 /**
  * AlbumLibrary class extends Library.This class match songs which have same album name.
- * @author Yasaman Haghbin, Bahar Kaviani;
- * @since 2019;
+ * @author Yasaman Haghbin & Bahar Kaviani
+ * @since 2019
+ * @version 1.0
  */
 
 public class AlbumLibrary extends Library{
@@ -15,7 +16,7 @@ public class AlbumLibrary extends Library{
     private MP3FileData data ;
     //key is albumName,value is paths
     private LinkedHashMap<String, ArrayList<String>> reverseMap = new LinkedHashMap<>();
-    private String sit , info;
+    private String sit, info;
 
     public AlbumLibrary(String situation)throws Exception{
         super();
@@ -24,7 +25,7 @@ public class AlbumLibrary extends Library{
         findSameAlbumSong();
     }
     /**
-     * fillHashMap method fill the pathAndAlbumMap with paths of song and their albumName;
+     * fillHashMap method fill the pathAndAlbumMap with paths of song and their albumName.
      */
     private void fillHashMap(){
         try {
@@ -48,7 +49,7 @@ public class AlbumLibrary extends Library{
     }
 
     /**
-     * findSameAlbumSong method add song which have same album in a hashMap;
+     * findSameAlbumSong method add song which have same album in a hashMap.
      */
     private void findSameAlbumSong() throws Exception{
         readPlayList();
@@ -72,7 +73,7 @@ public class AlbumLibrary extends Library{
     }
 
     /**
-     * findPath method set paths arrayList with songs which having same albumName;
+     * findPath method set paths arrayList with songs which having same albumName.
      * @param path is path of a song
      */
     public void findPath(String path){
@@ -93,8 +94,8 @@ public class AlbumLibrary extends Library{
     @Override
     public void minussIndex(){
         index--;
-        if(index<0){
-            index = paths.size()-1;
+        if(index < 0){
+            index = paths.size() - 1;
         }
     }
 

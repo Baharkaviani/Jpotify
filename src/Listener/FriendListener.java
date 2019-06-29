@@ -11,10 +11,10 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 /**
- * FriendListener class manage each friend with sending message for him by socket;
- *@author Bahar Kaviani , Yasaman Haghbin
+ * FriendListener class manage each friend with sending message for him by socket
+ * @author Bahar Kaviani & Yasaman Haghbin
  * @since 2019
- * @version : 1.0
+ * @version 1.0
  */
 public class FriendListener implements ActionListener {
     private Socket socketOutPut, socketInput;
@@ -46,8 +46,11 @@ public class FriendListener implements ActionListener {
         }
     }
 
+    /**
+     * Choose song to download.
+     * @throws Exception
+     */
     public void chooseSong() throws Exception{
-
         JFrame frame = new JFrame();
         frame.setSize(300,300);
         frame.setLayout(new BorderLayout());
@@ -62,8 +65,7 @@ public class FriendListener implements ActionListener {
         out.println(result);
         out.flush();
         try {
-
-            String path = "C:\\Users\\vcc\\Music\\musics\\"+index+".mp3";
+            String path = "C:\\Users\\vcc\\Music\\musics\\" + index + ".mp3";
             int filesize = 16*1024;
             byte [] mybytearray  = new byte [filesize];
 
@@ -95,24 +97,6 @@ public class FriendListener implements ActionListener {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\IP.txt")));
             if((IP = reader.readLine())!= null) {
                 out.println(IP);
-                out.flush();
-            }
-            reader.close();
-        } catch (Exception e1) {
-            System.out.println("FriendListener class");
-            System.out.println(e1);
-        }
-    }
-
-    /**
-     * if the user connects to server, server should have it's user name.
-     */
-    private void writeUserNameOnSocket(){
-        try {
-            String user;
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\user.txt")));
-            if((user = reader.readLine())!= null) {
-                out.println(user);
                 out.flush();
             }
             reader.close();

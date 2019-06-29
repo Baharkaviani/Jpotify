@@ -7,7 +7,7 @@ import java.awt.*;
 import java.io.*;
 
 /**
- * shows each part of JPotify's window
+ * shows each part of JPotify's window.
  * @author Bahar Kaviani & Yasaman Haghbin
  * @since : 2019 - 6 -18
  * @version : 1.0
@@ -26,10 +26,9 @@ public class Graphic {
     public  static String IP;
 
     /**
-     * the constructor
-     * shows Jpotify's frame
-     * dose not let user make frame smaller than a specific size
-     * also design each panel;
+     * shows Jpotify's frame.
+     * dose not let user make frame smaller than a specific size.
+     * also design each panel.
      */
     public Graphic()throws Exception{
         //new objects
@@ -82,6 +81,21 @@ public class Graphic {
         center.setPreferredSize(new Dimension(100, 100));
         informationLine.setPreferredSize(new Dimension(100, 45));
 
+        //add image in main
+        main.add(new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\JJ.png")).getImage().getScaledInstance(200, 300, Image.SCALE_DEFAULT))));
+        gbc.gridx++;
+        main.add(new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\P.png")).getImage().getScaledInstance(200, 300, Image.SCALE_DEFAULT))));
+        gbc.gridx++;
+        main.add(new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\O.png")).getImage().getScaledInstance(200, 300, Image.SCALE_DEFAULT))));
+        gbc.gridx++;
+        main.add(new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\T.png")).getImage().getScaledInstance(200, 300, Image.SCALE_DEFAULT))));
+        gbc.gridx++;
+        main.add(new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\I.png")).getImage().getScaledInstance(200, 300, Image.SCALE_DEFAULT))));
+        gbc.gridx++;
+        main.add(new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\F.png")).getImage().getScaledInstance(200, 300, Image.SCALE_DEFAULT))));
+        gbc.gridx++;
+        main.add(new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("..\\images\\Y.png")).getImage().getScaledInstance(200, 300, Image.SCALE_DEFAULT))));
+        gbc.gridx++;
         //add panels
         homeLine.add(musics, BorderLayout.NORTH);
         homeLine.add(playlist, BorderLayout.CENTER);
@@ -100,8 +114,8 @@ public class Graphic {
     }
 
     /**
-     * @param song is the music which add to library;
-     * this method add artWork and title of song to main panel;
+     * @param song is the music which add to library.
+     * this method add artWork and title of song to main panel.
      */
     public static void addSongToPanel(Song song){
           main.add(song,gbc);
@@ -114,7 +128,7 @@ public class Graphic {
     }
 
     /**
-     * refreshMain method repaint main panel;
+     * refreshMain method repaint main panel.
      */
     public static void refreshMain() {
         gbc.gridy = 0;
@@ -130,7 +144,7 @@ public class Graphic {
     }
 
     /**
-     * show album to panel;
+     * show album to panel.
      */
     public static void addAlbumToPanel(Album album){
         main.add(album,gbc);
@@ -143,8 +157,8 @@ public class Graphic {
     }
 
     /**
-     * Show a dialog asking the user to type in a String
-     * for the first time user wants to use the application
+     * Show a dialog asking the user to type in a String.
+     * for the first time user wants to use the application.
      * @return the IP
      */
     public String showIPAsking(){
@@ -169,7 +183,7 @@ public class Graphic {
     }
 
     /**
-     * write the user's IP to the IP.txt file
+     * write the user's IP to the IP.txt file.
      * @param IP the user's IP
      */
     public void getAndWriteIP(String IP){
@@ -186,8 +200,8 @@ public class Graphic {
     }
 
     /**
-     * Show a dialog asking the user to type in a String
-     * for the first time user wants to use the application
+     * Show a dialog asking the user to type in a String.
+     * for the first time user wants to use the application.
      * @return the userName
      */
     public String showUserNameAsking(){
@@ -212,7 +226,7 @@ public class Graphic {
     }
 
     /**
-     * write the user's userName to the user.txt file
+     * write the user's userName to the user.txt file.
      * @param userName the user's IP
      */
     public void getAndWriteUserName(String userName){

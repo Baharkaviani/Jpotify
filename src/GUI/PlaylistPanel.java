@@ -11,7 +11,7 @@ import java.util.HashMap;
 import javax.swing.JList;
 
 /**
- * the playlist panel
+ * the playlist panel makes a panel to show user playlist names.
  * @author Bahar Kaviani & Yasaman Haghbin
  * @since 21/6/2019
  * @version 1.0
@@ -25,7 +25,7 @@ public class PlaylistPanel extends JPanel {
 
     /**
      * make a new panel to show playlist.
-     * also design each component;
+     * also design each component.
      */
     PlaylistPanel(){
         setLayout(new BorderLayout());

@@ -8,7 +8,7 @@ import java.awt.*;
 import java.io.*;
 
 /**
- * shows the user's IP
+ * shows the user's IP.
  * @author Bahar Kaviani & Yasaman Haghbin
  * @since 26/6/2019
  * @version 1.0
@@ -41,7 +41,7 @@ public class InformationPanel extends JPanel {
     }
 
     /**
-     * read the user's IP
+     * read the user's IP.
      * @return IP
      */
     private String ReadUserIP(){
@@ -58,7 +58,7 @@ public class InformationPanel extends JPanel {
     }
 
     /**
-     * read the user's userName
+     * read the user's userName.
      * @return userName
      */
     private String ReadUserName(){

@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.*;
 
 /**
- * When the user click on this button the song will be added to the favoriteSongs
+ * When the user click on this button the song will be added to the favoriteSongs.
  * @author Bahar Kaviani & Yasaman Haghbin
  * @since 24/6/2019
  * @version 1.0
@@ -46,6 +46,9 @@ class FavoriteButton extends JButton {
             }
         }
 
+        /**
+         * change the color of like button.
+         */
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -82,7 +85,7 @@ class FavoriteButton extends JButton {
     }
 
     /**
-     * write the name of the song to "favoriteSongs.txt" file
+     * write the name of the song to "favoriteSongs.txt" file.
      * set the "pressed" button true
      */
     private void AddSongToFavoriteSongs(){
@@ -100,7 +103,7 @@ class FavoriteButton extends JButton {
     }
 
     /**
-     * delete the name of the song from "favoriteSongs.txt" file
+     * delete the name of the song from "favoriteSongs.txt" file.
      * set the "pressed" button false
      */
     private void RemoveSongFromFavoriteSongs(){

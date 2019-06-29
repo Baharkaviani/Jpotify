@@ -9,10 +9,10 @@ import java.awt.event.MouseListener;
 import java.io.IOException;
 
 /**
- * VolumePanel class manage the player volume with a slider;
- * @author : Yasaman Haghbin , Bahar Kaviani
- * @since : 18/6/2019
- * @version : 1.0
+ * VolumePanel class manage the player volume with a slider.
+ * @author Yasaman Haghbin & Bahar Kaviani
+ * @since 18/6/2019
+ * @version 1.0
  */
 public class VolumePanel extends JPanel implements MouseListener {
 
@@ -22,7 +22,7 @@ public class VolumePanel extends JPanel implements MouseListener {
     private static float v = 100;
 
     /**
-     * set a slider and an icon foe volume panel;
+     * set a slider and an icon for volume panel.
      */
     public VolumePanel(){
         this.setPreferredSize(new Dimension(200,150));
@@ -40,7 +40,7 @@ public class VolumePanel extends JPanel implements MouseListener {
     }
 
     /**
-     * @param music is a player which we want to change it volume;
+     * @param music is a player which we want to change it volume.
      */
     public static void setPlayer(Player music){
         player = music;
@@ -48,7 +48,7 @@ public class VolumePanel extends JPanel implements MouseListener {
     }
 
     /**
-     * setMuteIcon method change volume ;
+     * setMuteIcon method change volume.
      */
     public void setMuteIcon(){
         try {
@@ -62,7 +62,7 @@ public class VolumePanel extends JPanel implements MouseListener {
         }
     }
     /**
-     * setMuteIcon method change volume ;
+     * setMuteIcon method change volume.
      */
     public void setVolumeIcon(){
         try {
@@ -86,20 +86,20 @@ public class VolumePanel extends JPanel implements MouseListener {
     }
 
     /**
-     * get slider value and set that value for player volume;
+     * get slider value and set that value for player volume.
      */
     @Override
     public void mouseReleased(MouseEvent e) {
         v = slider.getValue();
 
-        if(v<20.0){
+        if(v < 20.0){
             setMuteIcon();
 
         }
         else
             setVolumeIcon();
-        float a =0.8f;
-        v = (a*v)-80;
+        float a = 0.8f;
+        v = (a * v) - 80;
         player.setVolume(v);
     }
 

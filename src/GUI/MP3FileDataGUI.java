@@ -7,17 +7,17 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 
 /**
- * MP3FileDataGUI is for showing meta data like artWork and artist's name;
- * @author : Yasaman Haghbin & Bahar Kaviani
- * @since : 18/6/2019
- * @version : 1.0
+ * MP3FileDataGUI is for showing meta data like artWork and artist's name.
+ * @author Yasaman Haghbin & Bahar Kaviani
+ * @since 18/6/2019
+ * @version 1.0
  */
 public class MP3FileDataGUI extends JPanel {
     private JPanel artWorkPanel, information;
     private JLabel artWork , title , artist;
 
     /**
-     * constructor initialize lable and set them in Layout
+     * constructor initializes label and set them in Layout.
      */
     public MP3FileDataGUI(){
         artWorkPanel = new JPanel();
@@ -49,8 +49,8 @@ public class MP3FileDataGUI extends JPanel {
     }
 
     /**
-     * SetTitle sets title name to title lable ;
-     * @param titleName is title of song and if song hasn't title write "music hasn't titleName";
+     * SetTitle sets title name to title label.
+     * @param titleName is title of song and if song hasn't title write "music hasn't titleName".
      */
     public void setTitle(String titleName){
         title.setText("");
@@ -64,8 +64,8 @@ public class MP3FileDataGUI extends JPanel {
     }
 
     /**
-     * SetArtist sets artist name to artist lable ;
-     * @param singerName is artist'name of song and if song hasn't artist's name write "music hasn't artistName";
+     * SetArtist sets artist name to artist label.
+     * @param singerName is artist'name of song and if song hasn't artist's name write "music hasn't artistName".
      */
     public void setArtist(String singerName){
         artist.setText("");
@@ -79,9 +79,9 @@ public class MP3FileDataGUI extends JPanel {
     }
 
     /**
-     * SetArtwork sets image's song to artWork lable ;
+     * SetArtwork sets image's song to artWork label.
      * @param bis is  byteArray of image
-     * @throws Exception if fileImage cant't be open.
+     * @throws Exception if fileImage cant't be open
      */
     public void setArtwork(ByteArrayInputStream bis)throws Exception {
         artWork.setIcon(null);

@@ -6,9 +6,9 @@ import java.io.File;
 import java.io.FileInputStream;
 
 /**
- * MP3FileData class read title's music , artist's name ,album and image of album from mp3File with mp3agic;
- * @author : Yasaman Haghbin , Bahar Kaviani
- * @since : 2019 - 6 -18
+ * MP3FileData class read title's music , artist's name ,album and image of album from mp3File with mp3agic.
+ * @author : Yasaman Haghbin & Bahar Kaviani
+ * @since : 18/6/2019
  * @version : 1.0
  */
 public class MP3FileData{
@@ -20,8 +20,8 @@ public class MP3FileData{
     private FileInputStream file ;
 
     /**
-     * @param path is absolute path of mp3File;
-     * @throws Exception if path is wrong;
+     * @param path is absolute path of mp3File
+     * @throws Exception if path is wrong
      */
     public MP3FileData(String path) throws Exception{
         this.path = path;
@@ -53,7 +53,7 @@ public class MP3FileData{
     }
 
     /**
-     * @return byteArray which includes image's byte;
+     * @return byteArray which includes image's byte
      */
     public ByteArrayInputStream getImageByte() throws Exception{
         mp3file = new Mp3File(path);

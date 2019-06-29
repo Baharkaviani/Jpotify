@@ -11,7 +11,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 /**
- * user can ask to connect to new IPs
+ * user can ask to connect to new IPs.
  * @author Bahar Kaviani & Yasaman Haghbin
  * @since 26/6/2019
  * @version 1.0
@@ -22,8 +22,7 @@ public class FriendsPanel extends JPanel {
     private JOptionPane newIPs;
 
     /**
-     * Constructor:
-     * add "Add new friends" button to panel and make JOptionPane for it;
+     * add "Add new friends" button to panel and make JOptionPane for it.
      */
     public FriendsPanel(){
         super();
@@ -89,7 +88,7 @@ public class FriendsPanel extends JPanel {
     }
 
     /**
-     * showFriends method add each friend to panel;
+     * showFriends method add each friend to panel.
      */
     public void showFriends(){
         for(Friend p :friends) {
@@ -102,7 +101,7 @@ public class FriendsPanel extends JPanel {
     }
 
     /**
-     * makeFriend method create friend with each IP address;
+     * makeFriend method create friend with each IP address.
      */
     public void makeFriend(){
         try {

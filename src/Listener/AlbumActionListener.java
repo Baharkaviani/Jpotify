@@ -6,9 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * AlbumActionListener manage the press of each album in panel;
- * @author Yasaman Haghbin & Bahar Kaviani;
- * @since 2019;
+ * AlbumActionListener manage the press of each album in panel.
+ * @author Yasaman Haghbin & Bahar Kaviani
+ * @since 2019
+ * @version 1.0
  */
 public class AlbumActionListener implements ActionListener {
     AlbumLibrary albumLibrary;
@@ -19,14 +20,14 @@ public class AlbumActionListener implements ActionListener {
     }
 
     /**
-     *This method find first path of album event to;
+     *This method find first path of album event to.
      */
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-                String path = ((PlayAlbumButton) e.getSource()).getFirstPath();
-                albumLibrary.findPath(path);
-                playMusic = new PlayMusic(albumLibrary);
+            String path = ((PlayAlbumButton) e.getSource()).getFirstPath();
+            albumLibrary.findPath(path);
+            playMusic = new PlayMusic(albumLibrary);
         }
         catch (Exception err){
             System.out.println("AlbumActionListener class");

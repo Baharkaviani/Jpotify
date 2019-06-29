@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.*;
 
 /**
- * When the user click on this button the song will be added to the sharedSongs
+ * When the user click on this button the song will be added to the sharedSongs.
  * @author Bahar Kaviani & Yasaman Haghbin
  * @since 24/6/2019
  * @version 1.0
@@ -82,8 +82,8 @@ public class SharedButton extends JButton {
     }
 
     /**
-     * write the name of the song to "sharedPlaylist.txt" file
-     * set the "pressed" button true
+     * write the name of the song to "sharedPlaylist.txt" file.
+     * set the "pressed" button true.
      */
     private void AddSongToSharedSongs(){
         if(!path.equals("")) {
@@ -100,8 +100,8 @@ public class SharedButton extends JButton {
     }
 
     /**
-     * delete the name of the song from "sharedPlaylist.txt" file
-     * set the "pressed" button false
+     * delete the name of the song from "sharedPlaylist.txt" file.
+     * set the "pressed" button false.
      */
     private void RemoveSongFromSharedSongs(){
         //delete the name from "playlistNames.txt" file

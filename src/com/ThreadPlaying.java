@@ -5,9 +5,9 @@ import javazoom.jl.player.Player;
 import java.io.FileInputStream;
 
 /**
- * ThreadPlaying implements Runnable and play music;
- * @author Bahar Kaviani , Yasaman Haghbin
- * @since : 2019 - 6 -18
+ * ThreadPlaying implements Runnable and play music.
+ * @author Bahar Kaviani & Yasaman Haghbin
+ * @since : 18/6/2019
  * @version : 1.0
  */
 public class ThreadPlaying implements Runnable{
@@ -33,7 +33,7 @@ public class ThreadPlaying implements Runnable{
     }
 
     /**
-     * play player which passed to constructor;
+     * play player which passed to constructor.
      */
     @Override
     public void run(){

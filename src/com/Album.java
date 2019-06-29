@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Album class is a button which defines a album of songs;
- * @author Yasaman Haghbin & Bahar Kaviani;
- * @since 2019;
+ * Album class is a button which defines a album of songs.
+ * @author Yasaman Haghbin & Bahar Kaviani
+ * @since 2019
  * @version 1.0
  */
 public class Album extends JPanel {
@@ -32,8 +32,8 @@ public class Album extends JPanel {
     }
 
     /**
-     * makeAlbum method read first album's song and get its data from MP3FileData class
-     * also add it to Listener;
+     * makeAlbum method read first album's song and get its data from MP3FileData class.
+     * also add it to Listener.
      */
     public void makeAlbum() throws Exception{
         this.setBackground(new Color(0x320851));
@@ -104,8 +104,8 @@ public class Album extends JPanel {
     }
 
     /**
-     * setSongs add a song to album arrayList which its name is songs;
-     * @param song is a song which must be add to album;
+     * setSongs add a song to album arrayList which its name is songs.
+     * @param song is a song which must be add to album
      */
     public void setSongs(Song song){
         songs.add(song);

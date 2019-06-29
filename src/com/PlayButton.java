@@ -6,16 +6,17 @@ import java.awt.*;
 import java.io.IOException;
 
 /**
- * This class describes playIcon of each song;
- * When the user click on this button the song will play
+ * This class describes playIcon of each song.
+ * When the user click on this button the song will play.
  * @author Bahar Kaviani & Yasaman Haghbin
  * @since 24/6/2019
  * @version 1.0
  */
 public class PlayButton extends JButton {
     private String path;
+
     /**
-     * @param path is song's path;
+     * @param path is song's path
      */
     public PlayButton(String path){
         super();

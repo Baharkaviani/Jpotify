@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.HashMap;
 
 /**
- * addMusicAction can let you add your new playlist to the program
+ * AddMusicAction can let you add your new playlist to the program.
  * @author Bahar Kaviani & Yasaman Haghbin
  * @since 22/6/2019
  * @version 1.0
@@ -51,6 +51,13 @@ public class AddPlaylistAction implements ActionListener {
 
         //add actionListener to the submitButton button
         makePlaylist.addActionListener(new ActionListener() {
+            /**
+             * Make new playlist if user clicks on "makePlaylist" button.
+             * Make new text file for new playlist.
+             * Add the new playlist name to "playlistNames.txt".
+             * Add it to the list.
+             * @param e
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(!playlistName.getText().equals("")) {
@@ -102,7 +109,7 @@ public class AddPlaylistAction implements ActionListener {
     }
 
     /**
-     * check if the new name can be added to the playlist names
+     * check if the new name can be added to the playlist names.
      * @param list name of playlist
      * @param name the new name which user wants to add
      * @return true if we can add "name" to the list

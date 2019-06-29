@@ -9,9 +9,9 @@ import java.awt.*;
 import java.net.Socket;
 
 /**
- * Friend class describe friend's of client and make panel for him;
- *@author Yasaman Haghbin & Bahar Kaviani;
- *@since 2019;
+ * Friend class describe friend's of client and make panel for him.
+ * @author Yasaman Haghbin & Bahar Kaviani
+ * @since 28/6/2019
  * @version 1.0
  */
 public class Friend extends JPanel {
@@ -22,7 +22,7 @@ public class Friend extends JPanel {
     private FriendListener friendListener;
 
     /**
-     * make panel and get IP to make socket for friend;
+     * make panel and get IP to make socket for friend.
      */
     public Friend(String IP) {
         super();
@@ -102,7 +102,7 @@ public class Friend extends JPanel {
 
     public void settime(String tim) {
         time = tim;
-        t.setText("Time  "+time);
+        t.setText("Time  " + time);
     }
 
     public String getUserName() {
@@ -127,6 +127,10 @@ public class Friend extends JPanel {
         return artist;
     }
 
+    /**
+     * Set artist for friend and show to on ""artistLabel.
+     * @param artist The artist of song, witch user's friend used to listen in sharePlaylist.
+     */
     public void setArtist(String artist) {
         this.artist = artist;
         artistLable.setText(artist);
@@ -138,6 +142,10 @@ public class Friend extends JPanel {
         playName.setText(playListName);
     }
 
+    /**
+     * set socket friend socket and it's listener.
+     * @param socket the socket which connects user whit the friend
+     */
     public void setSocketInputput(Socket socket){
         socketInput = socket;
         friendListener.setSocketInput(socket);
