@@ -12,8 +12,8 @@ import java.util.ArrayList;
 /**
  * shows each part of JPotify's window.
  * @author Bahar Kaviani & Yasaman Haghbin
- * @since : 2019 - 6 -18
- * @version : 1.0
+ * @since 18/6/2019
+ * @version 1.0
  */
 public class Graphic {
     private static JFrame frame;

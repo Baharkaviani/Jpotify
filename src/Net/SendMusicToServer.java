@@ -25,7 +25,6 @@ public class SendMusicToServer implements Runnable{
     public void run() {
         try {
             while (true) {
-                Thread.sleep(120000);
                 if(songInfo!=null){
                 for (Friend key: friends) {
                     out = key.getOut();
@@ -36,6 +35,7 @@ public class SendMusicToServer implements Runnable{
                     out.flush();
                   }
                 }
+                Thread.sleep(120000);
             }
         }catch (Exception err){
             System.out.println("Time class");

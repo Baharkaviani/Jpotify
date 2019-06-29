@@ -89,11 +89,8 @@ public class Server implements Runnable {
                         currentFriend.settime(myStrings[3]);
                     }
                     else if(str.equals("sharedPlayList")){
-                        System.out.println("i want get your playlist");
-                        System.out.println(output);
                         HashMap<String , String> hashMap = PlaylistLibrary.getSharePlayListMap();
                         output.writeObject(PlaylistLibrary.getSharePlayList());
-                        System.out.println("write the playlist hashMap for friend");
                         String s = inputString.readLine().trim();
                         String path = hashMap.get(s);
                         sendMusic(path);
@@ -115,7 +112,7 @@ public class Server implements Runnable {
                 FileInputStream fis = new FileInputStream(myFile);
                 System.out.println("Sending...");
                 int count;
-                while ((count = fis.read(mybytearray)) > 0) {
+                if((count = fis.read(mybytearray)) > 0) {
                     output.write(mybytearray, 0, count);
                     output.flush();
                 }

@@ -21,7 +21,6 @@ public class FriendListener implements ActionListener {
     private ObjectInputStream objectInputStream = null;
     private ArrayList<String> sharedPlayList;
     private String result;
-    private int index = 1;
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -60,7 +59,7 @@ public class FriendListener implements ActionListener {
         out.println(result);
         try {
 
-            String path = ".\\newMusic\\" + index + ".mp3";
+            String path = ".\\newMusic\\" + result + ".mp3";
             int filesize = 16 * 1024;
             byte[] mybytearray = new byte[filesize];
 
@@ -75,7 +74,6 @@ public class FriendListener implements ActionListener {
                 fos.flush();
             }
             fos.close();
-            index++;
             System.out.println("finish");
         } catch (Exception e) {
             System.out.println("FriendListener error: ");
