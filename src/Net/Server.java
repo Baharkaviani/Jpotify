@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
+ * Manage the friend's request.
  * @author Bahar Kaviani & Yasaman Haghbin
  * @since 26/8/2019
  * @version 1.0
@@ -99,11 +100,15 @@ public class Server implements Runnable {
 
             } catch (Exception e){
                 System.out.println("server Error : in run method");
-                System.out.println(e);
+                System.err.println();
             }
         }
 
-        public void sendMusic(String path) {
+        /**
+         * Sending file to friend with socket.
+         * @param path the path of selected song
+         */
+        private void sendMusic(String path) {
             try {
                 System.out.println("start sendMusic");
                 File myFile = new File(path);
@@ -123,7 +128,7 @@ public class Server implements Runnable {
                 System.out.println("finish sending");
             }catch (Exception e){
                 System.out.println("sendMusic method");
-                System.out.println(e);
+                System.err.println();
             }
         }
     }

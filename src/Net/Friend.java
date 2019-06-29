@@ -27,10 +27,11 @@ public class Friend extends JPanel {
     /**
      * make panel and get IP to make socket for friend.
      */
-    public Friend(String IP) {
+    public Friend(String IP, String userName) {
         super();
         try {
         this.IP = IP;
+        this.userName = userName;
         socket = new Socket(IP , 5000);
         out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
         } catch (IOException e) {

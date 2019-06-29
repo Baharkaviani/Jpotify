@@ -17,7 +17,6 @@ import java.util.ArrayList;
 public class FriendsPanel extends JPanel {
     private static ArrayList<Friend> friends;
     private JButton addFriend;
-    private JOptionPane newIPs;
 
     /**
      * add "Add new friends" button to panel and make JOptionPane for it.
@@ -42,10 +41,17 @@ public class FriendsPanel extends JPanel {
         addFriend.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //get the new IP and write it
                 String inputIP = JOptionPane.showInputDialog("Please enter your friend's IP");
-                newIPs = new JOptionPane(inputIP);
+                JOptionPane newIPs = new JOptionPane(inputIP);
                 writeNewIP(inputIP);
-                Friend newFriend = new Friend(inputIP);
+
+                //get the new userName and write it
+                String inputUserName = JOptionPane.showInputDialog("Please enter your friend's userName");
+                JOptionPane newUserNames = new JOptionPane(inputUserName);
+                writeNewUserName(inputUserName);
+
+                Friend newFriend = new Friend(inputIP, inputUserName);
                 addFriend(newFriend);
                 add(newFriend);
             }
@@ -57,18 +63,43 @@ public class FriendsPanel extends JPanel {
      */
     public void writeNewIP(String str){
         try {
-//            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\IP.txt")));
-//            reader.readLine();
-//            String lineToCheck = str;
-//            String currentLine;
-//            while ((currentLine = reader.readLine()) != null) {
-//                // trim newline when comparing with lineToRemove
-//                String trimmedLine = currentLine.trim();
-//                if (trimmedLine.equals(lineToCheck))
-//                    return;
-//            }
-//            reader.close();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\IP.txt")));
+            reader.readLine();
+            String lineToCheck = str;
+            String currentLine;
+            while ((currentLine = reader.readLine()) != null) {
+                // trim newline when comparing with lineToRemove
+                String trimmedLine = currentLine.trim();
+                if (trimmedLine.equals(lineToCheck))
+                    return;
+            }
+            reader.close();
             PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(".\\IP.txt",true)));
+            writer.println(str);
+            writer.close();
+        }catch (IOException e){
+            System.out.println("PlaylistLibrary error: can not open IP.txt");
+            System.out.println(e);
+        }
+    }
+
+    /**
+     * write inputUserName to "user.txt" if it's new.
+     */
+    public void writeNewUserName(String str){
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\user.txt")));
+            reader.readLine();
+            String lineToCheck = str;
+            String currentLine;
+            while ((currentLine = reader.readLine()) != null) {
+                // trim newline when comparing with lineToRemove
+                String trimmedLine = currentLine.trim();
+                if (trimmedLine.equals(lineToCheck))
+                    return;
+            }
+            reader.close();
+            PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(".\\user.txt",true)));
             writer.println(str);
             writer.close();
         }catch (IOException e){
@@ -103,17 +134,25 @@ public class FriendsPanel extends JPanel {
      */
     public void makeFriend(){
         try {
+            //read the IP
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\IP.txt")));
             String current;
             reader.readLine();
+            //read the userName
+            BufferedReader reader2 = new BufferedReader(new InputStreamReader(new FileInputStream(".\\user.txt")));
+            String current2;
+            reader2.readLine();
+
             if(friends.size() != 0)
                 friends.removeAll(friends);
             while ((current = reader.readLine()) != null){
-                Friend newFriend = new Friend(current);
+                current2 = reader2.readLine();
+                Friend newFriend = new Friend(current, current2);
                 addFriend(newFriend);
             }
             showFriends();
             reader.close();
+            reader2.close();
         } catch (IOException e) {
             System.out.println("FriendsPanel error");
             System.out.println(e);
