@@ -34,7 +34,7 @@ public class MusicOptions extends JPanel implements ActionListener {
         panel.setLayout(new GridLayout(4, 1));
 
         JLabel jLabel = new JLabel("JPotify");
-        Image img = ImageIO.read(getClass().getResource("..\\images\\Spotify1.jpg"));
+        Image img = ImageIO.read(getClass().getResource("..\\images\\logo-1.png"));
         Image newImage = img.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
         jLabel.setIcon(new ImageIcon(newImage));
         jLabel.setForeground(new Color(0x2EA8FF));

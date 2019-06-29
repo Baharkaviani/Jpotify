@@ -34,6 +34,8 @@ public class Search   extends JPanel implements ActionListener {
        btn = new JButton(BTN_TXT);
        btn.addActionListener(this);
        textField = new JTextField();
+       textField.setBackground(new Color(0xB708E3));
+       textField.setFont(new Font("Serif" , Font.BOLD , 30));
        this.setLayout(new BorderLayout());
        this.add(textField , BorderLayout.CENTER);
        this.add(btn, BorderLayout.EAST);
