@@ -35,35 +35,22 @@ public class Server implements Runnable {
     @Override
     public void run() {
         while (true) {
-        try {
-            socket = serverSocket.accept();
-            System.out.println("Client" + " accepted");
-            Handler h = new Handler(socket);
-            inputString = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            String IP = inputString.readLine();
-            friends = FriendsPanel.getFriend();
-            Friend currentFriend = null;
-            for (Friend key: friends) {
-                if((key.getIP()).equals(IP)) {
-                    key.setSocketInputput(socket);
-                    currentFriend = key;
-//                        currentFriend.setUserName(userName);
-                    output = new ObjectOutputStream((key.getSocketOutput()).getOutputStream());
-                    break;
-                }
-            }
-            new Thread(h).start();
-            System.out.println("thread start");
-            }
-        catch(Exception e){
-            System.out.println();
+            try {
+                socket = serverSocket.accept();
+                System.out.println("Server class: Client" + " accepted");
+                Handler h = new Handler(socket);
+                new Thread(h).start();
+                System.out.println("Server class: handler run");
+                inputString = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                output = new ObjectOutputStream(socket.getOutputStream());
+            } catch(Exception e){
+                System.out.println();
             }
         }
     }
 
     private class Handler implements Runnable{
         private Socket client;
-        private Socket outputSocket ;
         public Handler(Socket client){
             this.client = client;
         }
@@ -72,26 +59,42 @@ public class Server implements Runnable {
         public void run() {
             try{
                 //check the request type
-
-//                String userName = inputString.readLine();
-
-
-
                 String str = "";
                 while (true) {
                     //read str from client
                     str = inputString.readLine();
                     if (str.equals("listen")) {
-                        System.out.println("reicied listene");
-//                        String songSerialization = input.readUTF();
-//                        currentFriend.setTitleMusic(input.readLine());
-//                        currentFriend.setArtist(input.readLine());
-//                        currentFriend.settime(input.readLine());
+                        System.out.println("received listen");
+
+                        String songSerialization = inputString.readLine();
+                        System.out.println(songSerialization);
+                        String[] myStrings = songSerialization.split(",");
+
+                        //read the IP
+                        String IP = myStrings[0];
+
+                        //find the friend
+                        friends = FriendsPanel.getFriend();
+                        Friend currentFriend = null;
+
+                        for (Friend key: friends) {
+                            if((key.getIP()).equals(IP)) {
+                                currentFriend = key;
+                                System.out.println("IP: " + IP);
+                                break;
+                            }
+                        }
+                        currentFriend.setTitleMusic(myStrings[1]);
+                        currentFriend.setArtist(myStrings[2]);
+                        currentFriend.settime(myStrings[3]);
                     }
-                    else if(str.equals("sharePlayList")){
+                    else if(str.equals("sharedPlayList")){
+                        System.out.println("i want get your playlist");
+                        System.out.println(output);
                         HashMap<String , String> hashMap = PlaylistLibrary.getSharePlayListMap();
                         output.writeObject(PlaylistLibrary.getSharePlayList());
-                        String s =inputString.readLine().trim();
+                        System.out.println("write the playlist hashMap for friend");
+                        String s = inputString.readLine().trim();
                         String path = hashMap.get(s);
                         sendMusic(path);
                     }

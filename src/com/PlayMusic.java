@@ -74,6 +74,7 @@ public class PlayMusic {
         PlayMusicGUI.getMetaData().setTitle(data.getTitle());
         PlayMusicGUI.getMetaData().setArtist(data.getArtist());
         PlayMusicGUI.getMetaData().setArtwork(data.getImageByte());
+        PlayMusicGUI.getMetaData().setAlbum(data.getAlbum());
 
         //add seek bar
         secendRemain = 0;
@@ -86,8 +87,8 @@ public class PlayMusic {
 
         //send information for thread to send to server;
         Date date = new Date();
-        if(library instanceof PlaylistLibrary && PlaylistLibrary.getSharePlayList().contains(data.getTitle())) {
-            SongSerialization songInfo = new SongSerialization(data.getTitle(), data.getArtist(), "" + date.getTime());
+        if(PlaylistLibrary.getSharePlayList().contains(data.getTitle())) {
+            SongSerialization songInfo = new SongSerialization(data.getTitle(), data.getArtist() , date.getTime());
             SendMusicToServer.setSongInfo(songInfo);
         }
 

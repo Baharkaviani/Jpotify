@@ -1,11 +1,13 @@
 package Net;
 
-import GUI.FriendButton;
-import Listener.FriendListener;
-
+import GUI.*;
+import Listener.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.Socket;
 
 /**
@@ -15,10 +17,11 @@ import java.net.Socket;
  * @version 1.0
  */
 public class Friend extends JPanel {
-    private String userName, titleMusic, artist, playListName, IP, time;
+    private String userName, titleMusic, artist, IP, time;
     private FriendButton user;
-    private Socket socketInput , socketOutput;
-    private JTextField title, artistLable, playName, t;
+    private Socket socket;
+    private PrintWriter out;
+    private JTextField title, artistLable, t;
     private FriendListener friendListener;
 
     /**
@@ -28,9 +31,9 @@ public class Friend extends JPanel {
         super();
         try {
         this.IP = IP;
-//        Thread.sleep(10000);
-        socketOutput = new Socket(IP , 5000);
-        } catch (Exception e) {
+        socket = new Socket(IP , 5000);
+        out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
+        } catch (IOException e) {
             System.out.println("Error in Friend class");
             System.out.println(e);
         }
@@ -41,10 +44,10 @@ public class Friend extends JPanel {
         this.setBorder(new LineBorder(Color.BLACK, 5));
 
         JPanel p = new JPanel();
-        p.setLayout(new GridLayout(3, 1));
+        p.setLayout(new GridLayout(2, 1));
 
         //user design
-        user = new FriendButton(userName, socketOutput, IP);
+        user = new FriendButton(userName, socket, out, IP);
         user.setPreferredSize(new Dimension(80,35));
         user.setBackground(new Color(0x320851));
         user.setForeground(new Color(0xAF5AA8));
@@ -69,15 +72,6 @@ public class Friend extends JPanel {
         artistLable.setEditable(false);
         artistLable.setBorder(null);
 
-        //playName design
-        playName = new JTextField(" " + playListName);
-        playName.setPreferredSize(new Dimension(50,30));
-        playName.setFont(new Font("Serif" , Font.ITALIC , 20));
-        playName.setForeground(new Color(0xAF5AA8));
-        playName.setBackground(new Color(0x320851));
-        playName.setEditable(false);
-        playName.setBorder(null);
-
         //time design
         t = new JTextField(" " + time);
         t.setPreferredSize(new Dimension(50,30));
@@ -92,7 +86,6 @@ public class Friend extends JPanel {
         this.add(p, BorderLayout.CENTER);
         p.add(title);
         p.add(artistLable);
-        p.add(playName);
         this.add(t, BorderLayout.EAST);
     }
 
@@ -102,7 +95,11 @@ public class Friend extends JPanel {
 
     public void settime(String tim) {
         time = tim;
-        t.setText("Time  " + time);
+        int sec = Integer.parseInt(tim);
+        if((sec%60)>10)
+          t.setText("" + sec/60+":"+sec%60);
+        else
+            t.setText("" + sec/60+":"+"0"+sec%60);
     }
 
     public String getUserName() {
@@ -136,22 +133,12 @@ public class Friend extends JPanel {
         artistLable.setText(artist);
     }
 
-
-    public void setPlayListName(String playListName) {
-        this.playListName = playListName;
-        playName.setText(playListName);
+    public Socket getSocket() {
+        System.out.println("getSocket in Friend: " + socket);
+        return socket;
     }
 
-    /**
-     * set socket friend socket and it's listener.
-     * @param socket the socket which connects user whit the friend
-     */
-    public void setSocketInputput(Socket socket){
-        socketInput = socket;
-        friendListener.setSocketInput(socket);
-    }
-
-    public Socket getSocketOutput() {
-        return socketOutput;
+    public PrintWriter getOut() {
+        return out;
     }
 }

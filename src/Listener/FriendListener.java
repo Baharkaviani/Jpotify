@@ -1,7 +1,6 @@
 package Listener;
 
 import GUI.FriendButton;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,28 +16,23 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class FriendListener implements ActionListener {
-    private Socket socketOutPut, socketInput;
+    private Socket socket;
     private PrintWriter out;
-    private ObjectInputStream objectInputStream;
-    private ArrayList<String> sharedPalyList;
+    private ObjectInputStream objectInputStream = null;
+    private ArrayList<String> sharedPlayList;
     private String result;
-    private int index=1;
-
-    public void setSocketInput(Socket socketInput) {
-        this.socketInput = socketInput;
-    }
+    private int index = 1;
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        socketOutPut = ((FriendButton)(e.getSource())).getSocketOutput();
+        socket = ((FriendButton) (e.getSource())).getSocket();
+        out = ((FriendButton) (e.getSource())).getOut();
         try {
-            out = new PrintWriter(new OutputStreamWriter(socketOutPut.getOutputStream()));
-            writeIPOnSocket();
-            out.println("sharePlayList");
-            out.flush();
-            objectInputStream = new ObjectInputStream(socketInput.getInputStream());
-            sharedPalyList = (ArrayList<String>)(objectInputStream.readObject());
-            Thread.sleep(1000);
+            out.println("sharedPlayList");
+            if (objectInputStream == null) {
+                objectInputStream = new ObjectInputStream(socket.getInputStream());
+            }
+            sharedPlayList = (ArrayList<String>) (objectInputStream.readObject());
             chooseSong();
         } catch (Exception e1) {
             System.out.println("FriendListener class");
@@ -48,13 +42,14 @@ public class FriendListener implements ActionListener {
 
     /**
      * Choose song to download.
+     *
      * @throws Exception
      */
-    public void chooseSong() throws Exception{
+    public void chooseSong() throws Exception {
         JFrame frame = new JFrame();
-        frame.setSize(300,300);
+        frame.setSize(300, 300);
         frame.setLayout(new BorderLayout());
-        String[] sharedStrings = sharedPalyList.toArray(new String[sharedPalyList.size()]);
+        String[] sharedStrings = sharedPlayList.toArray(new String[sharedPlayList.size()]);
         JList list = new JList(sharedStrings);
         JScrollPane scrollPane = new JScrollPane(list);
         frame.add(scrollPane, BorderLayout.CENTER);
@@ -63,18 +58,18 @@ public class FriendListener implements ActionListener {
         JOptionPane pane = new JOptionPane(musicRequest);
         result = musicRequest;
         out.println(result);
-        out.flush();
         try {
-            String path = "C:\\Users\\vcc\\Music\\musics\\" + index + ".mp3";
-            int filesize = 16*1024;
-            byte [] mybytearray  = new byte [filesize];
+
+            String path = ".\\newMusic\\" + index + ".mp3";
+            int filesize = 16 * 1024;
+            byte[] mybytearray = new byte[filesize];
 
             FileOutputStream fos = new FileOutputStream(path);
 
             int count;
             while (true) {
                 count = objectInputStream.read(mybytearray);
-                if(count == 1)
+                if (count == 1)
                     break;
                 fos.write(mybytearray, 0, count);
                 fos.flush();
@@ -82,27 +77,9 @@ public class FriendListener implements ActionListener {
             fos.close();
             index++;
             System.out.println("finish");
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("FriendListener error: ");
             System.out.println(e);
-        }
-    }
-
-    /**
-     * when the user wants to connect to server, must send the IP to let server find the output socket of that user.
-     */
-    private void writeIPOnSocket(){
-        try {
-            String IP;
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(".\\IP.txt")));
-            if((IP = reader.readLine())!= null) {
-                out.println(IP);
-                out.flush();
-            }
-            reader.close();
-        } catch (Exception e1) {
-            System.out.println("FriendListener class");
-            System.out.println(e1);
         }
     }
 }
