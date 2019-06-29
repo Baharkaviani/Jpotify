@@ -42,6 +42,7 @@ public class Server implements Runnable {
                 new Thread(h).start();
                 System.out.println("Server class: handler run");
                 inputString = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                output = new ObjectOutputStream(socket.getOutputStream());
             } catch(Exception e){
                 System.out.println();
             }
@@ -92,6 +93,7 @@ public class Server implements Runnable {
                     }
                     else if(str.equals("sharedPlayList")){
                         System.out.println("i want get your playlist");
+                        System.out.println(output);
                         HashMap<String , String> hashMap = PlaylistLibrary.getSharePlayListMap();
                         output.writeObject(PlaylistLibrary.getSharePlayList());
                         System.out.println("write the playlist hashMap for friend");

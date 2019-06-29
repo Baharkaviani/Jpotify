@@ -64,6 +64,7 @@ public class FriendListener implements ActionListener {
             int count;
             while (true) {
                 count = objectInputStream.read(mybytearray);
+                System.out.println(count);
                 if(count == 1)
                     break;
                 fos.write(mybytearray, 0, count);

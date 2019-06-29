@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Formatter;
 
 /**
  * SongSerialization serialize song's title,artist and time for sending to friends;
@@ -13,19 +16,25 @@ import java.io.Serializable;
  */
 public class SongSerialization implements Serializable {
     private static String title = "", artist = "", time = "";
-
-    public SongSerialization(String title, String artist, String time){
+    private Date date ;
+    private long oldTime;
+    public SongSerialization(String title, String artist, long time){
+        date = new Date();
         this.title = title;
         this.artist = artist;
-        this.time = time;
+        oldTime = time;
+        this.time = "" + time;
     }
-
+    public void changTime(){
+        date = new Date();
+        time = ""+ (date.getTime() - oldTime)/1000;
+    }
     @Override
     public String toString(){
         return  writeIPOnSocket() + ","
                 + title + ","
                 + artist + ","
-                + time;
+                + ""+time;
     }
 
     /**

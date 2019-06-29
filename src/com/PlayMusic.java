@@ -2,12 +2,10 @@ package com;
 
 import GUI.*;
 import Library.*;
-import Net.Friend;
 import Net.SendMusicToServer;
 import Net.SongSerialization;
 import javazoom.jl.player.Player;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -89,11 +87,8 @@ public class PlayMusic {
         //send information for thread to send to server;
         Date date = new Date();
         if(library instanceof PlaylistLibrary && PlaylistLibrary.getSharePlayList().contains(data.getTitle())) {
-            SongSerialization songInfo = new SongSerialization(data.getTitle(), data.getArtist(), "" + date.getTime());
+            SongSerialization songInfo = new SongSerialization(data.getTitle(), data.getArtist() , date.getTime());
             SendMusicToServer.setSongInfo(songInfo);
-            ArrayList<Friend> friends = FriendsPanel.getFriend();
-            SendMusicToServer sendMusicToServer = new SendMusicToServer(friends);
-            new Thread(sendMusicToServer).start();
         }
 
         //send player for volume panel;

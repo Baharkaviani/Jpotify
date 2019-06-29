@@ -19,13 +19,16 @@ public class SendMusicToServer implements Runnable{
     public void run() {
         try {
             while (true) {
-                Thread.sleep(120000);
+                Thread.sleep(10000);
+                if(songInfo!=null){
                 for (Friend key: friends) {
                     out = key.getOut();
                     out.println("listen");
                     out.flush();
+                    songInfo.changTime();
                     out.println(songInfo.toString());
                     out.flush();
+                  }
                 }
             }
         }catch (Exception err){
@@ -36,5 +39,6 @@ public class SendMusicToServer implements Runnable{
 
     public static void setSongInfo(SongSerialization song){
         songInfo = song;
+        System.out.println("set info");
     }
 }

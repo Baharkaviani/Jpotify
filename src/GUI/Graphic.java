@@ -1,10 +1,13 @@
 package GUI;
 
+import Net.Friend;
+import Net.SendMusicToServer;
 import Net.Server;
 import com.*;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
+import java.util.ArrayList;
 
 /**
  * shows each part of JPotify's window
@@ -233,5 +236,8 @@ public class Graphic {
         new Thread(s).start();
         Graphic JPotify = new Graphic();
 
+        ArrayList<Friend> friends = FriendsPanel.getFriend();
+        SendMusicToServer sendMusicToServer = new SendMusicToServer(friends);
+        new Thread(sendMusicToServer).start();
     }
 }
