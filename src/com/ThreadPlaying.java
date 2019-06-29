@@ -32,6 +32,10 @@ public class ThreadPlaying implements Runnable{
         repeat = !repeat;
     }
 
+    public static boolean isRepeat() {
+        return repeat;
+    }
+
     /**
      * play player which passed to constructor.
      */

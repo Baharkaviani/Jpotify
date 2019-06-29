@@ -103,19 +103,6 @@ public class Friend extends JPanel {
             t.setText("" + sec/60+":"+"0"+sec%60);
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-        user.setText(userName);
-    }
-
-    public String getTitleMusic() {
-        return titleMusic;
-    }
-
     public void setTitleMusic(String titleMusic) {
         this.titleMusic = titleMusic;
         title.setText(titleMusic);

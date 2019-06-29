@@ -83,7 +83,6 @@ public class PlayMusicGUI extends JPanel{
         repeat = new JButton(new ImageIcon(newImage));
         repeat.setBackground(new Color(0x4D0C7F));
         repeat.setBorder(null);
-
         //set size
         playing.setPreferredSize(new Dimension(900,50));
         totalTime.setPreferredSize(new Dimension(40, 10));
@@ -170,6 +169,21 @@ public class PlayMusicGUI extends JPanel{
         Image newimg = img.getScaledInstance( 60, 60,  java.awt.Image.SCALE_SMOOTH ) ;
         image = new ImageIcon( newimg );
         pauseAndResumeButton.setIcon(image);
+    }
+    public static void setTrueRepeat(){
+        image = new ImageIcon("C:\\Users\\vcc\\Desktop\\Jpotify\\src\\images\\repeate1.png");
+        Image img = image.getImage();
+        Image newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
+        image = new ImageIcon(newImage);
+        repeat.setIcon(image);
+
+    }
+    public static void setFalseRepeat(){
+        image = new ImageIcon("C:\\Users\\vcc\\Desktop\\Jpotify\\src\\images\\repeate.png");
+        Image img = image.getImage();
+        Image newImage = img.getScaledInstance(60, 60, Image.SCALE_DEFAULT);
+        image = new ImageIcon(newImage);
+        repeat.setIcon(image);
     }
     public static MP3FileDataGUI getMetaData() {
         return metaData;

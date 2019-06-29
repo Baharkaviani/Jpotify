@@ -61,6 +61,10 @@ public class PlayMusicActioner implements ActionListener {
                 PlayMusic.next();
             }
             if(e.getSource() == GUI.getRepeat()) {
+                if(ThreadPlaying.isRepeat())
+                    GUI.setFalseRepeat();
+                else
+                    GUI.setTrueRepeat();
                 ThreadPlaying.changRepeat();
             }
         } catch (Exception error) {
