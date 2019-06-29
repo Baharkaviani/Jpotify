@@ -14,7 +14,7 @@ import java.io.ByteArrayInputStream;
  */
 public class MP3FileDataGUI extends JPanel {
     private JPanel artWorkPanel, information;
-    private JLabel artWork , title , artist;
+    private JLabel artWork , title , artist , album;
 
     /**
      * constructor initialize lable and set them in Layout
@@ -25,17 +25,17 @@ public class MP3FileDataGUI extends JPanel {
         title = new JLabel();
         artist = new JLabel();
         artWork = new JLabel();
-
+        album = new JLabel();
         //set layout
         this.setLayout(new GridLayout(1, 2));
-        information.setLayout(new GridLayout(2, 1));
+        information.setLayout(new GridLayout(3, 1));
 
         //set color
         artWorkPanel.setBackground(new Color(0x4D0C7F));
         information.setBackground(new Color(0x4D0C7F));
         title.setForeground(new Color(0x2EA8FF));
         artist.setForeground(new Color(0x2EA8FF));
-
+        album.setForeground(new Color(0x2EA8FF));
         //set size
         artWorkPanel.setPreferredSize(new Dimension(100, 100));
         information.setPreferredSize(new Dimension(150, 100));
@@ -46,6 +46,7 @@ public class MP3FileDataGUI extends JPanel {
         artWorkPanel.add(artWork);
         information.add(title);
         information.add(artist);
+        information.add(album);
     }
 
     /**
@@ -77,7 +78,20 @@ public class MP3FileDataGUI extends JPanel {
         }
 
     }
+    /**
+     * SetArtist sets artist name to artist lable ;
+     * @param albumName is album'name of song and if song hasn't album's name write "music hasn't albumName";
+     */
+    public void setAlbum(String albumName){
+        album.setText("");
+        if(albumName.equals(""))
+            album.setText("music hasn't albumName");
+        else {
+            album.setText(albumName);
+            album.setFont(new Font("Serif" ,Font.BOLD, 20));
+        }
 
+    }
     /**
      * SetArtwork sets image's song to artWork lable ;
      * @param bis is  byteArray of image

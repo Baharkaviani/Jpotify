@@ -1,11 +1,14 @@
 package Net;
 
-import GUI.FriendsPanel;
-
-import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+/**
+ * sendMusicToServer class each 2 minutes send song's information for friends.
+ * @author Bahar Kaviani & Yasaman Haghbin
+ * @since : 2019 - 6 - 29
+ * @version : 1.0
+ */
 public class SendMusicToServer implements Runnable{
     private static SongSerialization songInfo;
     private ArrayList<Friend> friends;
@@ -15,11 +18,14 @@ public class SendMusicToServer implements Runnable{
         this.friends = friends;
     }
 
+    /**
+     * run method send song information to friends by socket.
+     */
     @Override
     public void run() {
         try {
             while (true) {
-                Thread.sleep(10000);
+                Thread.sleep(120000);
                 if(songInfo!=null){
                 for (Friend key: friends) {
                     out = key.getOut();

@@ -95,7 +95,11 @@ public class Friend extends JPanel {
 
     public void settime(String tim) {
         time = tim;
-        t.setText("" + time);
+        int sec = Integer.parseInt(tim);
+        if((sec%60)>10)
+          t.setText("" + sec/60+":"+sec%60);
+        else
+            t.setText("" + sec/60+":"+"0"+sec%60);
     }
 
     public String getUserName() {

@@ -74,7 +74,11 @@ public class Album extends JPanel {
         mp3FileData = new MP3FileData(songs.get(0).getPath());
 
         //get title;
-        title = mp3FileData.getTitle();
+        if(info.equals("album")) {
+            title = mp3FileData.getAlbum();
+        }
+        else
+            title = mp3FileData.getArtist();
 
         //get artWork;
         if (mp3FileData.getImageByte() != null) {
@@ -96,7 +100,10 @@ public class Album extends JPanel {
             information.setForeground(new Color(0xAF5AA8));
         }
         else{
-            information.setText("song hasn't title");
+            if(info.equals("album"))
+                information.setText("song hasn't album name");
+            else
+                information.setText("song hasn't artist name");
             information.setFont(new Font("Serif", Font.BOLD, 15));
             information.setForeground(new Color(0xAF5AA8));
         }

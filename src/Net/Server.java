@@ -85,11 +85,8 @@ public class Server implements Runnable {
                             }
                         }
                         currentFriend.setTitleMusic(myStrings[1]);
-                        System.out.println("1: " + myStrings[1]);
                         currentFriend.setArtist(myStrings[2]);
-                        System.out.println("2: " + myStrings[2]);
                         currentFriend.settime(myStrings[3]);
-                        System.out.println("3: " + myStrings[3]);
                     }
                     else if(str.equals("sharedPlayList")){
                         System.out.println("i want get your playlist");

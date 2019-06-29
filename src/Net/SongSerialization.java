@@ -4,9 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Formatter;
 
 /**
  * SongSerialization serialize song's title,artist and time for sending to friends;
@@ -25,6 +23,10 @@ public class SongSerialization implements Serializable {
         oldTime = time;
         this.time = "" + time;
     }
+
+    /**
+     * changTime method calculate different time between old time and current time
+     */
     public void changTime(){
         date = new Date();
         time = ""+ (date.getTime() - oldTime)/1000;
